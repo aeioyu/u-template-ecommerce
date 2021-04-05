@@ -1,11 +1,11 @@
 import React from 'react';
 import { GetStaticProps } from 'next';
-import Head from 'next/head';
 import Link from 'next/link';
-import Layout, { siteTitle } from '@/components/layout';
+import Layout from '@/layouts/AppLayout';
 import Date from '@/components/date';
 import { getSortedPostsData } from '@/lib/posts';
 import utilStyles from '@/styles/utils.module.css';
+import Seo from '@/components/Seo';
 
 interface Props {
   allPostsData: {
@@ -15,12 +15,10 @@ interface Props {
   }[];
 }
 
-const Home: React.FC<Props> = ({ allPostsData }: Props) => {
+const Home: React.FC<Props> = ({ allPostsData }) => {
   return (
     <Layout home>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
+      <Seo title="homepage" description="homepage description" />
       <section className={utilStyles.headingMd}>
         <p>[Your Self Introduction]</p>
         <p>
@@ -33,7 +31,7 @@ const Home: React.FC<Props> = ({ allPostsData }: Props) => {
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
+              <Link href={`/${id}`}>
                 <a>{title}</a>
               </Link>
               <br />
