@@ -1,0 +1,7 @@
+.header {
+  @apply text-white shadow-sm bg-darkBlue;
+}
+
+.headerLayout {
+  @apply flex justify-between;
+}

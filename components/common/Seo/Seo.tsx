@@ -32,6 +32,8 @@ const Seo: React.FC<SeoProps> = ({ title, description, canonical, css, js, image
     {canonical && <link rel="canonical" href={`${canonical}`} />}
     {css && <link rel="stylesheet" href={`${css}`} />}
     {js && <script type="text/javascript" src={`${js}`}></script>}
+    {/*<link rel="alternate" hrefLang={locale} href={`${SITE_URL}${locale}/${post?.slug}`} />*/}
+    {/*<link rel="alternate" hrefLang={altLocale} href={`${SITE_URL}${altLocale}/${altPost?.slug}`} />*/}
   </Head>
 );
 

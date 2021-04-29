@@ -1,4 +1,2 @@
-declare module 'remark-html' {
-  const html: any
-  export default html
-}
+// Declarations for modules without types
+// declare module 'next-themes';

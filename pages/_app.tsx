@@ -1,8 +1,28 @@
-import '@/styles/global.css';
+import 'tailwindcss/tailwind.css';
 import { AppProps } from 'next/app';
+import { ReactElement, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { IntlProvider } from 'react-intl';
 
-const App: React.FC<AppProps> = ({ Component, pageProps }) => {
-  return <Component {...pageProps} />;
+const languages = {
+  th: require('../translate/th.json'),
+  en: require('../translate/en.json'),
 };
 
-export default App;
+const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
+  const router = useRouter();
+  const { locale, defaultLocale } = router;
+  const messages = languages[locale];
+
+  useEffect(() => {
+    document.body.classList?.remove('loading');
+  }, []);
+
+  return (
+    <IntlProvider locale={locale} defaultLocale={defaultLocale} messages={messages}>
+      <Component {...pageProps} />
+    </IntlProvider>
+  );
+};
+
+export default MyApp;

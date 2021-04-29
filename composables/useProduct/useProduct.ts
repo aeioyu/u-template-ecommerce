@@ -1,4 +1,4 @@
-function useProductViewModel() {
+function useProduct() {
   const getProduct = (sku: string): any => {
     console.log(sku);
 
@@ -14,4 +14,4 @@ function useProductViewModel() {
   };
 }
 
-export default useProductViewModel;
+export default useProduct;
