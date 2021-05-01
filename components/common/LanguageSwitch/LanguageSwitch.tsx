@@ -7,7 +7,7 @@ interface Props {
 
 const LanguageSwitch: React.FC<Props> = ({ locale, onLanguageChange }) => {
   return (
-    <select onChange={(e) => onLanguageChange(e.target.value)} defaultValue={locale}>
+    <select className="text-black text-body" onChange={(e) => onLanguageChange(e.target.value)} defaultValue={locale}>
       <option value="th">TH</option>
       <option value="en">EN</option>
     </select>

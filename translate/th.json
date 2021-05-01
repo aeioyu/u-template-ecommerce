@@ -4,5 +4,8 @@
   "to-second-page": "เปลี่ยนหน้า",
   "error-with-status": "ตัวอย่าง {{statusCode}} error",
   "error-without-status": "ตัวอย่าง error status",
-  "title": "หน้าแรก | next-i18next"
+  "title": "หน้าแรก | next-i18next",
+  "seo.title": "หน้าแรก | u-nextjs-template",
+  "seo.description": "description",
+  "search": "ค้นหา"
 }

@@ -1,29 +1,40 @@
 const pxToRem = (px, base = 16) => `${px / base}rem`;
 
 const fontSize = {
-  h1: pxToRem(36),
-  h2: pxToRem(28),
-  h3: pxToRem(24),
-  h4: pxToRem(20),
-  h5: pxToRem(16),
-  h6: pxToRem(12),
+  heading1: pxToRem(36),
+  heading2: pxToRem(28),
+  heading3: pxToRem(24),
+  heading4: pxToRem(20),
+  heading5: pxToRem(16),
+  heading6: pxToRem(14),
   subtitle1: pxToRem(20),
   subtitle2: pxToRem(16),
   subtitle3: pxToRem(12),
-  body1: pxToRem(20),
-  body2: pxToRem(16),
-  body3: pxToRem(12),
+  body: pxToRem(14),
+  caption: pxToRem(12),
 };
 
 const colors = {
   darkBlue: '#051E42',
-  blue: '#0446AD',
+  blue: '#3565f2',
   lightBlue: '#0071DC',
+  gray: '#777777',
   lightGray: '#F5F5F5',
   yellow: '#FFC21F',
   lightYellow: '#FCED70',
   black: '#000000',
   white: '#ffffff',
+  indigo: {
+    100: '#d7e0fc',
+    200: '#aec1fa',
+    300: '#86a3f7',
+    400: '#5d84f5',
+    500: '#3565f2',
+    600: '#2a51c2',
+    700: '#203d91',
+    800: '#152861',
+    900: '#0b1430',
+  },
 };
 
 const screens = {
@@ -43,12 +54,31 @@ const screens = {
 const spacing = {};
 
 module.exports = {
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', './layouts/**/*.{js,ts,jsx,tsx}'],
+  purge: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+    './layouts/**/*.{js,ts,jsx,tsx}',
+    './configs/**/*.{js,ts,jsx,tsx}',
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontSize,
     colors,
     screens,
+    text: {
+      variants: {
+        heading1: 'text-heading1',
+        heading2: 'text-heading2',
+        heading3: 'text-heading3',
+        heading4: 'text-heading4',
+        heading5: 'text-heading5',
+        subtitle1: 'text-subtitle1',
+        subtitle2: 'text-subtitle2',
+        subtitle3: 'text-subtitle3',
+        body: 'text-body',
+        caption: 'text-caption leading-1',
+      },
+    },
     extend: {},
   },
   variants: {

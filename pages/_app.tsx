@@ -1,8 +1,10 @@
-import 'tailwindcss/tailwind.css';
+import '@/styles/global.css';
 import { AppProps } from 'next/app';
 import { ReactElement, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { IntlProvider } from 'react-intl';
+import { ThemeProvider } from '@/components/ThemeProvider';
+import theme from '@/configs/theme.config';
 
 const languages = {
   th: require('../translate/th.json'),
@@ -19,9 +21,11 @@ const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
   }, []);
 
   return (
-    <IntlProvider locale={locale} defaultLocale={defaultLocale} messages={messages}>
-      <Component {...pageProps} />
-    </IntlProvider>
+    <ThemeProvider theme={theme}>
+      <IntlProvider locale={locale} defaultLocale={defaultLocale} messages={messages}>
+        <Component {...pageProps} />
+      </IntlProvider>
+    </ThemeProvider>
   );
 };
 
