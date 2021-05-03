@@ -19,7 +19,7 @@ const colors = {
   blue: '#3565f2',
   lightBlue: '#0071DC',
   gray: '#777777',
-  lightGray: '#F5F5F5',
+  lightGray: '#e5e5e5',
   yellow: '#FFC21F',
   lightYellow: '#FCED70',
   black: '#000000',

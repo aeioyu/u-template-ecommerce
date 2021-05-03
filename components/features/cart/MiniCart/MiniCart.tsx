@@ -23,8 +23,6 @@ const MiniCart = (props: Props) => {
               </Button>
             </Popover.Button>
 
-            <Popover.Overlay className={`${open ? 'opacity-30 fixed inset-0 top-9' : 'opacity-0'} bg-black`} />
-
             <Transition
               show={open}
               enter="transition duration-100 ease-out"
@@ -35,7 +33,7 @@ const MiniCart = (props: Props) => {
               leaveTo="transform scale-95 opacity-0"
             >
               <Popover.Panel static>
-                <div className="absolute right-0 left-auto p-2 bg-white shadow-lg w-80 top-full">mini cart 2</div>
+                <div className="absolute right-0 left-auto z-20 p-2 bg-white shadow-lg w-80 top-full">mini cart 2</div>
               </Popover.Panel>
             </Transition>
           </>

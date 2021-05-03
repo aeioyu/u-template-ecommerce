@@ -1,7 +1,7 @@
 import React, { forwardRef, ReactNode, JSXElementConstructor, useRef, BaseHTMLAttributes } from 'react';
 import cn from 'clsx';
 import mergeRefs from 'react-merge-refs';
-import useTheme from '@/composables/useTheme';
+import { useTheme } from '@/components/ThemeProvider';
 
 export type TextVariants =
   | 'heading1'
