@@ -1,12 +1,28 @@
 const withPlugins = require('next-compose-plugins');
 const bundleAnalyzer = require('@next/bundle-analyzer');
 const { i18n } = require('./i18n.config');
+const { withSentryConfig } = require('@sentry/nextjs');
 
 const isProd = process.env.NODE_ENV === 'production';
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
+
+// with Sentry.
+// https://nextjs.org/docs/api-reference/next.config.js/introduction
+// https://docs.sentry.io/platforms/javascript/guides/nextjs/
+const sentryConfig = (config) => {
+  // For all available options, see:
+  // https://github.com/getsentry/sentry-webpack-plugin#options.
+  return withSentryConfig(config, {
+    release: 'v1.0.0',
+    deploy: {
+      env: 'development',
+      name: 'Deploy name',
+    },
+  });
+};
 
 const nextConfig = {
   i18n,
@@ -26,4 +42,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withPlugins([withBundleAnalyzer], nextConfig);
+module.exports = withPlugins([sentryConfig, withBundleAnalyzer], nextConfig);

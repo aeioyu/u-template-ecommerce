@@ -13,14 +13,17 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.1.1",
+    "@sentry/nextjs": "^6.3.5",
     "clsx": "^1.1.1",
+    "cors": "^2.8.5",
     "next": "^10.2.0",
     "react": "^17.0.1",
     "react-cookie": "^4.0.3",
     "react-dom": "^17.0.1",
     "react-intl": "^5.17.1",
     "react-merge-refs": "^1.1.0",
-    "swiper": "^6.5.9"
+    "swiper": "^6.5.9",
+    "woocommerce-api": "^1.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",

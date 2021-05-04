@@ -1,11 +1,11 @@
-import React, { FC, ReducerAction, useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
 
 export interface State {
   displaySidebar: boolean;
   displayDropdown: boolean;
   displayModal: boolean;
   displayToast: boolean;
-  modalView: MODAL_VIEWS;
+  modalView: ModalView | string;
   toastText: string;
   userAvatar: string;
 }
@@ -51,14 +51,14 @@ type Action =
     }
   | {
       type: 'SET_MODAL_VIEW';
-      view: MODAL_VIEWS;
+      view: ModalView;
     }
   | {
       type: 'SET_USER_AVATAR';
       value: string;
     };
 
-type MODAL_VIEWS = 'SIGNUP_VIEW' | 'LOGIN_VIEW' | 'FORGOT_VIEW' | 'NEW_SHIPPING_ADDRESS' | 'NEW_PAYMENT_METHOD';
+type ModalView = 'SIGNUP_VIEW' | 'LOGIN_VIEW' | 'FORGOT_VIEW' | 'NEW_SHIPPING_ADDRESS' | 'NEW_PAYMENT_METHOD';
 
 type ToastText = string;
 
@@ -66,7 +66,7 @@ const UIContext = React.createContext<State | any>(initialState);
 
 UIContext.displayName = 'UIContext';
 
-function uiReducer(state: State, action: Action) {
+function uiReducer(state: State, action: Action): State {
   switch (action.type) {
     case 'OPEN_SIDEBAR': {
       return {
@@ -158,7 +158,7 @@ const UIStateProvider: FC = (props) => {
 
   const setUserAvatar = (value: string) => dispatch({ type: 'SET_USER_AVATAR', value });
 
-  const setModalView = (view: MODAL_VIEWS) => dispatch({ type: 'SET_MODAL_VIEW', view });
+  const setModalView = (view: ModalView) => dispatch({ type: 'SET_MODAL_VIEW', view });
 
   const value = useMemo(
     () => ({
