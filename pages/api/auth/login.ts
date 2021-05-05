@@ -3,9 +3,7 @@ import apiClient from '@/libs/api-client';
 import { AUTH_COOKIE } from '@/constants';
 import cookie from 'cookie';
 
-const router = apiHandler;
-
-router.post(async (req, res) => {
+export default apiHandler.post(async (req, res) => {
   const params = {
     username: req.body.username,
     password: req.body.password,
@@ -40,5 +38,3 @@ router.post(async (req, res) => {
 
   res.status(statusCode).json(apiResponse);
 });
-
-export default router;
