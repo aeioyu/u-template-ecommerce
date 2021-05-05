@@ -12,17 +12,18 @@ const withBundleAnalyzer = bundleAnalyzer({
 // with Sentry.
 // https://nextjs.org/docs/api-reference/next.config.js/introduction
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
-const sentryConfig = (config) => {
-  // For all available options, see:
-  // https://github.com/getsentry/sentry-webpack-plugin#options.
-  return withSentryConfig(config, {
-    release: 'v1.0.0',
-    deploy: {
-      env: 'development',
-      name: 'Deploy name',
-    },
-  });
-};
+const sentryConfig = (config) =>
+  process.env.NEXT_PUBLIC_SENTRY_ENABLE === 'true'
+    ? // For all available options, see:
+      // https://github.com/getsentry/sentry-webpack-plugin#options.
+      withSentryConfig(config, {
+        release: 'v1.0.0',
+        deploy: {
+          env: 'development',
+          name: 'Deploy name',
+        },
+      })
+    : {};
 
 const nextConfig = {
   i18n,

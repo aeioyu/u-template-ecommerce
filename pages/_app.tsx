@@ -11,6 +11,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import theme from '@/configs/theme.config';
 import SwiperCore, { Lazy, Pagination, Navigation, Autoplay } from 'swiper/core';
 import { UIStateProvider } from '@/components/UIStateProvider';
+import { QueryClientProvider, QueryClient } from 'react-query';
 
 SwiperCore.use([Lazy, Pagination, Navigation, Autoplay]);
 
@@ -18,6 +19,8 @@ const languages = {
   th: require('../translate/th.json'),
   en: require('../translate/en.json'),
 };
+
+const queryClient = new QueryClient();
 
 const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
   const router = useRouter();
@@ -32,7 +35,9 @@ const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
     <IntlProvider locale={locale} defaultLocale={defaultLocale} messages={messages}>
       <ThemeProvider theme={theme}>
         <UIStateProvider>
-          <Component {...pageProps} />
+          <QueryClientProvider client={queryClient}>
+            <Component {...pageProps} />
+          </QueryClientProvider>
         </UIStateProvider>
       </ThemeProvider>
     </IntlProvider>

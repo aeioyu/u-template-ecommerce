@@ -3,10 +3,10 @@
 ## Project Features
 
 - [x] Internationalization
-- [ ] Responsive
+- [x] Responsive
 - [x] UI Components
 - [x] Theming
-- [x] Design System
+- [x] Design System | Document with Storybook
 - [ ] Standardized Data Hooks
 - [ ] Integrations - Integrate seamlessly with the most common ecommerce platforms.
 - [ ] Progressive Web App (PWA)
@@ -29,9 +29,13 @@
 ## SEO
 
 - [ ] [hreflang](https://developers.google.com/search/docs/advanced/crawling/localized-versions?visit_id=637551865443037564-785503530&rd=1)
+- [x] Canonical support
+- [x] Robot.txt [validate_robot](https://www.google.com/webmasters/tools/robots-testing-tool)
+- [ ] Sitemap.xml [tool](https://www.npmjs.com/package/sitemap)
 
 ### Reference
 
 - [kimia-UI](https://github.com/enochndika/kimia-UI)
 - [reach-ui](https://github.com/reach/reach-ui)
 - [headlessui](https://headlessui.dev/)
+- [validate_sitemap](https://www.xml-sitemaps.com/validate-xml-sitemap.html)
