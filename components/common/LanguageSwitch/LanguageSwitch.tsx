@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 interface Props {
   locale: string;
@@ -14,4 +14,4 @@ const LanguageSwitch: React.FC<Props> = ({ locale, onLanguageChange }) => {
   );
 };
 
-export default LanguageSwitch;
+export default memo(LanguageSwitch);

@@ -4,7 +4,7 @@ import 'swiper/components/lazy/lazy.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 import 'swiper/components/navigation/navigation.min.css';
 import { AppProps } from 'next/app';
-import { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { IntlProvider } from 'react-intl';
 import { ThemeProvider } from '@/components/ThemeProvider';
@@ -20,9 +20,18 @@ const languages = {
   en: require('../translate/en.json'),
 };
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
+const Noop: React.FC = ({ children }) => <>{children}</>;
 
 const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
+  const Layout = (Component as any).Layout || Noop;
   const router = useRouter();
   const { locale, defaultLocale } = router;
   const messages = languages[locale];
@@ -36,7 +45,9 @@ const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
       <ThemeProvider theme={theme}>
         <UIStateProvider>
           <QueryClientProvider client={queryClient}>
-            <Component {...pageProps} />
+            <Layout {...pageProps}>
+              <Component {...pageProps} />
+            </Layout>
           </QueryClientProvider>
         </UIStateProvider>
       </ThemeProvider>

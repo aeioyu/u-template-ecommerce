@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import Seo from '@/components/common/Seo';
 import useTranslate from '@/composables/useTranslate';
 import Layout from '@/layouts/AppLayout';
@@ -70,13 +70,14 @@ const gridCarousel = [
 
 interface Props {
   config: string;
+  Layout: ReactElement;
 }
 
 const Home: NextPage<Props> = ({ config }) => {
   const { t } = useTranslate();
 
   return (
-    <Layout>
+    <div>
       <Seo title={t('seo.title')} description={t('seo.description')} />
       <Container>
         {config}
@@ -90,7 +91,7 @@ const Home: NextPage<Props> = ({ config }) => {
           <GridCarousel banners={gridCarousel} />
         </div>
       </Container>
-    </Layout>
+    </div>
   );
 };
 
@@ -101,5 +102,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     },
   };
 };
+
+(Home as any).Layout = Layout;
 
 export default Home;

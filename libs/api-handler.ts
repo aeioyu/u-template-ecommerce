@@ -7,30 +7,31 @@ export interface NextApiRequestExtended extends NextApiRequest {
   username: string | null;
 }
 
-export default nextConnect<NextApiRequestExtended, NextApiResponse>({
-  onError(error, req, res) {
-    res.status(501).json({ error: `sorry something happened ${error}` });
-  },
-  onNoMatch(req, res) {
-    res.status(405).json({ error: `method ${req.method} of this route is not allowed` });
-  },
-}).use((req, res, next) => {
-  req.userId = null;
-  req.username = null;
+export default () =>
+  nextConnect<NextApiRequestExtended, NextApiResponse>({
+    onError(error, req, res) {
+      res.status(501).json({ error: `sorry something happened ${error}` });
+    },
+    onNoMatch(req, res) {
+      res.status(405).json({ error: `method ${req.method} is not allowed` });
+    },
+  }).use((req, res, next) => {
+    // req.userId = null;
+    // req.username = null;
 
-  const { authorization } = req.headers;
+    // const { authorization } = req.headers;
 
-  if (authorization) {
-    const jwtToken = authorization.replace('Bearer ', '');
-    verify(jwtToken, process.env.JWT_SECRET, (error: any, decoded: any) => {
-      console.log({ decoded });
+    // if (authorization) {
+    //   const jwtToken = authorization.replace('Bearer ', '');
+    //   verify(jwtToken, process.env.JWT_SECRET, (error: any, decoded: any) => {
+    //     console.log({ decoded });
 
-      if (!error && decoded) {
-        req.userId = decoded.userId;
-        req.username = decoded.username;
-      }
-    });
-  }
+    //     if (!error && decoded) {
+    //       req.userId = decoded.userId;
+    //       req.username = decoded.username;
+    //     }
+    //   });
+    // }
 
-  next();
-});
+    next();
+  });

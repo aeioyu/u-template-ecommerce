@@ -1,17 +1,20 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import Header from '@/layouts/Header';
 import Footer from '@/layouts/Footer';
-import LoginView from '@/components/features/user/LoginView';
 import Modal from '@/components/common/Modal';
-import { useUIState } from '@/components/UIStateProvider/UIStateProvider';
-import RegisterView from '@/components/features/user/RegisterView';
-import { useUserLogin } from '@/composables/useUser';
+import { useUIState } from '@/components/UIStateProvider';
+import useAuth from '@/composables/useAuth';
+
+const LoginView = dynamic(() => import('@/components/features/user/LoginView'));
+const RegisterView = dynamic(() => import('@/components/features/user/RegisterView'));
 
 interface Props {}
 
 const AppLayout: React.FC<Props> = ({ children }) => {
   const { displayModal, closeModal, modalView } = useUIState();
-  const { mutate: login, error, isLoading: loginLoading } = useUserLogin();
+  const { login } = useAuth();
+  const loginErrorMessage = (login?.error as any)?.response?.data?.message as string;
 
   return (
     <div>
@@ -21,7 +24,7 @@ const AppLayout: React.FC<Props> = ({ children }) => {
 
       <Modal open={displayModal} onClose={closeModal}>
         {modalView === 'LOGIN_VIEW' && (
-          <LoginView onLoginSubmit={login} loading={loginLoading} error={error?.response?.data?.message} />
+          <LoginView loading={login.isLoading} error={loginErrorMessage} onLoginSubmit={login.mutate} />
         )}
         {modalView === 'SIGNUP_VIEW' && <RegisterView />}
       </Modal>

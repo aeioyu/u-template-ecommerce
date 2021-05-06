@@ -1,28 +1,27 @@
-import { useMutation, UseMutationResult } from 'react-query';
+import { UseQueryResult, useQuery } from 'react-query';
 import axios from 'axios';
+import { AUTH_FLAG_COOKIE } from '@/constants';
+import { useCookies } from 'react-cookie';
 
-interface LoginParams {
-  username: string;
-  password: string;
+interface UserModel {
+  id: number;
+  name: string;
+  avatar_urls: Record<string, string>;
 }
 
-// function useUser() {
-//   const login = ({ username, password }: LoginParams): void => {
-//     console.log(1);
-
-//     mutate('/api/auth/login', { username, password }, false);
-//   };
-//   return {
-//     login,
-//   };
-// }
-
-async function login(loginParams: LoginParams): Promise<any> {
-  const { data } = await axios.post(`/api/auth/login`, loginParams);
+async function getUser(): Promise<UserModel> {
+  const { data } = await axios.get(`/api/users/me`);
   return data;
 }
 
-export function useUserLogin(): UseMutationResult {
-  const mutation = useMutation((loginParams: LoginParams) => login(loginParams));
-  return mutation;
+export function useUser(): UseQueryResult<UserModel> {
+  const [cookie] = useCookies();
+  const isTokenAvalable = !!cookie[AUTH_FLAG_COOKIE];
+
+  return useQuery('user', getUser, {
+    enabled: isTokenAvalable,
+    retry: false,
+  });
 }
+
+export default useUser;

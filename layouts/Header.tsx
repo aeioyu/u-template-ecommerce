@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import LanguageSwitch from '@/components/common/LanguageSwitch';
 import Container from '@/components/common/Container';
 import Button from '@/components/common/Button';
@@ -8,10 +8,40 @@ import SearchBar from '@/components/features/search/SearchBar';
 import MiniCart from '@/components/features/cart/MiniCart';
 import Link from 'next/link';
 import { useUIState } from '@/components/UIStateProvider';
+import useUser from '@/composables/useUser';
+import useAuth from '@/composables/useAuth';
+import useCategories from '@/composables/useCategories';
 
 const Header: React.FC = () => {
   const { locale, switchLanguage } = useLocale();
   const { openModal, setModalView } = useUIState();
+  const { data: categories } = useCategories();
+  const { data: user } = useUser();
+  const { logout } = useAuth();
+  const isLogin = user && user?.id;
+
+  const LogedInBar: React.FC = () => (
+    <div className="flex items-center">
+      <Text>{user?.name}</Text>
+      <Button variant="link" className="p-0 hover:underline" onClick={() => logout.mutate()}>
+        <Text variant="caption">Logout</Text>
+      </Button>
+    </div>
+  );
+
+  const NonLogedInBar: React.FC = () => (
+    <>
+      <Button variant="link" className="hover:underline" onClick={() => [setModalView('SIGNUP_VIEW'), openModal()]}>
+        <Text variant="caption">Register</Text>
+      </Button>
+      <Text variant="caption" className="text-gray">
+        |
+      </Text>
+      <Button variant="link" className="hover:underline" onClick={() => [setModalView('LOGIN_VIEW'), openModal()]}>
+        <Text variant="caption">Login</Text>
+      </Button>
+    </>
+  );
 
   return (
     <header className="text-black bg-white">
@@ -22,25 +52,7 @@ const Header: React.FC = () => {
               <LanguageSwitch locale={locale} onLanguageChange={switchLanguage} />
             </div>
             <div className="flex items-center">
-              <div className="mx-2">
-                <Button
-                  variant="link"
-                  className="hover:underline"
-                  onClick={() => [setModalView('SIGNUP_VIEW'), openModal()]}
-                >
-                  <Text variant="caption">Register</Text>
-                </Button>
-                <Text variant="caption" className="text-gray">
-                  |
-                </Text>
-                <Button
-                  variant="link"
-                  className="hover:underline"
-                  onClick={() => [setModalView('LOGIN_VIEW'), openModal()]}
-                >
-                  <Text variant="caption">Login</Text>
-                </Button>
-              </div>
+              <div className="mx-2">{isLogin ? <LogedInBar /> : <NonLogedInBar />}</div>
               <MiniCart />
             </div>
           </div>
@@ -72,6 +84,15 @@ const Header: React.FC = () => {
           </div>
         </div>
       </Container>
+      <div>
+        <Container>
+          {categories?.map((category) => (
+            <Text variant="body" key={category.id} className="mr-6">
+              <Link href={`${category.slug}.cat-${category.id}`}>{category.name}</Link>
+            </Text>
+          ))}
+        </Container>
+      </div>
     </header>
   );
 };

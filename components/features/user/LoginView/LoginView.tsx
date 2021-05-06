@@ -23,25 +23,31 @@ const LoginView: React.FC<Props> = ({ onLoginSubmit, loading, error }) => {
   const onSubmit = (data: Inputs): void => onLoginSubmit?.(data);
 
   return (
-    <div>
+    <div className="w-full max-w-xl" style={{ minWidth: 400 }}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>username</div>
-        <input placeholder="username" disabled={loading} {...register('username', { required: true })} />
-        {errors.username && <span>This field is required</span>}
-        <div>password</div>
-        <input
-          placeholder="password"
-          type="password"
-          disabled={loading}
-          {...register('password', { required: true })}
-        />
-        {errors.password && <span>This field is required</span>}
-
-        <Text className="text-yellow">{error}</Text>
-
-        <Button type="submit" loading={loading}>
-          Submit
-        </Button>
+        <div className="my-3">
+          <div>username</div>
+          <input placeholder="username" disabled={loading} {...register('username', { required: true })} />
+          {errors.username && <span>This field is required</span>}
+        </div>
+        <div className="my-3">
+          <div>password</div>
+          <input
+            placeholder="password"
+            type="password"
+            disabled={loading}
+            {...register('password', { required: true })}
+          />
+          {errors.password && <span>This field is required</span>}
+        </div>
+        <div className="my-3">
+          <Text className="text-yellow">{error}</Text>
+        </div>
+        <div>
+          <Button type="submit" loading={loading}>
+            Submit
+          </Button>
+        </div>
       </form>
     </div>
   );

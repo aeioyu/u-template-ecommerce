@@ -11,10 +11,10 @@ interface UseLocalReturnType {
 function useLocale(): UseLocalReturnType {
   const [cookie, setCookie] = useCookies([COOKIE_NAME]);
   const router: NextRouter = useRouter();
-  const { locale } = router;
+  const { locale, asPath } = router;
 
   const switchLanguage = (selectedLocale: string): void => {
-    router.push('/', '/', { locale: selectedLocale });
+    router.push(asPath, asPath, { locale: selectedLocale });
 
     if (cookie.NEXT_LOCALE !== selectedLocale) {
       setCookie(COOKIE_NAME, selectedLocale, { path: '/' });

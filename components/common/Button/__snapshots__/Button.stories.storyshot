@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Commons/Button Default 1`] = `
+<button
+  className="px-4 py-2 bg-indigo-500 text-white hover:bg-indigo-700 text-body focus:outline-none transition ease-in duration-200"
+  disabled={false}
+>
+  Example
+</button>
+`;

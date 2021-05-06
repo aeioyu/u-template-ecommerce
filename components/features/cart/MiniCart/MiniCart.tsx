@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, memo } from 'react';
 import Image from 'next/image';
 import Button from '@/components/common/Button';
 import { Popover, Transition } from '@headlessui/react';
@@ -43,4 +43,4 @@ const MiniCart = (props: Props) => {
   );
 };
 
-export default MiniCart;
+export default memo(MiniCart);
