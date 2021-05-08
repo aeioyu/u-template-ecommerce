@@ -1,5 +1,5 @@
 import apiHandler from '@/libs/api-handler';
-import { AUTH_COOKIE, AUTH_FLAG_COOKIE } from '@/constants';
+import { AUTH_COOKIE, AUTH_FLAG_COOKIE } from '@/configs/cookie.config';
 import cookie from 'cookie';
 
 export default apiHandler().post(async (req, res) => {
