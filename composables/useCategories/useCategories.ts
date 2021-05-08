@@ -1,24 +1,20 @@
-import { UseQueryResult, useQuery } from 'react-query';
+import { useQuery } from 'react-query';
 import axios from 'axios';
+import { CategoryModel } from '@/composables/types/category.type';
 
-export interface CategoriesModel {
-  id: number;
-  name: string;
-  slug: string;
-  image: string | null;
-  menu_order: number;
-  parent: number;
-}
-
-async function getCategories(): Promise<CategoriesModel[]> {
+async function fetchCategories(): Promise<CategoryModel[]> {
   const { data } = await axios.get(`/api/categories`);
   return data;
 }
 
-export function useCategories(): UseQueryResult<CategoriesModel[]> {
-  return useQuery('categories', getCategories, {
+export function useCategories() {
+  const categories = useQuery<CategoryModel[], Error>('categories', fetchCategories, {
     retry: false,
   });
+
+  return {
+    categories,
+  };
 }
 
 export default useCategories;

@@ -31,7 +31,7 @@ module.exports = (plop) => {
         },
         {
           type: 'add',
-          path: `${path}{{pascalCase name}}/stories.tsx`,
+          path: `${path}{{pascalCase name}}/{{pascalCase name}}.stories.tsx`,
           templateFile: 'plop-templates/Component/stories.tsx.hbs',
         },
         {
@@ -73,7 +73,7 @@ module.exports = (plop) => {
         },
         {
           type: 'add',
-          path: `${path}{{pascalCase name}}/stories.tsx`,
+          path: `${path}{{pascalCase name}}/{{pascalCase name}}.stories.tsx`,
           templateFile: 'plop-templates/Component/stories.tsx.hbs',
         },
         {

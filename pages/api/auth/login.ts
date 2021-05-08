@@ -1,5 +1,5 @@
 import apiHandler from '@/libs/api-handler';
-import apiClient from '@/libs/api-client';
+import WPClient from '@/libs/wp-client';
 import { AUTH_COOKIE, AUTH_FLAG_COOKIE } from '@/constants';
 import cookie from 'cookie';
 
@@ -9,7 +9,7 @@ export default apiHandler().post(async (req, res) => {
     password: req.body.password,
   };
 
-  const axiosResponse = await apiClient.post('wp-json/jwt-auth/v1/token', params);
+  const axiosResponse = await WPClient.post('wp-json/jwt-auth/v1/token', params);
   const apiResponse = axiosResponse?.data;
   const { statusCode, data: loginData, message } = apiResponse;
   const token = loginData?.token;

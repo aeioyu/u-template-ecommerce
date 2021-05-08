@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import Seo from '@/components/common/Seo';
 import useTranslate from '@/composables/useTranslate';
-import Layout from '@/layouts/AppLayout';
+import Layout from '@/components/layouts/AppLayout';
 import { GetServerSideProps, NextPage } from 'next';
 import HeroBanner from '@/components/common/HeroBanner';
 import Container from '@/components/common/Container';
@@ -75,6 +75,7 @@ interface Props {
 
 const Home: NextPage<Props> = ({ config }) => {
   const { t } = useTranslate();
+  console.log('home re render');
 
   return (
     <div>

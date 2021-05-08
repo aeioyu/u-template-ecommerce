@@ -1,27 +1,29 @@
 import { UseQueryResult, useQuery } from 'react-query';
 import axios from 'axios';
-import { AUTH_FLAG_COOKIE } from '@/constants';
 import { useCookies } from 'react-cookie';
-
-interface UserModel {
-  id: number;
-  name: string;
-  avatar_urls: Record<string, string>;
-}
+import { AUTH_FLAG_COOKIE } from '@/configs/cookie.config';
+import { UserModel } from '@/composables/types/user.type';
 
 async function getUser(): Promise<UserModel> {
   const { data } = await axios.get(`/api/users/me`);
   return data;
 }
 
-export function useUser(): UseQueryResult<UserModel> {
+export function useUser() {
   const [cookie] = useCookies();
   const isTokenAvalable = !!cookie[AUTH_FLAG_COOKIE];
 
-  return useQuery('user', getUser, {
+  const user: UseQueryResult<UserModel, Error> = useQuery('user', getUser, {
     enabled: isTokenAvalable,
     retry: false,
   });
+
+  const isLogedIn = user?.data && user?.data?.id;
+
+  return {
+    user,
+    isLogedIn,
+  };
 }
 
 export default useUser;

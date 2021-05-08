@@ -12,7 +12,7 @@ const config: AxiosRequestConfig = {
 };
 
 const apiClient = axios.create(config);
-apiClient.interceptors.request.use(AxiosLogger.requestLogger, AxiosLogger.errorLogger);
-apiClient.interceptors.response.use(AxiosLogger.responseLogger, AxiosLogger.errorLogger);
+// apiClient.interceptors.request.use(AxiosLogger.requestLogger, AxiosLogger.errorLogger);
+// apiClient.interceptors.response.use(AxiosLogger.responseLogger, AxiosLogger.errorLogger);
 
 export default apiClient;

@@ -7,8 +7,10 @@
 - [x] UI Components
 - [x] Theming
 - [x] Design System | Document with Storybook
-- [ ] Standardized Data Hooks
-- [ ] Integrations - Integrate seamlessly with the most common ecommerce platforms.
+- [x] Standardized Data Hooks
+- [x] Integrations - Integrate seamlessly with the most common ecommerce platforms.
+- [x] UI Snapshort test
+- [ ] Unit Test
 - [ ] Progressive Web App (PWA)
 - [ ] Accelerated Mobile Pages (AMP)
 
@@ -18,8 +20,8 @@
 - [ ] Catalog
 - [ ] Search
 - [ ] Register
-- [ ] Login
-- [ ] Authorization
+- [x] Login
+- [x] Authorization
 - [ ] Customer Management
 - [ ] Cart
 - [ ] Checkout

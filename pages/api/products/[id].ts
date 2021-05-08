@@ -1,4 +1,4 @@
-import WooCommerce from '@/libs/wooCommerce';
+import WooCommerce from '@/libs/woocommerce-client';
 import apiHandler from '@/libs/api-handler';
 
 export default apiHandler().get(async (req, res) => {

@@ -1,10 +1,6 @@
 import { useMutation } from 'react-query';
 import axios from 'axios';
-
-interface LoginParams {
-  username: string;
-  password: string;
-}
+import { LoginParams } from '@/composables/types/auth.type';
 
 async function loginApi(loginParams: LoginParams): Promise<any> {
   const { data } = await axios.post(`/api/auth/login`, loginParams);

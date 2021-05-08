@@ -1,6 +1,6 @@
 import { NextApiResponse } from 'next';
 import { NextApiRequestExtended } from '@/libs/api-handler';
-import { AUTH_COOKIE } from '@/constants';
+import { AUTH_COOKIE } from '@/configs/cookie.config';
 
 export default function customerGuard(req: NextApiRequestExtended, res: NextApiResponse, next) {
   const authCookie = req.cookies[AUTH_COOKIE];

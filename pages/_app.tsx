@@ -3,15 +3,17 @@ import 'swiper/swiper.min.css';
 import 'swiper/components/lazy/lazy.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 import 'swiper/components/navigation/navigation.min.css';
-import { AppProps } from 'next/app';
+
+import { QueryClient, QueryClientProvider } from 'react-query';
 import React, { ReactElement, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import SwiperCore, { Autoplay, Lazy, Navigation, Pagination } from 'swiper/core';
+
+import { AppProps } from 'next/app';
 import { IntlProvider } from 'react-intl';
 import { ThemeProvider } from '@/components/ThemeProvider';
-import theme from '@/configs/theme.config';
-import SwiperCore, { Lazy, Pagination, Navigation, Autoplay } from 'swiper/core';
 import { UIStateProvider } from '@/components/UIStateProvider';
-import { QueryClientProvider, QueryClient } from 'react-query';
+import theme from '@/configs/theme.config';
+import { useRouter } from 'next/router';
 
 SwiperCore.use([Lazy, Pagination, Navigation, Autoplay]);
 
@@ -23,6 +25,7 @@ const languages = {
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
+      retry: 2,
       refetchOnWindowFocus: false,
     },
   },
