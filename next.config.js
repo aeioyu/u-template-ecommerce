@@ -1,13 +1,18 @@
 const withPlugins = require('next-compose-plugins');
-const bundleAnalyzer = require('@next/bundle-analyzer');
-const { i18n } = require('./i18n.config');
 const { withSentryConfig } = require('@sentry/nextjs');
+const { i18n } = require('./i18n.config');
 
 const isProd = process.env.NODE_ENV === 'production';
+const isAnalysis = process.env.ANALYZE === 'true';
 
-const withBundleAnalyzer = bundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
-});
+const withBundleAnalyzer = isAnalysis
+  ? () => {
+      const bundleAnalyzer = require('@next/bundle-analyzer');
+      return bundleAnalyzer({
+        enabled: process.env.ANALYZE === 'true',
+      });
+    }
+  : {};
 
 // with Sentry.
 // https://nextjs.org/docs/api-reference/next.config.js/introduction

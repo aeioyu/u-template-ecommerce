@@ -16,9 +16,7 @@ const HeroBanner: React.FC<Props> = ({ banners = [] }) => {
       <Swiper
         loop
         navigation
-        lazy={{
-          loadPrevNext: true,
-        }}
+        lazy
         pagination={{
           clickable: true,
         }}
@@ -31,10 +29,10 @@ const HeroBanner: React.FC<Props> = ({ banners = [] }) => {
           <SwiperSlide key={banner.id}>
             <a href={banner.url} target="blank">
               {idx === 0 ? (
-                <img src={banner.desktop} className="w-full" />
+                <img src={banner.desktop} className="w-full" alt="normal banner" />
               ) : (
                 <>
-                  <img data-src={banner.desktop} className="w-full swiper-lazy" />
+                  <img data-src={banner.desktop} className="w-full swiper-lazy" alt="lazy banner" />
                   <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
                 </>
               )}
