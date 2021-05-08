@@ -64,15 +64,15 @@ const Header: React.FC = () => {
             <div className="flex items-center flex-initial mr-4">
               <Link href="/">
                 <Text variant="heading1" className="cursor-pointer">
-                  ebay
+                  uStore
                 </Text>
               </Link>
             </div>
-            <div className="flex items-center flex-initial mx-6">
+            {/* <div className="flex items-center flex-initial mx-6">
               <Text variant="heading6">
                 Shop by <br /> Category
               </Text>
-            </div>
+            </div> */}
             <div className="items-center flex-auto">
               <SearchBar />
             </div>
