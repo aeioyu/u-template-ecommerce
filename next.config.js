@@ -29,6 +29,9 @@ const nextConfig = {
   i18n,
   // Use the CDN in production and localhost for development.
   assetPrefix: isProd ? '' : '',
+  future: {
+    webpack5: true,
+  },
   // Use custom webpack config.
   webpack: (config, { webpack }) => {
     // Note: we provide webpack above so you should not `require` it
