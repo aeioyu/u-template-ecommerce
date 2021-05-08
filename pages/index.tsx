@@ -7,6 +7,8 @@ import HeroBanner from '@/components/common/HeroBanner';
 import Container from '@/components/common/Container';
 import Text from '@/components/common/Text';
 import GridCarousel from '@/components/common/GridCarousel';
+import useProductSearch from '@/composables/useProductSearch';
+import ProductItem from '@/components/features/product/ProductItem';
 
 const banners = [
   {
@@ -75,7 +77,9 @@ interface Props {
 
 const Home: NextPage<Props> = ({ config }) => {
   const { t } = useTranslate();
-  console.log('home re render');
+  const { products: accessoriesProducts } = useProductSearch({ page: 1, per_page: 10, category: '23' });
+  const { products: clothingProducts } = useProductSearch({ page: 1, per_page: 10, category: '19' });
+  const { products: hoodiesProducts } = useProductSearch({ page: 1, per_page: 10, category: '20' });
 
   return (
     <div>
@@ -89,7 +93,76 @@ const Home: NextPage<Props> = ({ config }) => {
           <Text variant="heading2" as="h2" className="mb-4">
             {t('home.recommended')}
           </Text>
-          <GridCarousel banners={gridCarousel} />
+          <GridCarousel>
+            {gridCarousel.map((carousel) => (
+              <GridCarousel.Item key={carousel.id}>
+                <a href={carousel.url} target="blank">
+                  <img data-src={carousel.desktop} className="w-full swiper-lazy" alt="example" />
+                  <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
+                </a>
+              </GridCarousel.Item>
+            ))}
+          </GridCarousel>
+        </div>
+
+        <div className="mb-10">
+          <Text variant="heading2" as="h2" className="mb-4">
+            Accessories
+          </Text>
+          <GridCarousel>
+            {accessoriesProducts?.data?.map((product) => (
+              <GridCarousel.Item key={product.id}>
+                <ProductItem
+                  slug={product.slug}
+                  name={product.name}
+                  images={product.images}
+                  price={product.price}
+                  sku={product.sku}
+                  productId={product.id}
+                />
+              </GridCarousel.Item>
+            ))}
+          </GridCarousel>
+        </div>
+
+        <div className="mb-10">
+          <Text variant="heading2" as="h2" className="mb-4">
+            Clothing
+          </Text>
+          <GridCarousel>
+            {clothingProducts?.data?.map((product) => (
+              <GridCarousel.Item key={product.id}>
+                <ProductItem
+                  slug={product.slug}
+                  name={product.name}
+                  images={product.images}
+                  price={product.price}
+                  sku={product.sku}
+                  productId={product.id}
+                />
+              </GridCarousel.Item>
+            ))}
+          </GridCarousel>
+        </div>
+
+        <div className="mb-10">
+          <Text variant="heading2" as="h2" className="mb-4">
+            Hoodies
+          </Text>
+          <GridCarousel>
+            {hoodiesProducts?.data?.map((product) => (
+              <GridCarousel.Item key={product.id}>
+                <ProductItem
+                  slug={product.slug}
+                  name={product.name}
+                  images={product.images}
+                  price={product.price}
+                  sku={product.sku}
+                  productId={product.id}
+                />
+              </GridCarousel.Item>
+            ))}
+          </GridCarousel>
         </div>
       </Container>
     </div>

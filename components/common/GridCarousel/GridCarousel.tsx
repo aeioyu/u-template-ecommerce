@@ -1,18 +1,28 @@
 import React from 'react';
+import { SwiperOptions } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-interface Props {
-  banners: {
-    id: string;
-    desktop: string;
-    mobile?: string;
-    url?: string;
-  }[];
+export interface GridCarouselProps {
+  className?: string;
+  swiperOptions?: SwiperOptions;
 }
 
-const GridCarousel: React.FC<Props> = ({ banners = [] }) => {
+export interface ItemProps {
+  key: string;
+}
+
+interface GridCarouselCompose {
+  Item: React.FC<SwiperSlide>;
+}
+
+const GridCarousel: React.FC<GridCarouselProps> & GridCarouselCompose = ({
+  className,
+  swiperOptions,
+  children,
+  ...rest
+}) => {
   return (
-    <>
+    <div className={className} {...rest}>
       <Swiper
         navigation
         slidesPerView={5.5}
@@ -21,20 +31,14 @@ const GridCarousel: React.FC<Props> = ({ banners = [] }) => {
         lazy={{
           loadPrevNext: true,
         }}
+        {...swiperOptions}
       >
-        {banners.map((banner, idx) => (
-          <SwiperSlide key={banner.id}>
-            <a href={banner.url} target="blank">
-              <>
-                <img data-src={banner.desktop} className="w-full swiper-lazy" />
-                <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
-              </>
-            </a>
-          </SwiperSlide>
-        ))}
+        {children}
       </Swiper>
-    </>
+    </div>
   );
 };
+
+GridCarousel.Item = SwiperSlide;
 
 export default GridCarousel;
