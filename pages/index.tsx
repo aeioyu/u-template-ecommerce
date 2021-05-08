@@ -88,6 +88,7 @@ const Home: NextPage<Props> = ({ config }) => {
       <Seo title={t('seo.title')} description={t('seo.description')} />
       <Head>
         <link rel="preload" href={banners[0].desktop} as="image" />
+        <link rel="preload" href={banners[0].mobile} as="image" />
       </Head>
       <Container>
         {config}
