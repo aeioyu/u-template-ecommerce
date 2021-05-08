@@ -95,7 +95,7 @@ const Home: NextPage<Props> = ({ config }) => {
         <div className="mb-10" style={{ minHeight: 250 }}>
           <HeroBanner banners={banners} />
         </div>
-        <div className="mb-10" style={{ minHeight: 250 }}>
+        {/* <div className="mb-10" style={{ minHeight: 250 }}>
           <Text variant="heading2" as="h2" className="mb-4">
             {t('home.recommended')}
           </Text>
@@ -104,13 +104,11 @@ const Home: NextPage<Props> = ({ config }) => {
               <GridCarousel.Item key={carousel.id}>
                 <a href={carousel.url} target="blank">
                   <img src={carousel.desktop} alt="this is alt" loading="lazy" />
-                  {/* <Image src={carousel.desktop} className="w-full" alt="normal banner" width={400} height={350} /> */}
-                  {/* <div className="swiper-lazy-preloader swiper-lazy-preloader-white" /> */}
                 </a>
               </GridCarousel.Item>
             ))}
           </GridCarousel>
-        </div>
+        </div> */}
 
         <div className="mb-10" style={{ minHeight: 250 }}>
           <Text variant="heading2" as="h2" className="mb-4">
