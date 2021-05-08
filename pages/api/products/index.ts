@@ -13,6 +13,6 @@ export default apiHandler().get(async (req, res) => {
   };
   const products = await WPClient.get(`/wp-json/wc/v3/products`, { params: queryParams });
 
-  res.setHeader('Cache-Control', 'max-age=86400, stale-while-revalidate');
+  res.setHeader('Cache-Control', 'max-age=300, stale-while-revalidate');
   res.status(200).json(products?.data);
 });
