@@ -7,7 +7,7 @@ interface Props {}
 const SearchBar: React.FC<Props> = (props) => {
   const { t } = useTranslate();
   return (
-    <div className="flex">
+    <div className="hidden sm:flex">
       <div className="flex-auto">
         <div className="border-2 border-black">
           <input
