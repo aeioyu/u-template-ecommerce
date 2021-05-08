@@ -37,6 +37,9 @@ const nextConfig = {
   future: {
     webpack5: true,
   },
+  images: {
+    domains: ['picsum.photos'],
+  },
   // Use custom webpack config.
   webpack: (config, { webpack }) => {
     // Note: we provide webpack above so you should not `require` it

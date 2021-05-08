@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -29,11 +30,11 @@ const HeroBanner: React.FC<Props> = ({ banners = [] }) => {
           <SwiperSlide key={banner.id}>
             <a href={banner.url} target="blank">
               {idx === 0 ? (
-                <img src={banner.desktop} className="w-full" alt="normal banner" />
+                <Image src={banner.desktop} className="w-full" alt="normal banner" width={1400} height={350} />
               ) : (
                 <>
-                  <img data-src={banner.desktop} className="w-full swiper-lazy" alt="lazy banner" />
-                  <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
+                  <Image src={banner.desktop} className="w-full" alt="normal banner" width={1400} height={350} />
+                  {/* <div className="swiper-lazy-preloader swiper-lazy-preloader-white" /> */}
                 </>
               )}
             </a>

@@ -9,6 +9,7 @@ import Text from '@/components/common/Text';
 import GridCarousel from '@/components/common/GridCarousel';
 import useProductSearch from '@/composables/useProductSearch';
 import ProductItem from '@/components/features/product/ProductItem';
+import Image from 'next/image';
 
 const banners = [
   {
@@ -97,8 +98,8 @@ const Home: NextPage<Props> = ({ config }) => {
             {gridCarousel.map((carousel) => (
               <GridCarousel.Item key={carousel.id}>
                 <a href={carousel.url} target="blank">
-                  <img data-src={carousel.desktop} className="w-full swiper-lazy" alt="example" />
-                  <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
+                  <Image src={carousel.desktop} className="w-full" alt="normal banner" width={400} height={350} />
+                  {/* <div className="swiper-lazy-preloader swiper-lazy-preloader-white" /> */}
                 </a>
               </GridCarousel.Item>
             ))}
