@@ -1,8 +1,8 @@
 import { ProductSearchParams } from '@/composables/types/product.type';
-import apiHandler from '@/libs/api-handler';
 import WPClient from '@/libs/wp-client';
+import { NextApiRequest, NextApiResponse } from 'next';
 
-export default apiHandler().get(async (req, res) => {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   const query = req.query as ProductSearchParams;
   const queryParams = {
     page: query.page || 1,
@@ -14,4 +14,6 @@ export default apiHandler().get(async (req, res) => {
   const products = await WPClient.get(`/wp-json/wc/v3/products`, { params: queryParams });
 
   res.status(200).json(products?.data);
-});
+}
+
+export default handler;
