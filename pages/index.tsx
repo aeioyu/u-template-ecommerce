@@ -15,26 +15,20 @@ import Head from 'next/head';
 const banners = [
   {
     id: '1',
-    desktop:
-      'https://backend.central.co.th/media/aw_rbslider/slides/20210507_index_XtremeSpecial_d.jpg?impolicy=resize&width=1440',
-    mobile:
-      'https://backend.central.co.th/media/aw_rbslider/slides/20210507_index_XtremeSpecial_d.jpg?impolicy=resize&width=350',
+    desktop: 'https://icms-image.slatic.net/images/ims-web/91c79c8c-82c1-4bcb-b217-175acba9c93b.jpg_1200x1200.jpg',
+    mobile: 'https://icms-image.slatic.net/images/ims-web/058e708a-8c96-42e9-b06e-0e2032531688.jpg_760x760Q50s150.jpg',
     url: '/test-1',
   },
   {
     id: '2',
-    desktop:
-      'https://backend.central.co.th/media/aw_rbslider/slides/20210507_index_electrolux_d.jpg?impolicy=resize&width=1440',
-    mobile:
-      'https://backend.central.co.th/media/aw_rbslider/slides/20210507_index_electrolux_d.jpg?impolicy=resize&width=350',
+    desktop: 'https://icms-image.slatic.net/images/ims-web/38787640-0742-4762-8b8c-ad62691fe955.jpg',
+    mobile: 'https://icms-image.slatic.net/images/ims-web/4d6d0195-fe51-44fd-9366-fef47a8e0f8f.jpeg',
     url: '/test-1',
   },
   {
     id: '3',
-    desktop:
-      'https://backend.central.co.th/media/aw_rbslider/slides/20210507_index_bear_d.jpg?impolicy=resize&width=1440',
-    mobile:
-      'https://backend.central.co.th/media/aw_rbslider/slides/20210507_index_bear_d.jpg?impolicy=resize&width=350',
+    desktop: 'https://icms-image.slatic.net/images/ims-web/9a421648-2213-44b9-b54b-e68b023821fd.jpg',
+    mobile: 'https://icms-image.slatic.net/images/ims-web/e1ba1482-4be7-48fa-8e60-4ddcb545916a.jpg',
     url: '/test-1',
   },
 ];
@@ -98,7 +92,7 @@ const Home: NextPage<Props> = ({ config }) => {
       </Head>
       <Container>
         {config}
-        <div className="mb-10" style={{ minHeight: 250 }}>
+        <div className="mb-10">
           <HeroBanner banners={banners} />
         </div>
         {/* <div className="mb-10" style={{ minHeight: 250 }}>
@@ -116,7 +110,7 @@ const Home: NextPage<Props> = ({ config }) => {
           </GridCarousel>
         </div> */}
 
-        <div className="mb-10" style={{ minHeight: 250 }}>
+        <div className="mb-10">
           <Text variant="heading2" as="h2" className="mb-4">
             Accessories
           </Text>
@@ -136,7 +130,7 @@ const Home: NextPage<Props> = ({ config }) => {
           </GridCarousel>
         </div>
 
-        <div className="mb-10" style={{ minHeight: 250 }}>
+        <div className="mb-10">
           <Text variant="heading2" as="h2" className="mb-4">
             Clothing
           </Text>
@@ -156,7 +150,7 @@ const Home: NextPage<Props> = ({ config }) => {
           </GridCarousel>
         </div>
 
-        <div className="mb-10" style={{ minHeight: 250 }}>
+        <div className="mb-10">
           <Text variant="heading2" as="h2" className="mb-4">
             Hoodies
           </Text>
