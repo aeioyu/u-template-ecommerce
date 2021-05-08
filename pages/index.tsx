@@ -104,7 +104,7 @@ const Home: NextPage<Props> = ({ config }) => {
             ))}
           </GridCarousel>
         </div>
-
+        {/* 
         <div className="mb-10">
           <Text variant="heading2" as="h2" className="mb-4">
             Accessories
@@ -163,7 +163,7 @@ const Home: NextPage<Props> = ({ config }) => {
               </GridCarousel.Item>
             ))}
           </GridCarousel>
-        </div>
+        </div> */}
       </Container>
     </div>
   );
