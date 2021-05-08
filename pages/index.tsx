@@ -16,19 +16,19 @@ const banners = [
   {
     id: '1',
     desktop: 'https://picsum.photos/seed/img1/1400/350',
-    mobile: 'https://picsum.photos/seed/img1/1400/350',
+    mobile: 'https://picsum.photos/seed/img1/350/250',
     url: '/test-1',
   },
   {
     id: '2',
     desktop: 'https://picsum.photos/seed/img2/1400/350',
-    mobile: 'https://picsum.photos/seed/img2/1400/350',
+    mobile: 'https://picsum.photos/seed/img2/350/250',
     url: '/test-1',
   },
   {
     id: '3',
     desktop: 'https://picsum.photos/seed/img3/1400/350',
-    mobile: 'https://picsum.photos/seed/img3/1400/350',
+    mobile: 'https://picsum.photos/seed/img3/350/250',
     url: '/test-1',
   },
 ];

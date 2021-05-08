@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -26,19 +25,14 @@ const HeroBanner: React.FC<Props> = ({ banners = [] }) => {
           disableOnInteraction: true,
         }}
       >
-        {banners.map((banner, idx) => (
+        {banners.map((banner) => (
           <SwiperSlide key={banner.id}>
             <a href={banner.url} target="blank">
-              {idx === 0 ? (
-                <img src={banner.desktop} alt="this is alt" loading="lazy" />
-              ) : (
-                // <Image src={banner.desktop} className="w-full" alt="normal banner" width={1400} height={350} />
-                <>
-                  <img src={banner.desktop} alt="this is alt" loading="lazy" />
-                  {/* <Image src={banner.desktop} className="w-full" alt="normal banner" width={1400} height={350} /> */}
-                  {/* <div className="swiper-lazy-preloader swiper-lazy-preloader-white" /> */}
-                </>
-              )}
+              <picture>
+                <source srcSet={banner.desktop} media="(min-width: 768px)" />
+                <source srcSet={banner.mobile} media="(min-width: 767px)" />
+                <img src={banner.mobile} loading="lazy" alt="this is alt" className="w-full" />
+              </picture>
             </a>
           </SwiperSlide>
         ))}
