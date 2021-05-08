@@ -61,13 +61,14 @@ const Header: React.FC = () => {
       <div>
         <Container>
           <div className="flex justify-between py-4 align-middle border-b border-lightGray">
-            <div className="flex items-center flex-initial mr-10">
+            <div className="flex items-center flex-initial mr-4">
               <Link href="/">
                 <Text variant="heading1" className="cursor-pointer">
                   uStore
                 </Text>
               </Link>
             </div>
+            <div className="flex items-center flex-initial mx-6" />
             {/* <div className="flex items-center flex-initial mx-6">
               <Text variant="heading6">
                 Shop by <br /> Category
