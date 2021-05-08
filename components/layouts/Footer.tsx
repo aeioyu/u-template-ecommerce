@@ -1,14 +1,14 @@
-import Button from '@/components/common/Button';
-import Container from '@/components/common/Container';
 import React from 'react';
+import Container from '@/components/common/Container';
+import Text from '@/components/common/Text';
 
-const Footer: React.FC = (props) => {
+const Footer: React.FC = () => {
   return (
-    <div>
+    <div className="bg-lightGray">
       <Container>
-        <Button color="dark" disabled loading>
-          Sign Up
-        </Button>
+        <div className="py-1 text-center">
+          <Text className="text-gray">copyright © 2021</Text>
+        </div>
       </Container>
     </div>
   );
