@@ -7,5 +7,6 @@ import WPClient from '@/libs/wp-client';
 export default apiHandler().get(async (req: NextApiRequest, res: NextApiResponse) => {
   const categories: AxiosResponse<CategoryModel> = await WPClient.get(`/wp-json/wc/v3/products/categories`);
 
+  res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
   res.status(200).json(categories?.data);
 });

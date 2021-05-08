@@ -40,6 +40,19 @@ const nextConfig = {
   images: {
     domains: ['picsum.photos'],
   },
+  async headers() {
+    return [
+      {
+        source: '/images/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400000, s-maxage=86400000, stale-while-revalidate=86400000',
+          },
+        ],
+      },
+    ];
+  },
   // Use custom webpack config.
   webpack: (config, { webpack }) => {
     // Note: we provide webpack above so you should not `require` it
