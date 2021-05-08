@@ -15,20 +15,26 @@ import Head from 'next/head';
 const banners = [
   {
     id: '1',
-    desktop: 'https://picsum.photos/seed/img1/1400/350',
-    mobile: 'https://picsum.photos/seed/img1/350/250',
+    desktop:
+      'https://backend.central.co.th/media/aw_rbslider/slides/20210507_index_XtremeSpecial_d.jpg?impolicy=resize&width=1440',
+    mobile:
+      'https://backend.central.co.th/media/aw_rbslider/slides/20210507_index_XtremeSpecial_d.jpg?impolicy=resize&width=350',
     url: '/test-1',
   },
   {
     id: '2',
-    desktop: 'https://picsum.photos/seed/img2/1400/350',
-    mobile: 'https://picsum.photos/seed/img2/350/250',
+    desktop:
+      'https://backend.central.co.th/media/aw_rbslider/slides/20210507_index_electrolux_d.jpg?impolicy=resize&width=1440',
+    mobile:
+      'https://backend.central.co.th/media/aw_rbslider/slides/20210507_index_electrolux_d.jpg?impolicy=resize&width=350',
     url: '/test-1',
   },
   {
     id: '3',
-    desktop: 'https://picsum.photos/seed/img3/1400/350',
-    mobile: 'https://picsum.photos/seed/img3/350/250',
+    desktop:
+      'https://backend.central.co.th/media/aw_rbslider/slides/20210507_index_bear_d.jpg?impolicy=resize&width=1440',
+    mobile:
+      'https://backend.central.co.th/media/aw_rbslider/slides/20210507_index_bear_d.jpg?impolicy=resize&width=350',
     url: '/test-1',
   },
 ];
