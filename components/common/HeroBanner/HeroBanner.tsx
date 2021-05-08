@@ -30,10 +30,12 @@ const HeroBanner: React.FC<Props> = ({ banners = [] }) => {
           <SwiperSlide key={banner.id}>
             <a href={banner.url} target="blank">
               {idx === 0 ? (
-                <Image src={banner.desktop} className="w-full" alt="normal banner" width={1400} height={350} />
+                <img src={banner.desktop} alt="this is alt" loading="lazy" />
               ) : (
+                // <Image src={banner.desktop} className="w-full" alt="normal banner" width={1400} height={350} />
                 <>
-                  <Image src={banner.desktop} className="w-full" alt="normal banner" width={1400} height={350} />
+                  <img src={banner.desktop} alt="this is alt" loading="lazy" />
+                  {/* <Image src={banner.desktop} className="w-full" alt="normal banner" width={1400} height={350} /> */}
                   {/* <div className="swiper-lazy-preloader swiper-lazy-preloader-white" /> */}
                 </>
               )}

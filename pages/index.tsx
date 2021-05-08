@@ -9,7 +9,8 @@ import Text from '@/components/common/Text';
 import GridCarousel from '@/components/common/GridCarousel';
 import useProductSearch from '@/composables/useProductSearch';
 import ProductItem from '@/components/features/product/ProductItem';
-import Image from 'next/image';
+// import Image from 'next/image';
+import Head from 'next/head';
 
 const banners = [
   {
@@ -85,12 +86,15 @@ const Home: NextPage<Props> = ({ config }) => {
   return (
     <div>
       <Seo title={t('seo.title')} description={t('seo.description')} />
+      <Head>
+        <link rel="preload" href={banners[0].desktop} as="image" />
+      </Head>
       <Container>
         {config}
-        <div className="mb-10">
+        <div className="mb-10" style={{ minHeight: 250 }}>
           <HeroBanner banners={banners} />
         </div>
-        <div className="mb-10">
+        <div className="mb-10" style={{ minHeight: 250 }}>
           <Text variant="heading2" as="h2" className="mb-4">
             {t('home.recommended')}
           </Text>
@@ -98,7 +102,8 @@ const Home: NextPage<Props> = ({ config }) => {
             {gridCarousel.map((carousel) => (
               <GridCarousel.Item key={carousel.id}>
                 <a href={carousel.url} target="blank">
-                  <Image src={carousel.desktop} className="w-full" alt="normal banner" width={400} height={350} />
+                  <img src={carousel.desktop} alt="this is alt" loading="lazy" />
+                  {/* <Image src={carousel.desktop} className="w-full" alt="normal banner" width={400} height={350} /> */}
                   {/* <div className="swiper-lazy-preloader swiper-lazy-preloader-white" /> */}
                 </a>
               </GridCarousel.Item>
@@ -106,7 +111,7 @@ const Home: NextPage<Props> = ({ config }) => {
           </GridCarousel>
         </div>
 
-        <div className="mb-10">
+        <div className="mb-10" style={{ minHeight: 250 }}>
           <Text variant="heading2" as="h2" className="mb-4">
             Accessories
           </Text>
@@ -126,7 +131,7 @@ const Home: NextPage<Props> = ({ config }) => {
           </GridCarousel>
         </div>
 
-        <div className="mb-10">
+        <div className="mb-10" style={{ minHeight: 250 }}>
           <Text variant="heading2" as="h2" className="mb-4">
             Clothing
           </Text>
@@ -146,7 +151,7 @@ const Home: NextPage<Props> = ({ config }) => {
           </GridCarousel>
         </div>
 
-        <div className="mb-10">
+        <div className="mb-10" style={{ minHeight: 250 }}>
           <Text variant="heading2" as="h2" className="mb-4">
             Hoodies
           </Text>
