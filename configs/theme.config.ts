@@ -17,7 +17,7 @@ const text = {
 };
 
 const button = {
-  default: `focus:outline-none transition ease-in duration-200`,
+  default: `focus:outline-none transition ease-in duration-200 appearance-none`,
   block: `flex justify-center w-full`,
   rounded: `rounded-full`,
   disabled: `opacity-60 cursor-not-allowed`,
