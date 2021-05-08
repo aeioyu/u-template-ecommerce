@@ -78,9 +78,9 @@ interface Props {
 
 const Home: NextPage<Props> = ({ config }) => {
   const { t } = useTranslate();
-  // const { products: accessoriesProducts } = useProductSearch({ page: 1, per_page: 10, category: '23' });
-  // const { products: clothingProducts } = useProductSearch({ page: 1, per_page: 10, category: '19' });
-  // const { products: hoodiesProducts } = useProductSearch({ page: 1, per_page: 10, category: '20' });
+  const { products: accessoriesProducts } = useProductSearch({ page: 1, per_page: 10, category: '23' });
+  const { products: clothingProducts } = useProductSearch({ page: 1, per_page: 10, category: '19' });
+  const { products: hoodiesProducts } = useProductSearch({ page: 1, per_page: 10, category: '20' });
 
   return (
     <div>
