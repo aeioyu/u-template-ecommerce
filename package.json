@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next-boost",
-    "start-legacy": "next start -p $PORT",
+    "start": "next start -p $PORT",
     "stats": "ANALYZE=true next build",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "generate": "plop",
