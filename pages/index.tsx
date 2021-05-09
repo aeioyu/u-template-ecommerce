@@ -11,9 +11,9 @@ import useProductSearch from '@/composables/useProductSearch';
 import ProductItem from '@/components/features/product/ProductItem';
 // import Image from 'next/image';
 import Head from 'next/head';
-import { dehydrate } from 'react-query/hydration';
-import { QueryClient, useQuery } from 'react-query';
-import { getProductSearch } from '@/composables/useProductSearch/useProductSearch';
+// import { dehydrate } from 'react-query/hydration';
+// import { QueryClient, useQuery } from 'react-query';
+// import { getProductSearch } from '@/composables/useProductSearch/useProductSearch';
 
 const banners = [
   {
@@ -121,60 +121,96 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
           <Text variant="heading2" as="h2" className="mb-4">
             Accessories
           </Text>
-          <GridCarousel>
-            {accessoriesProducts?.data?.map((product) => (
-              <GridCarousel.Item key={product.id}>
-                <ProductItem
-                  slug={product.slug}
-                  name={product.name}
-                  images={product.images}
-                  price={product.price}
-                  sku={product.sku}
-                  productId={product.id}
-                />
-              </GridCarousel.Item>
-            ))}
-          </GridCarousel>
+
+          {accessoriesProducts?.data?.length > 0 ? (
+            <GridCarousel>
+              {accessoriesProducts?.data?.map((product) => (
+                <GridCarousel.Item key={product.id}>
+                  <ProductItem
+                    slug={product.slug}
+                    name={product.name}
+                    images={product.images}
+                    price={product.price}
+                    sku={product.sku}
+                    productId={product.id}
+                  />
+                </GridCarousel.Item>
+              ))}
+            </GridCarousel>
+          ) : (
+            <div className="flex justify-between">
+              {[1, 2, 3, 4].map((val) => (
+                <div className="flex flex-col" key={val}>
+                  <img src="/images/placeholder.jpeg" alt="this is alt" loading="lazy" width="268" height="268" />
+                  <div style={{ height: 16 }}></div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="mb-10">
           <Text variant="heading2" as="h2" className="mb-4">
             Clothing
           </Text>
-          <GridCarousel>
-            {clothingProducts?.data?.map((product) => (
-              <GridCarousel.Item key={product.id}>
-                <ProductItem
-                  slug={product.slug}
-                  name={product.name}
-                  images={product.images}
-                  price={product.price}
-                  sku={product.sku}
-                  productId={product.id}
-                />
-              </GridCarousel.Item>
-            ))}
-          </GridCarousel>
+
+          {clothingProducts?.data?.length > 0 ? (
+            <GridCarousel>
+              {clothingProducts?.data?.map((product) => (
+                <GridCarousel.Item key={product.id}>
+                  <ProductItem
+                    slug={product.slug}
+                    name={product.name}
+                    images={product.images}
+                    price={product.price}
+                    sku={product.sku}
+                    productId={product.id}
+                  />
+                </GridCarousel.Item>
+              ))}
+            </GridCarousel>
+          ) : (
+            <div className="flex justify-between">
+              {[1, 2, 3, 4].map((val) => (
+                <div className="flex flex-col" key={val}>
+                  <img src="/images/placeholder.jpeg" alt="this is alt" loading="lazy" width="268" height="268" />
+                  <div style={{ width: 268, height: 16 }}></div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="mb-10">
           <Text variant="heading2" as="h2" className="mb-4">
             Hoodies
           </Text>
-          <GridCarousel>
-            {hoodiesProducts?.data?.map((product) => (
-              <GridCarousel.Item key={product.id}>
-                <ProductItem
-                  slug={product.slug}
-                  name={product.name}
-                  images={product.images}
-                  price={product.price}
-                  sku={product.sku}
-                  productId={product.id}
-                />
-              </GridCarousel.Item>
-            ))}
-          </GridCarousel>
+
+          {hoodiesProducts?.data?.length > 0 ? (
+            <GridCarousel>
+              {hoodiesProducts?.data?.map((product) => (
+                <GridCarousel.Item key={product.id}>
+                  <ProductItem
+                    slug={product.slug}
+                    name={product.name}
+                    images={product.images}
+                    price={product.price}
+                    sku={product.sku}
+                    productId={product.id}
+                  />
+                </GridCarousel.Item>
+              ))}
+            </GridCarousel>
+          ) : (
+            <div className="flex justify-between">
+              {[1, 2, 3, 4].map((val) => (
+                <div className="flex flex-col" key={val}>
+                  <img src="/images/placeholder.jpeg" alt="this is alt" loading="lazy" width="268" height="268" />
+                  <div style={{ width: 268, height: 16 }}></div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </Container>
     </div>

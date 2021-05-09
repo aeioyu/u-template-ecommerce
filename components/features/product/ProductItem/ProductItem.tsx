@@ -1,6 +1,7 @@
 import Text from '@/components/common/Text';
 import Link from 'next/link';
 import React from 'react';
+import s from './ProductItem.module.css';
 
 export interface ProductItemProps {
   productId: number;
@@ -28,7 +29,14 @@ const ProductItem: React.FC<ProductItemProps> = ({ productId, slug, images, name
     <div>
       <Link href={`/products/${slug}-i.${productId}`}>
         <a>
-          <img src={images[0]?.src} alt="this is alt" loading="lazy" />
+          <img
+            className={s.thumbnailImage}
+            src={images[0]?.src}
+            alt="this is alt"
+            loading="lazy"
+            width="268"
+            height="268"
+          />
           <div>
             <Text>{name}</Text>
           </div>
