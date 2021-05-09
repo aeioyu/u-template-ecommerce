@@ -96,6 +96,8 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
       <Head>
         <link rel="preload" href={banners[0].desktop} as="image" />
         <link rel="preload" href={banners[0].mobile} as="image" />
+        <link rel="preload" href="/images/placeholder.jpeg" as="image" />
+        
       </Head>
       <Container>
         {config}
