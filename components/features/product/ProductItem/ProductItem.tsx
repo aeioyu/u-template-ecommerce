@@ -30,12 +30,12 @@ const ProductItem: React.FC<ProductItemProps> = ({ productId, slug, images, name
       <Link href={`/products/${slug}-i.${productId}`}>
         <a>
           <img
-            className={s.thumbnailImage}
             src={images[0]?.src}
             alt="this is alt"
             loading="lazy"
-            width="268"
-            height="268"
+            width="300"
+            height="300"
+            style={{ aspectRatio: '1 / 1' }}
           />
           <div>
             <Text>{name}</Text>

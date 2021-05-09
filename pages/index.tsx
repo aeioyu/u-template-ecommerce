@@ -123,31 +123,40 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
             Accessories
           </Text>
 
-          {accessoriesProducts?.data?.length > 0 ? (
-            <GridCarousel>
-              {accessoriesProducts?.data?.map((product) => (
-                <GridCarousel.Item key={product.id}>
-                  <ProductItem
-                    slug={product.slug}
-                    name={product.name}
-                    images={product.images}
-                    price={product.price}
-                    sku={product.sku}
-                    productId={product.id}
-                  />
-                </GridCarousel.Item>
-              ))}
-            </GridCarousel>
-          ) : (
-            <div className="flex justify-between">
-              {[1, 2, 3, 4].map((val) => (
-                <div className="flex flex-col" key={val}>
-                  <img src="/images/placeholder.jpeg" alt="this is alt" loading="lazy" width="268" height="268" />
-                  <div style={{ height: 16 }}></div>
-                </div>
-              ))}
-            </div>
-          )}
+          <GridCarousel>
+            {accessoriesProducts?.data?.length > 0 ? (
+              <>
+                {accessoriesProducts?.data?.map((product) => (
+                  <GridCarousel.Item key={product.id}>
+                    <ProductItem
+                      slug={product.slug}
+                      name={product.name}
+                      images={product.images}
+                      price={product.price}
+                      sku={product.sku}
+                      productId={product.id}
+                    />
+                  </GridCarousel.Item>
+                ))}
+              </>
+            ) : (
+              <>
+                {[1, 2, 3, 4].map((val) => (
+                  <GridCarousel.Item key={val}>
+                    <img
+                      src="/images/placeholder.jpeg"
+                      alt="this is alt"
+                      loading="lazy"
+                      width="300"
+                      height="300"
+                      style={{ aspectRatio: '1 / 1' }}
+                    />
+                    <div style={{ height: 30 }}></div>
+                  </GridCarousel.Item>
+                ))}
+              </>
+            )}
+          </GridCarousel>
         </div>
 
         <div className="mb-10">
@@ -155,31 +164,40 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
             Clothing
           </Text>
 
-          {clothingProducts?.data?.length > 0 ? (
-            <GridCarousel>
-              {clothingProducts?.data?.map((product) => (
-                <GridCarousel.Item key={product.id}>
-                  <ProductItem
-                    slug={product.slug}
-                    name={product.name}
-                    images={product.images}
-                    price={product.price}
-                    sku={product.sku}
-                    productId={product.id}
-                  />
-                </GridCarousel.Item>
-              ))}
-            </GridCarousel>
-          ) : (
-            <div className="flex justify-between">
-              {[1, 2, 3, 4].map((val) => (
-                <div className="flex flex-col" key={val}>
-                  <img src="/images/placeholder.jpeg" alt="this is alt" loading="lazy" width="268" height="268" />
-                  <div style={{ width: 268, height: 16 }}></div>
-                </div>
-              ))}
-            </div>
-          )}
+          <GridCarousel>
+            {clothingProducts?.data?.length > 0 ? (
+              <>
+                {clothingProducts?.data?.map((product) => (
+                  <GridCarousel.Item key={product.id}>
+                    <ProductItem
+                      slug={product.slug}
+                      name={product.name}
+                      images={product.images}
+                      price={product.price}
+                      sku={product.sku}
+                      productId={product.id}
+                    />
+                  </GridCarousel.Item>
+                ))}
+              </>
+            ) : (
+              <>
+                {[1, 2, 3, 4].map((val) => (
+                  <GridCarousel.Item key={val}>
+                    <img
+                      src="/images/placeholder.jpeg"
+                      alt="this is alt"
+                      loading="lazy"
+                      width="300"
+                      height="300"
+                      style={{ aspectRatio: '1 / 1' }}
+                    />
+                    <div style={{ height: 30 }}></div>
+                  </GridCarousel.Item>
+                ))}
+              </>
+            )}
+          </GridCarousel>
         </div>
 
         <div className="mb-10">
@@ -187,31 +205,40 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
             Hoodies
           </Text>
 
-          {hoodiesProducts?.data?.length > 0 ? (
-            <GridCarousel>
-              {hoodiesProducts?.data?.map((product) => (
-                <GridCarousel.Item key={product.id}>
-                  <ProductItem
-                    slug={product.slug}
-                    name={product.name}
-                    images={product.images}
-                    price={product.price}
-                    sku={product.sku}
-                    productId={product.id}
-                  />
-                </GridCarousel.Item>
-              ))}
-            </GridCarousel>
-          ) : (
-            <div className="flex justify-between">
-              {[1, 2, 3, 4].map((val) => (
-                <div className="flex flex-col" key={val}>
-                  <img src="/images/placeholder.jpeg" alt="this is alt" loading="lazy" width="268" height="268" />
-                  <div style={{ width: 268, height: 16 }}></div>
-                </div>
-              ))}
-            </div>
-          )}
+          <GridCarousel>
+            {hoodiesProducts?.data?.length > 0 ? (
+              <>
+                {hoodiesProducts?.data?.map((product) => (
+                  <GridCarousel.Item key={product.id}>
+                    <ProductItem
+                      slug={product.slug}
+                      name={product.name}
+                      images={product.images}
+                      price={product.price}
+                      sku={product.sku}
+                      productId={product.id}
+                    />
+                  </GridCarousel.Item>
+                ))}
+              </>
+            ) : (
+              <>
+                {[1, 2, 3, 4].map((val) => (
+                  <GridCarousel.Item key={val}>
+                    <img
+                      src="/images/placeholder.jpeg"
+                      alt="this is alt"
+                      loading="lazy"
+                      width="300"
+                      height="300"
+                      style={{ aspectRatio: '1 / 1' }}
+                    />
+                    <div style={{ height: 30 }}></div>
+                  </GridCarousel.Item>
+                ))}
+              </>
+            )}
+          </GridCarousel>
         </div>
       </Container>
     </div>

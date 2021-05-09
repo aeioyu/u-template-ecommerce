@@ -38,6 +38,7 @@ const HeroBanner: React.FC<Props> = ({ banners = [] }) => {
                   className="w-full"
                   width="1264"
                   height="440"
+                  style={{ aspectRatio: '1264 / 440' }}
                 />
               </picture>
             </a>
