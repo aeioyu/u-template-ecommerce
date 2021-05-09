@@ -34,7 +34,7 @@ const HeroBanner: React.FC<Props> = ({ banners = [] }) => {
                 <img
                   src={banner.mobile}
                   loading="lazy"
-                  alt="this is alt"
+                  alt={`hero banner ${banner.id}`}
                   className="w-full"
                   width="1264"
                   height="440"

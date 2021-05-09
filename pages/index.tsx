@@ -145,7 +145,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
                   <GridCarousel.Item key={val}>
                     <img
                       src="/images/placeholder.jpeg"
-                      alt="this is alt"
+                      alt="example product 1"
                       loading="lazy"
                       width="300"
                       height="300"
@@ -186,7 +186,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
                   <GridCarousel.Item key={val}>
                     <img
                       src="/images/placeholder.jpeg"
-                      alt="this is alt"
+                      alt="example product 2"
                       loading="lazy"
                       width="300"
                       height="300"
@@ -227,7 +227,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
                   <GridCarousel.Item key={val}>
                     <img
                       src="/images/placeholder.jpeg"
-                      alt="this is alt"
+                      alt="example product 3"
                       loading="lazy"
                       width="300"
                       height="300"

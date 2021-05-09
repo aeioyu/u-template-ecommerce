@@ -31,7 +31,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ productId, slug, images, name
         <a>
           <img
             src={images[0]?.src}
-            alt="this is alt"
+            alt={name}
             loading="lazy"
             width="300"
             height="300"
