@@ -20,10 +20,10 @@ const HeroBanner: React.FC<Props> = ({ banners = [] }) => {
         pagination={{
           clickable: true,
         }}
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: true,
-        }}
+        // autoplay={{
+        //   delay: 3000,
+        //   disableOnInteraction: true,
+        // }}
       >
         {banners.map((banner) => (
           <SwiperSlide key={banner.id}>
