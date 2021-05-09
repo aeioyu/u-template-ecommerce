@@ -61,11 +61,11 @@ const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
       <ThemeProvider theme={theme}>
         <UIStateProvider>
           <QueryClientProvider client={queryClientRef.current}>
-            <Hydrate state={pageProps.dehydratedState}>
-              <Layout {...pageProps}>
+            <Layout {...pageProps}>
+              <Hydrate state={pageProps.dehydratedState}>
                 <Component {...pageProps} />
-              </Layout>
-            </Hydrate>
+              </Hydrate>
+            </Layout>
           </QueryClientProvider>
         </UIStateProvider>
       </ThemeProvider>

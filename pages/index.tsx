@@ -180,8 +180,9 @@ const Home: NextPage<Props> = ({ config }) => {
 export const getServerSideProps: GetServerSideProps = async () => {
   const queryClient = new QueryClient();
   const searchProducts = { page: 1, per_page: 10, category: '23' };
+  const searchProducts2 = { page: 1, per_page: 10, category: '19' };
   await queryClient.prefetchQuery(['products', searchProducts], () => getProductSearch(searchProducts));
-  console.log(queryClient);
+  await queryClient.prefetchQuery(['products', searchProducts2], () => getProductSearch(searchProducts2));
 
   return {
     props: {
