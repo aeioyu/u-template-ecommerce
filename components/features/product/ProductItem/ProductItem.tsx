@@ -28,7 +28,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ productId, slug, images, name
     <div>
       <Link href={`/products/${slug}-i.${productId}`}>
         <a>
-          <img src={images[0]?.src} alt="" loading="lazy" />
+          <img src={images[0]?.src} alt="this is alt" loading="lazy" />
           <div>
             <Text>{name}</Text>
           </div>

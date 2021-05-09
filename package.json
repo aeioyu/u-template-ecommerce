@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p $PORT",
+    "start": "next-boost",
+    "start-legacy": "next start -p $PORT",
     "stats": "ANALYZE=true next build",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "generate": "plop",
@@ -21,6 +22,7 @@
     "clsx": "^1.1.1",
     "jsonwebtoken": "^8.5.1",
     "next": "^10.2.0",
+    "next-boost": "^0.10.0",
     "next-compose-plugins": "^2.2.1",
     "next-connect": "^0.10.1",
     "react": "^17.0.1",
