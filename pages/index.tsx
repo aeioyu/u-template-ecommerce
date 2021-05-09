@@ -11,6 +11,9 @@ import useProductSearch from '@/composables/useProductSearch';
 import ProductItem from '@/components/features/product/ProductItem';
 // import Image from 'next/image';
 import Head from 'next/head';
+import { dehydrate } from 'react-query/hydration';
+import { QueryClient, useQuery } from 'react-query';
+import { getProductSearch } from '@/composables/useProductSearch/useProductSearch';
 
 const banners = [
   {
@@ -175,9 +178,14 @@ const Home: NextPage<Props> = ({ config }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
+  const queryClient = new QueryClient();
+  const searchProducts = { page: 1, per_page: 10, category: '23' };
+  await queryClient.prefetchQuery(['products', searchProducts], () => getProductSearch(searchProducts));
+  console.log(queryClient);
+
   return {
     props: {
-      config: '',
+      dehydratedState: dehydrate(queryClient),
     },
   };
 };

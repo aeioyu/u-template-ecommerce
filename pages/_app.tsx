@@ -14,6 +14,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import { UIStateProvider } from '@/components/UIStateProvider';
 import theme from '@/configs/theme.config';
 import { useRouter } from 'next/router';
+import { Hydrate } from 'react-query/hydration';
 
 SwiperCore.use([Lazy, Pagination, Navigation, Autoplay]);
 
@@ -22,14 +23,14 @@ const languages = {
   en: require('../translate/en.json'),
 };
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: 2,
-      refetchOnWindowFocus: false,
-    },
-  },
-});
+// const queryClient = new QueryClient({
+//   defaultOptions: {
+//     queries: {
+//       retry: 2,
+//       refetchOnWindowFocus: false,
+//     },
+//   },
+// });
 
 const Noop: React.FC = ({ children }) => <>{children}</>;
 
@@ -39,6 +40,18 @@ const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
   const { locale, defaultLocale } = router;
   const messages = languages[locale];
 
+  const queryClientRef = React.useRef();
+  if (!queryClientRef.current) {
+    (queryClientRef.current as any) = new QueryClient({
+      defaultOptions: {
+        queries: {
+          retry: 2,
+          refetchOnWindowFocus: false,
+        },
+      },
+    });
+  }
+
   useEffect(() => {
     document.body.classList?.remove('loading');
   }, []);
@@ -47,10 +60,12 @@ const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
     <IntlProvider locale={locale} defaultLocale={defaultLocale} messages={messages}>
       <ThemeProvider theme={theme}>
         <UIStateProvider>
-          <QueryClientProvider client={queryClient}>
-            <Layout {...pageProps}>
-              <Component {...pageProps} />
-            </Layout>
+          <QueryClientProvider client={queryClientRef.current}>
+            <Hydrate state={pageProps.dehydratedState}>
+              <Layout {...pageProps}>
+                <Component {...pageProps} />
+              </Layout>
+            </Hydrate>
           </QueryClientProvider>
         </UIStateProvider>
       </ThemeProvider>
