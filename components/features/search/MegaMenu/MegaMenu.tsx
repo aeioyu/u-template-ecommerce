@@ -12,7 +12,7 @@ export interface MegaMenuProps {
 
 const MegaMenu: React.FC<MegaMenuProps> = ({ categories }) => {
   return (
-    <div className="py-4 overflow-auto">
+    <div className="py-4 overflow-auto" style={{ height: 56 }}>
       {categories?.map((category) => (
         <Text variant="body" key={category.id} className="mr-6">
           <Link href={`/${category.slug}-cat.${category.id}`}>{category.name}</Link>
