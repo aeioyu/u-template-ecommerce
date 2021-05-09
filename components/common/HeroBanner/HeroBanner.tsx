@@ -31,7 +31,14 @@ const HeroBanner: React.FC<Props> = ({ banners = [] }) => {
               <picture>
                 <source srcSet={banner.desktop} media="(min-width: 768px)" />
                 <source srcSet={banner.mobile} media="(min-width: 767px)" />
-                <img src={banner.mobile} loading="lazy" alt="this is alt" className="w-full" />
+                <img
+                  src={banner.mobile}
+                  loading="lazy"
+                  alt="this is alt"
+                  className="w-full"
+                  width="1264"
+                  height="440"
+                />
               </picture>
             </a>
           </SwiperSlide>
