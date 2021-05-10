@@ -139,8 +139,8 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
                 ))}
               </>
             ) : (
-              <>
-                {[1, 2, 3, 4, 5].map((val) => (
+              <div className="flex">
+                {[1, 2, 3, 4].map((val) => (
                   <GridCarousel.Item key={val}>
                     <div>
                       <img
@@ -155,7 +155,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
                     </div>
                   </GridCarousel.Item>
                 ))}
-              </>
+              </div>
             )}
           </GridCarousel>
         </div>
@@ -183,7 +183,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
               </>
             ) : (
               <>
-                {[1, 2, 3, 4, 5].map((val) => (
+                {[1, 2, 3, 4].map((val) => (
                   <GridCarousel.Item key={val}>
                     <div>
                       <img
@@ -226,7 +226,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
               </>
             ) : (
               <>
-                {[1, 2, 3, 4, 5].map((val) => (
+                {[1, 2, 3, 4].map((val) => (
                   <GridCarousel.Item key={val}>
                     <div>
                       <img
