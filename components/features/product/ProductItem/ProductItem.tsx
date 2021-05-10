@@ -1,6 +1,7 @@
 import Text from '@/components/common/Text';
 import Link from 'next/link';
 import React from 'react';
+import s from './ProductItem.module.css';
 
 export interface ProductItemProps {
   productId: number;
