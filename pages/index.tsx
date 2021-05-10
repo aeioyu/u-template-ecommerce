@@ -11,6 +11,8 @@ import useProductSearch from '@/composables/useProductSearch';
 import ProductItem from '@/components/features/product/ProductItem';
 // import Image from 'next/image';
 import Head from 'next/head';
+import LazyLoad from 'react-lazyload';
+
 // import { dehydrate } from 'react-query/hydration';
 // import { QueryClient } from 'react-query';
 // import { getProductSearch } from '@/composables/useProductSearch/useProductSearch';
@@ -165,42 +167,41 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
             Clothing
           </Text>
 
-          <GridCarousel>
-            {clothingProducts?.data?.length > 0 ? (
-              <>
-                {clothingProducts?.data?.map((product) => (
-                  <GridCarousel.Item key={product.id}>
-                    <ProductItem
-                      slug={product.slug}
-                      name={product.name}
-                      images={product.images}
-                      price={product.price}
-                      sku={product.sku}
-                      productId={product.id}
-                    />
-                  </GridCarousel.Item>
-                ))}
-              </>
-            ) : (
-              <>
+          <LazyLoad
+            once={true}
+            placeholder={
+              <div className="flex">
                 {[1, 2, 3, 4].map((val) => (
-                  <GridCarousel.Item key={val}>
-                    <div>
-                      <img
-                        src="/images/placeholder.jpeg"
-                        alt="example product 2"
-                        loading="lazy"
-                        width="300"
-                        height="300"
-                        style={{ aspectRatio: '1 / 1' }}
-                      />
-                      <div style={{ height: 48 }}></div>
-                    </div>
-                  </GridCarousel.Item>
+                  <div key={val}>
+                    <img
+                      src="/images/placeholder.jpeg"
+                      alt="example product 2"
+                      loading="lazy"
+                      width="300"
+                      height="300"
+                      style={{ aspectRatio: '1 / 1' }}
+                    />
+                    <div style={{ height: 48 }}></div>
+                  </div>
                 ))}
-              </>
-            )}
-          </GridCarousel>
+              </div>
+            }
+          >
+            <GridCarousel>
+              {clothingProducts?.data?.map((product) => (
+                <GridCarousel.Item key={product.id}>
+                  <ProductItem
+                    slug={product.slug}
+                    name={product.name}
+                    images={product.images}
+                    price={product.price}
+                    sku={product.sku}
+                    productId={product.id}
+                  />
+                </GridCarousel.Item>
+              ))}
+            </GridCarousel>
+          </LazyLoad>
         </div>
 
         <div className="mb-10">
@@ -208,42 +209,41 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
             Hoodies
           </Text>
 
-          <GridCarousel>
-            {hoodiesProducts?.data?.length > 0 ? (
-              <>
-                {hoodiesProducts?.data?.map((product) => (
-                  <GridCarousel.Item key={product.id}>
-                    <ProductItem
-                      slug={product.slug}
-                      name={product.name}
-                      images={product.images}
-                      price={product.price}
-                      sku={product.sku}
-                      productId={product.id}
-                    />
-                  </GridCarousel.Item>
-                ))}
-              </>
-            ) : (
-              <>
+          <LazyLoad
+            once={true}
+            placeholder={
+              <div className="flex">
                 {[1, 2, 3, 4].map((val) => (
-                  <GridCarousel.Item key={val}>
-                    <div>
-                      <img
-                        src="/images/placeholder.jpeg"
-                        alt="example product 3"
-                        loading="lazy"
-                        width="300"
-                        height="300"
-                        style={{ aspectRatio: '1 / 1' }}
-                      />
-                      <div style={{ height: 48 }}></div>
-                    </div>
-                  </GridCarousel.Item>
+                  <div key={val}>
+                    <img
+                      src="/images/placeholder.jpeg"
+                      alt="example product 2"
+                      loading="lazy"
+                      width="300"
+                      height="300"
+                      style={{ aspectRatio: '1 / 1' }}
+                    />
+                    <div style={{ height: 48 }}></div>
+                  </div>
                 ))}
-              </>
-            )}
-          </GridCarousel>
+              </div>
+            }
+          >
+            <GridCarousel>
+              {hoodiesProducts?.data?.map((product) => (
+                <GridCarousel.Item key={product.id}>
+                  <ProductItem
+                    slug={product.slug}
+                    name={product.name}
+                    images={product.images}
+                    price={product.price}
+                    sku={product.sku}
+                    productId={product.id}
+                  />
+                </GridCarousel.Item>
+              ))}
+            </GridCarousel>
+          </LazyLoad>
         </div>
       </Container>
     </>
