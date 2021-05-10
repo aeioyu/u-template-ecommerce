@@ -9,7 +9,7 @@ type DocumentFiles = {
 
 export class CriticalCssHead extends Head {
   getCssLinks({ allFiles }: DocumentFiles) {
-    const { assetPrefix } = this.context.__NEXT_DATA__;
+    const { assetPrefix } = (this.context as any)._documentProps;
     const { nonce } = this.props;
     const isCss = (file: string): boolean => /\.css$/.test(file);
     const renderCss = (file: string) => <InlineStyle key={file} file={file} nonce={nonce} assetPrefix={assetPrefix} />;

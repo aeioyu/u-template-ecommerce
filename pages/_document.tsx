@@ -1,4 +1,4 @@
-import { CriticalCssHead } from '@/components/common/CriticalCssHead';
+// import { CriticalCssHead } from '@/components/common/CriticalCssHead';
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
@@ -6,7 +6,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head />
-        <CriticalCssHead />
+        {/* <CriticalCssHead /> */}
         <body className="loading">
           <Main />
           <NextScript />
