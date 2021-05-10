@@ -1,4 +1,3 @@
-import 'twin.macro';
 import React, { ReactElement } from 'react';
 import Seo from '@/components/common/Seo';
 import useTranslate from '@/composables/useTranslate';
@@ -100,11 +99,11 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
         <link rel="preload" href="/images/placeholder.jpeg" as="image" />
       </Head>
       <Container>
-        <div tw="mb-10">
+        <div className="mb-10">
           <HeroBanner banners={banners} />
         </div>
-        {/* <div tw="mb-10" style={{ minHeight: 250 }}>
-          <Text variant="heading2" as="h2" tw="mb-4">
+        {/* <div className="mb-10" style={{ minHeight: 250 }}>
+          <Text variant="heading2" as="h2" className="mb-4">
             {t('home.recommended')}
           </Text>
           <GridCarousel>
@@ -118,8 +117,8 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
           </GridCarousel>
         </div> */}
 
-        <div tw="mb-10">
-          <Text variant="heading2" as="h2" tw="mb-4">
+        <div className="mb-10">
+          <Text variant="heading2" as="h2" className="mb-4">
             Accessories
           </Text>
 
@@ -140,7 +139,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
                 ))}
               </>
             ) : (
-              <div tw="flex">
+              <div className="flex">
                 {[1, 2, 3, 4].map((val) => (
                   <GridCarousel.Item key={val}>
                     <div>
@@ -161,8 +160,8 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
           </GridCarousel>
         </div>
 
-        <div tw="mb-10">
-          <Text variant="heading2" as="h2" tw="mb-4">
+        <div className="mb-10">
+          <Text variant="heading2" as="h2" className="mb-4">
             Clothing
           </Text>
 
@@ -204,8 +203,8 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
           </GridCarousel>
         </div>
 
-        <div tw="mb-10">
-          <Text variant="heading2" as="h2" tw="mb-4">
+        <div className="mb-10">
+          <Text variant="heading2" as="h2" className="mb-4">
             Hoodies
           </Text>
 
