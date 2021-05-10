@@ -1,13 +1,11 @@
 import '@/styles/global.css';
-import 'swiper/swiper.min.css';
-import 'swiper/components/lazy/lazy.min.css';
-import 'swiper/components/pagination/pagination.min.css';
-import 'swiper/components/navigation/navigation.min.css';
+import swiperCss from 'swiper/swiper.min.css';
+import swiperCss2 from 'swiper/components/lazy/lazy.min.css';
+import swiperCss3 from 'swiper/components/pagination/pagination.min.css';
+import swiperCss4 from 'swiper/components/navigation/navigation.min.css';
 
 import { QueryClient, QueryClientProvider } from 'react-query';
 import React, { ReactElement, useEffect } from 'react';
-import SwiperCore, { Autoplay, Lazy, Navigation, Pagination } from 'swiper/core';
-
 import { AppProps } from 'next/app';
 import { IntlProvider } from 'react-intl';
 import { ThemeProvider } from '@/components/ThemeProvider';
@@ -16,8 +14,18 @@ import theme from '@/configs/theme.config';
 import { useRouter } from 'next/router';
 import { Hydrate } from 'react-query/hydration';
 import { GlobalStyles } from 'twin.macro';
+import { css } from '@emotion/react';
+import { Global } from '@emotion/core';
 
-SwiperCore.use([Lazy, Pagination, Navigation, Autoplay]);
+import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper/core';
+SwiperCore.use([Pagination, Navigation, Autoplay]);
+
+export const globalStyles = css`
+  ${swiperCss}
+  ${swiperCss2}
+  ${swiperCss3}
+  ${swiperCss4}
+`;
 
 const languages = {
   th: require('../translate/th.json'),
@@ -62,12 +70,13 @@ const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
       <ThemeProvider theme={theme}>
         <UIStateProvider>
           <QueryClientProvider client={queryClientRef.current}>
-            <Layout {...pageProps}>
-              <Hydrate state={pageProps.dehydratedState}>
+            <Hydrate state={pageProps.dehydratedState}>
+              <Layout {...pageProps}>
                 <GlobalStyles />
+                <Global styles={globalStyles} />
                 <Component {...pageProps} />
-              </Hydrate>
-            </Layout>
+              </Layout>
+            </Hydrate>
           </QueryClientProvider>
         </UIStateProvider>
       </ThemeProvider>
