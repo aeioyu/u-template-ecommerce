@@ -14,9 +14,9 @@ import Head from 'next/head';
 import LazyLoad from 'react-lazyload';
 import Image from 'next/image';
 
-// import { dehydrate } from 'react-query/hydration';
-// import { QueryClient } from 'react-query';
-// import { getProductSearch } from '@/composables/useProductSearch/useProductSearch';
+import { dehydrate } from 'react-query/hydration';
+import { QueryClient } from 'react-query';
+import { getProductSearch } from '@/composables/useProductSearch/useProductSearch';
 
 const banners = [
   {
@@ -77,28 +77,61 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
         <div className="mb-10">
           <HeroBanner banners={banners} />
         </div>
+        {/* <div className="mb-10" style={{ minHeight: 250 }}>
+          <Text variant="heading2" as="h2" className="mb-4">
+            {t('home.recommended')}
+          </Text>
+          <GridCarousel>
+            {gridCarousel.map((carousel) => (
+              <GridCarousel.Item key={carousel.id}>
+                <a href={carousel.url} target="blank">
+                  <img src={carousel.desktop} alt="this is alt" loading="lazy" />
+                </a>
+              </GridCarousel.Item>
+            ))}
+          </GridCarousel>
+        </div> */}
 
         <div className="mb-10">
           <Text variant="heading2" as="h2" className="mb-4">
             Accessories
           </Text>
 
-          <LazyLoad once={true} placeholder={slidePlaceholder}>
-            <GridCarousel>
-              {accessoriesProducts?.data?.map((product) => (
-                <GridCarousel.Item key={product.id}>
-                  <ProductItem
-                    slug={product.slug}
-                    name={product.name}
-                    images={product.images}
-                    price={product.price}
-                    sku={product.sku}
-                    productId={product.id}
-                  />
-                </GridCarousel.Item>
-              ))}
-            </GridCarousel>
-          </LazyLoad>
+          <GridCarousel>
+            {accessoriesProducts?.data?.length > 0 ? (
+              <>
+                {accessoriesProducts?.data?.map((product) => (
+                  <GridCarousel.Item key={product.id}>
+                    <ProductItem
+                      slug={product.slug}
+                      name={product.name}
+                      images={product.images}
+                      price={product.price}
+                      sku={product.sku}
+                      productId={product.id}
+                    />
+                  </GridCarousel.Item>
+                ))}
+              </>
+            ) : (
+              <>
+                {[1, 2, 3, 4].map((val) => (
+                  <GridCarousel.Item key={val}>
+                    <div>
+                      <Image
+                        src="/images/placeholder.jpeg"
+                        alt="example product 1"
+                        loading="lazy"
+                        width="300"
+                        height="300"
+                      />
+                      <div style={{ height: 48 }}></div>
+                    </div>
+                  </GridCarousel.Item>
+                ))}
+              </>
+            )}
+          </GridCarousel>
         </div>
 
         <div className="mb-10">
@@ -151,20 +184,23 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  // const queryClient = new QueryClient();
-  // const searchProducts = { page: 1, per_page: 10, category: '23' };
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { req } = context;
+  const queryClient = new QueryClient();
+  const searchProducts = { page: 1, per_page: 10, category: '23' };
   // const searchProducts2 = { page: 1, per_page: 10, category: '19' };
-  // await queryClient.prefetchQuery(['products', searchProducts], () => getProductSearch(searchProducts));
+  await queryClient.prefetchQuery(['products', searchProducts], () =>
+    getProductSearch(searchProducts, { hostname: `${req.headers.referer}` }),
+  );
   // await queryClient.prefetchQuery(['products', searchProducts2], () => getProductSearch(searchProducts2));
-  // return {
-  //   props: {
-  //     dehydratedState: dehydrate(queryClient),
-  //   },
-  // };
   return {
-    props: {},
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
   };
+  // return {
+  //   props: {},
+  // };
 };
 
 Home.Layout = Layout;

@@ -2,8 +2,11 @@ import { UseQueryResult, useQuery, UseQueryOptions } from 'react-query';
 import axios from 'axios';
 import { ProductModel, ProductSearchParams } from '@/composables/types/product.type';
 
-export async function getProductSearch(searchParams: ProductSearchParams): Promise<ProductModel[]> {
-  return axios.get(`/api/products`, { params: searchParams }).then((res) => res.data);
+export async function getProductSearch(
+  searchParams: ProductSearchParams,
+  options = { hostname: '' },
+): Promise<ProductModel[]> {
+  return axios({ url: `/api/products`, params: searchParams, baseURL: options.hostname }).then((res) => res.data);
 }
 
 export function useProductSearch(searchParams: ProductSearchParams, options?: UseQueryOptions<any>) {
