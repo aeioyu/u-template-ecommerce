@@ -140,7 +140,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
             {accessoriesProducts?.data?.length > 0 ? (
               <>
                 {accessoriesProducts?.data?.map((product) => (
-                  <GridCarousel.Item key={product.id}>
+                  <GridCarousel.Item key={product.id} style={{ width: '25%' }}>
                     <ProductItem
                       slug={product.slug}
                       name={product.name}

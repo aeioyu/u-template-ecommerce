@@ -38,7 +38,7 @@ const nextConfig = {
     webpack5: true,
   },
   images: {
-    domains: ['picsum.photos'],
+    domains: ['picsum.photos', 'instaparade.com'],
   },
   async headers() {
     return [
