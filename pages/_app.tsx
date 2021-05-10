@@ -1,8 +1,4 @@
 import '@/styles/global.css';
-import swiperCss from 'swiper/swiper.min.css';
-import swiperCss2 from 'swiper/components/lazy/lazy.min.css';
-import swiperCss3 from 'swiper/components/pagination/pagination.min.css';
-import swiperCss4 from 'swiper/components/navigation/navigation.min.css';
 
 import { QueryClient, QueryClientProvider } from 'react-query';
 import React, { ReactElement, useEffect } from 'react';
@@ -21,10 +17,10 @@ import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper/core';
 SwiperCore.use([Pagination, Navigation, Autoplay]);
 
 export const globalStyles = css`
-  ${swiperCss}
-  ${swiperCss2}
-  ${swiperCss3}
-  ${swiperCss4}
+  ${require('swiper/swiper.min.css')}
+  ${require('swiper/components/lazy/lazy.min.css')}
+  ${require('swiper/components/pagination/pagination.min.css')}
+  ${require('swiper/components/navigation/navigation.min.css')}
 `;
 
 const languages = {
