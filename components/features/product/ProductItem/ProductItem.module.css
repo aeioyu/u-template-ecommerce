@@ -1,3 +1,0 @@
-.thumbnailImage {
-  aspect-ratio: attr(width) / attr(height);
-}

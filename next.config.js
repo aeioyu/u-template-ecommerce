@@ -59,6 +59,8 @@ const nextConfig = {
     // Perform customizations to webpack config
     config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//));
 
+    config.resolve.fallback = { fs: false, module: false };
+
     // Important: return the modified config
     return config;
   },
