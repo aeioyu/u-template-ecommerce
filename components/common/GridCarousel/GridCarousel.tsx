@@ -24,7 +24,7 @@ const GridCarousel: React.FC<GridCarouselProps> & GridCarouselCompose = ({
   return (
     <div className={className} {...rest}>
       <Swiper
-        // navigation
+        navigation
         slidesPerView={2.5}
         spaceBetween={16}
         lazy
