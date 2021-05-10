@@ -14,7 +14,7 @@ const HeroBanner: React.FC<Props> = ({ banners = [] }) => {
   return (
     <>
       <Swiper
-        loop
+        // loop
         navigation
         lazy
         pagination={{
