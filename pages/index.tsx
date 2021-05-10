@@ -140,7 +140,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
                 ))}
               </>
             ) : (
-              <>
+              <div className="flex">
                 {[1, 2, 3, 4].map((val) => (
                   <GridCarousel.Item key={val}>
                     <div>
@@ -156,7 +156,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
                     </div>
                   </GridCarousel.Item>
                 ))}
-              </>
+              </div>
             )}
           </GridCarousel>
         </div>
