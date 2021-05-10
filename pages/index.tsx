@@ -143,15 +143,17 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
               <>
                 {[1, 2, 3, 4].map((val) => (
                   <GridCarousel.Item key={val}>
-                    <img
-                      src="/images/placeholder.jpeg"
-                      alt="example product 1"
-                      loading="lazy"
-                      width="300"
-                      height="300"
-                      style={{ aspectRatio: '1 / 1' }}
-                    />
-                    <div style={{ height: 30 }}></div>
+                    <div>
+                      <img
+                        src="/images/placeholder.jpeg"
+                        alt="example product 1"
+                        loading="lazy"
+                        width="300"
+                        height="300"
+                        style={{ aspectRatio: '1 / 1' }}
+                      />
+                      <div style={{ height: 30 }}></div>
+                    </div>
                   </GridCarousel.Item>
                 ))}
               </>
@@ -184,15 +186,17 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
               <>
                 {[1, 2, 3, 4].map((val) => (
                   <GridCarousel.Item key={val}>
-                    <img
-                      src="/images/placeholder.jpeg"
-                      alt="example product 2"
-                      loading="lazy"
-                      width="300"
-                      height="300"
-                      style={{ aspectRatio: '1 / 1' }}
-                    />
-                    <div style={{ height: 30 }}></div>
+                    <div>
+                      <img
+                        src="/images/placeholder.jpeg"
+                        alt="example product 2"
+                        loading="lazy"
+                        width="300"
+                        height="300"
+                        style={{ aspectRatio: '1 / 1' }}
+                      />
+                      <div style={{ height: 30 }}></div>
+                    </div>
                   </GridCarousel.Item>
                 ))}
               </>
@@ -225,15 +229,17 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
               <>
                 {[1, 2, 3, 4].map((val) => (
                   <GridCarousel.Item key={val}>
-                    <img
-                      src="/images/placeholder.jpeg"
-                      alt="example product 3"
-                      loading="lazy"
-                      width="300"
-                      height="300"
-                      style={{ aspectRatio: '1 / 1' }}
-                    />
-                    <div style={{ height: 30 }}></div>
+                    <div>
+                      <img
+                        src="/images/placeholder.jpeg"
+                        alt="example product 3"
+                        loading="lazy"
+                        width="300"
+                        height="300"
+                        style={{ aspectRatio: '1 / 1' }}
+                      />
+                      <div style={{ height: 30 }}></div>
+                    </div>
                   </GridCarousel.Item>
                 ))}
               </>
