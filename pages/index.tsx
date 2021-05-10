@@ -39,45 +39,6 @@ const banners = [
   },
 ];
 
-const gridCarousel = [
-  {
-    id: '1',
-    desktop: 'https://picsum.photos/seed/grid1/400/350',
-    mobile: 'https://picsum.photos/seed/grid1/400/350',
-    url: '/test-1',
-  },
-  {
-    id: '2',
-    desktop: 'https://picsum.photos/seed/grid2/400/350',
-    mobile: 'https://picsum.photos/seed/grid2/400/350',
-    url: '/test-1',
-  },
-  {
-    id: '3',
-    desktop: 'https://picsum.photos/seed/grid3/400/350',
-    mobile: 'https://picsum.photos/seed/grid3/400/350',
-    url: '/test-1',
-  },
-  {
-    id: '4',
-    desktop: 'https://picsum.photos/seed/grid4/400/350',
-    mobile: 'https://picsum.photos/seed/grid4/400/350',
-    url: '/test-1',
-  },
-  {
-    id: '5',
-    desktop: 'https://picsum.photos/seed/grid5/400/350',
-    mobile: 'https://picsum.photos/seed/grid5/400/350',
-    url: '/test-1',
-  },
-  {
-    id: '6',
-    desktop: 'https://picsum.photos/seed/grid6/400/350',
-    mobile: 'https://picsum.photos/seed/grid6/400/350',
-    url: '/test-1',
-  },
-];
-
 interface Props {
   config: string;
   Layout: ReactElement;
@@ -116,61 +77,28 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
         <div className="mb-10">
           <HeroBanner banners={banners} />
         </div>
-        {/* <div className="mb-10" style={{ minHeight: 250 }}>
-          <Text variant="heading2" as="h2" className="mb-4">
-            {t('home.recommended')}
-          </Text>
-          <GridCarousel>
-            {gridCarousel.map((carousel) => (
-              <GridCarousel.Item key={carousel.id}>
-                <a href={carousel.url} target="blank">
-                  <img src={carousel.desktop} alt="this is alt" loading="lazy" />
-                </a>
-              </GridCarousel.Item>
-            ))}
-          </GridCarousel>
-        </div> */}
 
         <div className="mb-10">
           <Text variant="heading2" as="h2" className="mb-4">
             Accessories
           </Text>
 
-          <GridCarousel>
-            {accessoriesProducts?.data?.length > 0 ? (
-              <>
-                {accessoriesProducts?.data?.map((product) => (
-                  <GridCarousel.Item key={product.id} style={{ width: '25%' }}>
-                    <ProductItem
-                      slug={product.slug}
-                      name={product.name}
-                      images={product.images}
-                      price={product.price}
-                      sku={product.sku}
-                      productId={product.id}
-                    />
-                  </GridCarousel.Item>
-                ))}
-              </>
-            ) : (
-              <>
-                {[1, 2, 3, 4].map((val) => (
-                  <GridCarousel.Item key={val}>
-                    <div>
-                      <Image
-                        src="/images/placeholder.jpeg"
-                        alt="example product 1"
-                        loading="lazy"
-                        width="300"
-                        height="300"
-                      />
-                      <div style={{ height: 48 }}></div>
-                    </div>
-                  </GridCarousel.Item>
-                ))}
-              </>
-            )}
-          </GridCarousel>
+          <LazyLoad once={true} placeholder={slidePlaceholder}>
+            <GridCarousel>
+              {accessoriesProducts?.data?.map((product) => (
+                <GridCarousel.Item key={product.id}>
+                  <ProductItem
+                    slug={product.slug}
+                    name={product.name}
+                    images={product.images}
+                    price={product.price}
+                    sku={product.sku}
+                    productId={product.id}
+                  />
+                </GridCarousel.Item>
+              ))}
+            </GridCarousel>
+          </LazyLoad>
         </div>
 
         <div className="mb-10">

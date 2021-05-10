@@ -38,21 +38,21 @@ const nextConfig = {
     webpack5: true,
   },
   images: {
-    domains: ['picsum.photos', 'instaparade.com'],
+    domains: [],
   },
-  async headers() {
-    return [
-      {
-        source: '/_next/(.*)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=86400000, s-maxage=86400000, stale-while-revalidate=86400000',
-          },
-        ],
-      },
-    ];
-  },
+  // async headers() {
+  //   return [
+  //     {
+  //       source: '/_next/(.*)',
+  //       headers: [
+  //         {
+  //           key: 'Cache-Control',
+  //           value: 'public, max-age=86400000, s-maxage=86400000, stale-while-revalidate=86400000',
+  //         },
+  //       ],
+  //     },
+  //   ];
+  // },
   // Use custom webpack config.
   webpack: (config, { webpack }) => {
     // Note: we provide webpack above so you should not `require` it
