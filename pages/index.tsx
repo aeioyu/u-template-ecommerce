@@ -140,20 +140,24 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
           </Text>
 
           <LazyLoad once={true} placeholder={slidePlaceholder}>
-            <GridCarousel>
-              {clothingProducts?.data?.map((product) => (
-                <GridCarousel.Item key={product.id}>
-                  <ProductItem
-                    slug={product.slug}
-                    name={product.name}
-                    images={product.images}
-                    price={product.price}
-                    sku={product.sku}
-                    productId={product.id}
-                  />
-                </GridCarousel.Item>
-              ))}
-            </GridCarousel>
+            {hoodiesProducts.isLoading ? (
+              slidePlaceholder
+            ) : (
+              <GridCarousel>
+                {clothingProducts?.data?.map((product) => (
+                  <GridCarousel.Item key={product.id}>
+                    <ProductItem
+                      slug={product.slug}
+                      name={product.name}
+                      images={product.images}
+                      price={product.price}
+                      sku={product.sku}
+                      productId={product.id}
+                    />
+                  </GridCarousel.Item>
+                ))}
+              </GridCarousel>
+            )}
           </LazyLoad>
         </div>
 
@@ -163,20 +167,24 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
           </Text>
 
           <LazyLoad once={true} placeholder={slidePlaceholder}>
-            <GridCarousel>
-              {hoodiesProducts?.data?.map((product) => (
-                <GridCarousel.Item key={product.id}>
-                  <ProductItem
-                    slug={product.slug}
-                    name={product.name}
-                    images={product.images}
-                    price={product.price}
-                    sku={product.sku}
-                    productId={product.id}
-                  />
-                </GridCarousel.Item>
-              ))}
-            </GridCarousel>
+            {hoodiesProducts.isLoading ? (
+              slidePlaceholder
+            ) : (
+              <GridCarousel>
+                {hoodiesProducts?.data?.map((product) => (
+                  <GridCarousel.Item key={product.id}>
+                    <ProductItem
+                      slug={product.slug}
+                      name={product.name}
+                      images={product.images}
+                      price={product.price}
+                      sku={product.sku}
+                      productId={product.id}
+                    />
+                  </GridCarousel.Item>
+                ))}
+              </GridCarousel>
+            )}
           </LazyLoad>
         </div>
       </Container>
