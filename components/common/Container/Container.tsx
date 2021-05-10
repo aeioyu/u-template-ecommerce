@@ -1,5 +1,6 @@
 import React from 'react';
-import cn from 'classnames';
+import cn from 'clsx';
+import s from './Container.module.css';
 
 interface Props {
   className?: string;
@@ -7,7 +8,7 @@ interface Props {
 }
 
 const Container: React.FC<Props> = ({ className, children, el = 'div', ...rest }) => {
-  const rootClassName = cn(className, 'mx-auto xl:container px-4 xl:px-2');
+  const rootClassName = cn(className, s.root);
   const Component: React.ComponentType<React.HTMLAttributes<HTMLDivElement>> = el as any;
 
   return (

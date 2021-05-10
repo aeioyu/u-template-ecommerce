@@ -15,7 +15,7 @@ const AppLayout: React.FC = ({ children }) => {
   const loginErrorMessage = (login?.error as any)?.response?.data?.message as string;
 
   return (
-    <div>
+    <>
       <Header />
       <main>{children}</main>
       <Footer />
@@ -26,7 +26,7 @@ const AppLayout: React.FC = ({ children }) => {
         )}
         {modalView === 'SIGNUP_VIEW' && <RegisterView />}
       </Modal>
-    </div>
+    </>
   );
 };
 

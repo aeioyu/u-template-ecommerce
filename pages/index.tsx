@@ -12,7 +12,7 @@ import ProductItem from '@/components/features/product/ProductItem';
 // import Image from 'next/image';
 import Head from 'next/head';
 // import { dehydrate } from 'react-query/hydration';
-// import { QueryClient, useQuery } from 'react-query';
+// import { QueryClient } from 'react-query';
 // import { getProductSearch } from '@/composables/useProductSearch/useProductSearch';
 
 const banners = [
@@ -91,7 +91,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
   const { products: hoodiesProducts } = useProductSearch({ page: 1, per_page: 10, category: '20' });
 
   return (
-    <div>
+    <>
       <Seo title={t('seo.title')} description={t('seo.description')} />
       <Head>
         <link rel="preload" href={banners[0].desktop} as="image" />
@@ -99,7 +99,6 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
         <link rel="preload" href="/images/placeholder.jpeg" as="image" />
       </Head>
       <Container>
-        {config}
         <div className="mb-10">
           <HeroBanner banners={banners} />
         </div>
@@ -152,7 +151,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
                         height="300"
                         style={{ aspectRatio: '1 / 1' }}
                       />
-                      <div style={{ height: 30 }}></div>
+                      <div style={{ height: 48 }}></div>
                     </div>
                   </GridCarousel.Item>
                 ))}
@@ -195,7 +194,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
                         height="300"
                         style={{ aspectRatio: '1 / 1' }}
                       />
-                      <div style={{ height: 30 }}></div>
+                      <div style={{ height: 48 }}></div>
                     </div>
                   </GridCarousel.Item>
                 ))}
@@ -238,7 +237,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
                         height="300"
                         style={{ aspectRatio: '1 / 1' }}
                       />
-                      <div style={{ height: 30 }}></div>
+                      <div style={{ height: 48 }}></div>
                     </div>
                   </GridCarousel.Item>
                 ))}
@@ -247,7 +246,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
           </GridCarousel>
         </div>
       </Container>
-    </div>
+    </>
   );
 };
 
