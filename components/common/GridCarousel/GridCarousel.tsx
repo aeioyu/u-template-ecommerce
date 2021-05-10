@@ -1,9 +1,10 @@
 import React from 'react';
-import { useKeenSlider } from 'keen-slider/react';
-import 'keen-slider/keen-slider.min.css';
+import { SwiperOptions } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 export interface GridCarouselProps {
   className?: string;
+  swiperOptions?: SwiperOptions;
 }
 
 export interface ItemProps {
@@ -11,27 +12,36 @@ export interface ItemProps {
 }
 
 interface GridCarouselCompose {
-  Item: React.FC;
+  Item: React.FC<SwiperSlide>;
 }
 
-const GridCarousel: React.FC<GridCarouselProps> & GridCarouselCompose = ({ className, children, ...rest }) => {
-  const [sliderRef, slider] = useKeenSlider<HTMLDivElement>({ slidesPerView: 4, spacing: 15 });
-  React.useEffect(() => {
-    if (slider) {
-      slider.refresh();
-    }
-  }, [children]);
-
+const GridCarousel: React.FC<GridCarouselProps> & GridCarouselCompose = ({
+  className,
+  swiperOptions,
+  children,
+  ...rest
+}) => {
   return (
     <div className={className} {...rest}>
-      <div ref={sliderRef} className="keen-slider">
+      <Swiper
+        navigation
+        slidesPerView={2.5}
+        spaceBetween={16}
+        lazy
+        breakpoints={{
+          // when window width is >= 640px
+          767: {
+            slidesPerView: 4.5,
+          },
+        }}
+        {...swiperOptions}
+      >
         {children}
-      </div>
+      </Swiper>
     </div>
   );
 };
 
-GridCarousel.Item = ({ children }) => <div className="keen-slider__slide">{children}</div>;
-GridCarousel.Item.displayName = 'CarouselItem';
+GridCarousel.Item = SwiperSlide;
 
 export default GridCarousel;

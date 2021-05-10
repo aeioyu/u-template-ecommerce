@@ -1,7 +1,12 @@
 import '@/styles/global.css';
+import 'swiper/swiper.min.css';
+import 'swiper/components/lazy/lazy.min.css';
+import 'swiper/components/pagination/pagination.min.css';
+import 'swiper/components/navigation/navigation.min.css';
 
 import { QueryClient, QueryClientProvider } from 'react-query';
 import React, { ReactElement, useEffect } from 'react';
+import SwiperCore, { Autoplay, Lazy, Navigation, Pagination } from 'swiper/core';
 
 import { AppProps } from 'next/app';
 import { IntlProvider } from 'react-intl';
@@ -10,6 +15,8 @@ import { UIStateProvider } from '@/components/UIStateProvider';
 import theme from '@/configs/theme.config';
 import { useRouter } from 'next/router';
 import { Hydrate } from 'react-query/hydration';
+
+SwiperCore.use([Lazy, Pagination, Navigation, Autoplay]);
 
 const languages = {
   th: require('../translate/th.json'),
