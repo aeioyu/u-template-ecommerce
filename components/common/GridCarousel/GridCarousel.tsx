@@ -25,13 +25,13 @@ const GridCarousel: React.FC<GridCarouselProps> & GridCarouselCompose = ({
     <div className={className} {...rest}>
       <Swiper
         navigation
-        slidesPerView={2.5}
+        slidesPerView={2}
         spaceBetween={16}
         lazy
         breakpoints={{
           // when window width is >= 640px
           767: {
-            slidesPerView: 4.5,
+            slidesPerView: 4,
           },
         }}
         {...swiperOptions}

@@ -12,6 +12,7 @@ import ProductItem from '@/components/features/product/ProductItem';
 // import Image from 'next/image';
 import Head from 'next/head';
 import LazyLoad from 'react-lazyload';
+import Image from 'next/image';
 
 // import { dehydrate } from 'react-query/hydration';
 // import { QueryClient } from 'react-query';
@@ -141,23 +142,22 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
                 ))}
               </>
             ) : (
-              <div className="flex">
+              <>
                 {[1, 2, 3, 4].map((val) => (
                   <GridCarousel.Item key={val}>
                     <div>
-                      <img
+                      <Image
                         src="/images/placeholder.jpeg"
                         alt="example product 1"
                         loading="lazy"
                         width="300"
                         height="300"
-                        style={{ aspectRatio: '1 / 1' }}
                       />
                       <div style={{ height: 48 }}></div>
                     </div>
                   </GridCarousel.Item>
                 ))}
-              </div>
+              </>
             )}
           </GridCarousel>
         </div>
@@ -170,16 +170,15 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
           <LazyLoad
             once={true}
             placeholder={
-              <div className="flex">
+              <div className="flex justify-between">
                 {[1, 2, 3, 4].map((val) => (
                   <div key={val}>
-                    <img
+                    <Image
                       src="/images/placeholder.jpeg"
                       alt="example product 2"
                       loading="lazy"
                       width="300"
                       height="300"
-                      style={{ aspectRatio: '1 / 1' }}
                     />
                     <div style={{ height: 48 }}></div>
                   </div>
@@ -212,16 +211,15 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
           <LazyLoad
             once={true}
             placeholder={
-              <div className="flex">
+              <div className="flex justify-between">
                 {[1, 2, 3, 4].map((val) => (
                   <div key={val}>
-                    <img
+                    <Image
                       src="/images/placeholder.jpeg"
                       alt="example product 2"
                       loading="lazy"
                       width="300"
                       height="300"
-                      style={{ aspectRatio: '1 / 1' }}
                     />
                     <div style={{ height: 48 }}></div>
                   </div>
