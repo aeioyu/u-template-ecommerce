@@ -93,6 +93,17 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
   const { products: clothingProducts } = useProductSearch({ page: 1, per_page: 10, category: '19' });
   const { products: hoodiesProducts } = useProductSearch({ page: 1, per_page: 10, category: '20' });
 
+  const slidePlaceholder = (
+    <div className="flex justify-between">
+      {[1, 2, 3, 4].map((val) => (
+        <div key={val}>
+          <Image src="/images/placeholder.jpeg" alt="example product 2" loading="lazy" width="300" height="300" />
+          <div style={{ height: 48 }}></div>
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <>
       <Seo title={t('seo.title')} description={t('seo.description')} />
@@ -167,25 +178,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
             Clothing
           </Text>
 
-          <LazyLoad
-            once={true}
-            placeholder={
-              <div className="flex justify-between">
-                {[1, 2, 3, 4].map((val) => (
-                  <div key={val}>
-                    <Image
-                      src="/images/placeholder.jpeg"
-                      alt="example product 2"
-                      loading="lazy"
-                      width="300"
-                      height="300"
-                    />
-                    <div style={{ height: 48 }}></div>
-                  </div>
-                ))}
-              </div>
-            }
-          >
+          <LazyLoad once={true} placeholder={slidePlaceholder}>
             <GridCarousel>
               {clothingProducts?.data?.map((product) => (
                 <GridCarousel.Item key={product.id}>
@@ -208,25 +201,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
             Hoodies
           </Text>
 
-          <LazyLoad
-            once={true}
-            placeholder={
-              <div className="flex justify-between">
-                {[1, 2, 3, 4].map((val) => (
-                  <div key={val}>
-                    <Image
-                      src="/images/placeholder.jpeg"
-                      alt="example product 2"
-                      loading="lazy"
-                      width="300"
-                      height="300"
-                    />
-                    <div style={{ height: 48 }}></div>
-                  </div>
-                ))}
-              </div>
-            }
-          >
+          <LazyLoad once={true} placeholder={slidePlaceholder}>
             <GridCarousel>
               {hoodiesProducts?.data?.map((product) => (
                 <GridCarousel.Item key={product.id}>
