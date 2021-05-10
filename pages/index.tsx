@@ -190,7 +190,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const searchProducts = { page: 1, per_page: 10, category: '23' };
   // const searchProducts2 = { page: 1, per_page: 10, category: '19' };
   await queryClient.prefetchQuery(['products', searchProducts], () =>
-    getProductSearch(searchProducts, { hostname: `${req.headers.referer}` }),
+    getProductSearch(searchProducts, { hostname: `https://${req.headers.host}` }),
   );
   // await queryClient.prefetchQuery(['products', searchProducts2], () => getProductSearch(searchProducts2));
   return {
