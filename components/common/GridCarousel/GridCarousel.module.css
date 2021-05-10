@@ -1,0 +1,10 @@
+.sliderItem {
+  margin: 0 3px 0 0;
+  width: 25%;
+}
+
+@media only screen and (max-width: 768px) {
+  .sliderItem {
+    width: 50%;
+  }
+}

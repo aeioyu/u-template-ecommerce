@@ -1,6 +1,7 @@
 import React from 'react';
 import Flickity from 'react-flickity-component';
 import 'flickity/css/flickity.css';
+import s from './GridCarousel.module.css';
 
 export interface GridCarouselProps {
   className?: string;
@@ -35,7 +36,7 @@ const GridCarousel: React.FC<GridCarouselProps> & GridCarouselCompose = ({ class
   );
 };
 
-GridCarousel.Item = ({ children }) => <div style={{ width: '25%', marginRight: 15 }}>{children}</div>;
+GridCarousel.Item = ({ children }) => <div className={s.sliderItem}>{children}</div>;
 GridCarousel.Item.displayName = 'CarouselItem';
 
 export default GridCarousel;
