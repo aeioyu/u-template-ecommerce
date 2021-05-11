@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -28,19 +29,13 @@ const HeroBanner: React.FC<Props> = ({ banners = [] }) => {
         {banners.map((banner) => (
           <SwiperSlide key={banner.id}>
             <a href={banner.url} target="blank">
-              <picture>
-                <source srcSet={banner.desktop} media="(min-width: 768px)" />
-                <source srcSet={banner.mobile} media="(min-width: 767px)" />
-                <img
-                  src={banner.mobile}
-                  loading="lazy"
-                  alt={`hero banner ${banner.id}`}
-                  className="w-full"
-                  width="1264"
-                  height="440"
-                  style={{ aspectRatio: '1264 / 440' }}
-                />
-              </picture>
+              <Image
+                src={banner.mobile}
+                alt={`hero banner ${banner.id}`}
+                className="w-full"
+                width="1264"
+                height="440"
+              />
             </a>
           </SwiperSlide>
         ))}

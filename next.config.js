@@ -38,7 +38,7 @@ const nextConfig = {
     webpack5: true,
   },
   images: {
-    domains: [],
+    domains: ['icms-image.slatic.net'],
   },
   // async headers() {
   //   return [
