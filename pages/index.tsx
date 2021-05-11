@@ -99,39 +99,18 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
           </Text>
 
           <GridCarousel>
-            {accessoriesProducts?.data?.length > 0 ? (
-              <>
-                {accessoriesProducts?.data?.map((product) => (
-                  <GridCarousel.Item key={product.id}>
-                    <ProductItem
-                      slug={product.slug}
-                      name={product.name}
-                      images={product.images}
-                      price={product.price}
-                      sku={product.sku}
-                      productId={product.id}
-                    />
-                  </GridCarousel.Item>
-                ))}
-              </>
-            ) : (
-              <>
-                {[1, 2, 3, 4].map((val) => (
-                  <GridCarousel.Item key={val}>
-                    <div>
-                      <Image
-                        src="/images/placeholder.jpeg"
-                        alt="example product 1"
-                        loading="lazy"
-                        width="300"
-                        height="300"
-                      />
-                      <div style={{ height: 48 }}></div>
-                    </div>
-                  </GridCarousel.Item>
-                ))}
-              </>
-            )}
+            {accessoriesProducts?.data?.map((product) => (
+              <GridCarousel.Item key={product.id}>
+                <ProductItem
+                  slug={product.slug}
+                  name={product.name}
+                  images={product.images}
+                  price={product.price}
+                  sku={product.sku}
+                  productId={product.id}
+                />
+              </GridCarousel.Item>
+            ))}
           </GridCarousel>
         </div>
 
@@ -140,26 +119,20 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
             Clothing
           </Text>
 
-          <LazyLoad once={true} placeholder={slidePlaceholder}>
-            {hoodiesProducts.isLoading ? (
-              slidePlaceholder
-            ) : (
-              <GridCarousel>
-                {clothingProducts?.data?.map((product) => (
-                  <GridCarousel.Item key={product.id}>
-                    <ProductItem
-                      slug={product.slug}
-                      name={product.name}
-                      images={product.images}
-                      price={product.price}
-                      sku={product.sku}
-                      productId={product.id}
-                    />
-                  </GridCarousel.Item>
-                ))}
-              </GridCarousel>
-            )}
-          </LazyLoad>
+          <GridCarousel>
+            {clothingProducts?.data?.map((product) => (
+              <GridCarousel.Item key={product.id}>
+                <ProductItem
+                  slug={product.slug}
+                  name={product.name}
+                  images={product.images}
+                  price={product.price}
+                  sku={product.sku}
+                  productId={product.id}
+                />
+              </GridCarousel.Item>
+            ))}
+          </GridCarousel>
         </div>
 
         <div className="mb-10">
