@@ -66,7 +66,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
   );
 
   return (
-    <>
+    <div id="homepage">
       <Seo title={t('seo.title')} description={t('seo.description')} />
       <Head>
         <link rel="preload" href={banners[0].desktop} as="image" />
@@ -100,7 +100,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
 
           <GridCarousel>
             {accessoriesProducts?.data?.map((product) => (
-              <GridCarousel.Item key={product.id} style={{ width: 'calc(25% - 7px)', marginRight: 14 }}>
+              <GridCarousel.Item key={product.id} className="home-slider-wrapper">
                 <ProductItem
                   slug={product.slug}
                   name={product.name}
@@ -121,7 +121,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
 
           <GridCarousel>
             {clothingProducts?.data?.map((product) => (
-              <GridCarousel.Item key={product.id} style={{ width: 'calc(25% - 7px)', marginRight: 14 }}>
+              <GridCarousel.Item key={product.id} className="home-slider-wrapper">
                 <ProductItem
                   slug={product.slug}
                   name={product.name}
@@ -162,7 +162,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
           </LazyLoad>
         </div>
       </Container>
-    </>
+    </div>
   );
 };
 

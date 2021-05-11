@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#homepage .home-slider-wrapper {
+  width: calc(50% - 7px);
+  margin-right: 14px;
+}
+
+@media (min-width: 768px) {
+  #homepage .home-slider-wrapper {
+    width: calc(25% - 7px);
+  }
+}
