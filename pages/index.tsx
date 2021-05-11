@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import Seo from '@/components/common/Seo';
 import useTranslate from '@/composables/useTranslate';
 import Layout from '@/components/layouts/AppLayout';
-import { GetServerSideProps, NextPage } from 'next';
+import { GetServerSideProps, GetStaticProps, NextPage } from 'next';
 import HeroBanner from '@/components/common/HeroBanner';
 import Container from '@/components/common/Container';
 import Text from '@/components/common/Text';
@@ -14,9 +14,9 @@ import Head from 'next/head';
 import LazyLoad from 'react-lazyload';
 import Image from 'next/image';
 
-// import { dehydrate } from 'react-query/hydration';
-// import { QueryClient } from 'react-query';
-// import { getProductSearch } from '@/composables/useProductSearch/useProductSearch';
+import { dehydrate } from 'react-query/hydration';
+import { QueryClient } from 'react-query';
+import { getProductSearch } from '@/composables/useProductSearch/useProductSearch';
 
 const banners = [
   {
@@ -193,23 +193,22 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  // const { req } = context;
-  // const queryClient = new QueryClient();
-  // const searchProducts = { page: 1, per_page: 10, category: '23' };
+export const getStaticProps: GetStaticProps = async (context) => {
+  const queryClient = new QueryClient();
+  const searchProducts = { page: 1, per_page: 10, category: '23' };
   // const searchProducts2 = { page: 1, per_page: 10, category: '19' };
-  // await queryClient.prefetchQuery(['products', searchProducts], () =>
-  //   getProductSearch(searchProducts, { hostname: `https://${req.headers.host}` }),
-  // );
+  await queryClient.prefetchQuery(['products', searchProducts], () =>
+    getProductSearch(searchProducts, { hostname: `https://u-commerce.vercel.app` }),
+  );
   // await queryClient.prefetchQuery(['products', searchProducts2], () => getProductSearch(searchProducts2));
-  // return {
-  //   props: {
-  //     dehydratedState: dehydrate(queryClient),
-  //   },
-  // };
   return {
-    props: {},
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
   };
+  // return {
+  //   props: {},
+  // };
 };
 
 Home.Layout = Layout;

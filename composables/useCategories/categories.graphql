@@ -1,0 +1,21 @@
+query CategoriesQuery {
+  productCategories(where: { parent: 0 }) {
+    nodes {
+      name
+      id
+      slug
+      uri
+      parentId
+      productCategoryId
+      children {
+        nodes {
+          name
+          id
+          productCategoryId
+          uri
+          slug
+        }
+      }
+    }
+  }
+}
