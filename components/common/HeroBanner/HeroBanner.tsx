@@ -15,7 +15,7 @@ const HeroBanner: React.FC<Props> = ({ banners = [] }) => {
   return (
     <>
       <Swiper
-        loop
+        // loop
         navigation
         lazy
         pagination={{
@@ -30,7 +30,7 @@ const HeroBanner: React.FC<Props> = ({ banners = [] }) => {
           <SwiperSlide key={banner.id}>
             <a href={banner.url} target="blank">
               <Image
-                src={banner.mobile}
+                src={banner.desktop}
                 alt={`hero banner ${banner.id}`}
                 className="w-full"
                 width="1264"

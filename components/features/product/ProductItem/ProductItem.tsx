@@ -30,6 +30,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ productId, slug, images, name
       <Link href={`/products/${slug}-i.${productId}`}>
         <a>
           <img
+            className="w-full"
             src={images[0]?.src}
             alt={name}
             loading="lazy"

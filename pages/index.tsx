@@ -100,7 +100,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
 
           <GridCarousel>
             {accessoriesProducts?.data?.map((product) => (
-              <GridCarousel.Item key={product.id}>
+              <GridCarousel.Item key={product.id} style={{ width: 'calc(25% - 7px)', marginRight: 14 }}>
                 <ProductItem
                   slug={product.slug}
                   name={product.name}
@@ -121,7 +121,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
 
           <GridCarousel>
             {clothingProducts?.data?.map((product) => (
-              <GridCarousel.Item key={product.id}>
+              <GridCarousel.Item key={product.id} style={{ width: 'calc(25% - 7px)', marginRight: 14 }}>
                 <ProductItem
                   slug={product.slug}
                   name={product.name}
