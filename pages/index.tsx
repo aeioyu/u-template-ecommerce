@@ -72,6 +72,7 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
         <link rel="preload" href={banners[0].desktop} as="image" />
         <link rel="preload" href={banners[0].mobile} as="image" />
         <link rel="preload" href="/images/placeholder.jpeg" as="image" />
+        <link rel="dns-prefetch" href="http://instaparade.com/"></link>
       </Head>
       <Container>
         <div className="mb-10">
