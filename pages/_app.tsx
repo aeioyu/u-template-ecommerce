@@ -15,6 +15,7 @@ import { UIStateProvider } from '@/components/UIStateProvider';
 import theme from '@/configs/theme.config';
 import { useRouter } from 'next/router';
 import { Hydrate } from 'react-query/hydration';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 SwiperCore.use([Lazy, Pagination, Navigation, Autoplay]);
 
@@ -61,6 +62,7 @@ const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
       <ThemeProvider theme={theme}>
         <UIStateProvider>
           <QueryClientProvider client={queryClientRef.current}>
+            <ReactQueryDevtools initialIsOpen={false} />
             <Layout {...pageProps}>
               <Hydrate state={pageProps.dehydratedState}>
                 <Component {...pageProps} />
