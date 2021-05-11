@@ -196,11 +196,13 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const queryClient = new QueryClient();
   const searchProducts = { page: 1, per_page: 10, category: '23' };
-  // const searchProducts2 = { page: 1, per_page: 10, category: '19' };
+  const searchProducts2 = { page: 1, per_page: 10, category: '19' };
   await queryClient.prefetchQuery(['products', searchProducts], () =>
     getProductSearch(searchProducts, { hostname: `https://u-commerce.vercel.app` }),
   );
-  // await queryClient.prefetchQuery(['products', searchProducts2], () => getProductSearch(searchProducts2));
+  await queryClient.prefetchQuery(['products', searchProducts2], () =>
+    getProductSearch(searchProducts2, { hostname: `https://u-commerce.vercel.app` }),
+  );
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
