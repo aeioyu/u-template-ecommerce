@@ -20,8 +20,8 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 SwiperCore.use([Lazy, Pagination, Navigation, Autoplay]);
 
 const languages = {
-  th: require('../translate/th.json'),
-  en: require('../translate/en.json'),
+  th: require('../../translate/th.json'),
+  en: require('../../translate/en.json'),
 };
 
 // const queryClient = new QueryClient({

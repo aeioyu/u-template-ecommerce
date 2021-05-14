@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  stories: ['../components/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: ['../src/components/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
   webpackFinal: async (config) => {
     // tailwind configuration for storybook
@@ -24,7 +24,7 @@ module.exports = {
     // absolute path configuration for storybook
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@': path.resolve(__dirname, '../'),
+      '@': path.resolve(__dirname, '../src/'),
     };
 
     return config;

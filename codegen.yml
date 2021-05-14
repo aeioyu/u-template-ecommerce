@@ -1,6 +1,6 @@
 overwrite: true
 schema: "./wpgraphql-schema.gql"
-documents: "composables/**/*.graphql"
+documents: "src/composables/**/*.graphql"
 generates:
   composables/generated/index.ts:
     plugins:

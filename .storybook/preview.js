@@ -1,4 +1,4 @@
-import '../styles/global.css';
+import '@/styles/global.css';
 import theme from '@/configs/theme.config';
 import { ThemeProvider } from '@/components/ThemeProvider';
 

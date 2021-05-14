@@ -8,7 +8,6 @@ const { getIntrospectionQuery, printSchema, buildClientSchema } = require('graph
  * https://gist.github.com/craigbeck/b90915d49fda19d5b2b17ead14dcd6da
  */
 async function main() {
-  console.log('1111');
   const introspectionQuery = getIntrospectionQuery();
   const response = await fetch('https://instaparade.com/graphql', {
     method: 'POST',
