@@ -15,7 +15,6 @@ export function useUser() {
 
   const user: UseQueryResult<UserModel, Error> = useQuery('user', getUser, {
     enabled: isTokenAvalable,
-    retry: false,
   });
 
   const isLogedIn = user?.data && user?.data?.id;

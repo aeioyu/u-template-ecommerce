@@ -69,11 +69,6 @@ const Header: React.FC = () => {
               </Link>
             </div>
             <div className="flex items-center flex-initial mx-6" />
-            {/* <div className="flex items-center flex-initial mx-6">
-              <Text variant="heading6">
-                Shop by <br /> Category
-              </Text>
-            </div> */}
             <div className="items-center flex-auto">
               <SearchBar />
             </div>

@@ -1,5 +1,5 @@
 overwrite: true
-schema: "http://instaparade.com/graphql"
+schema: "./wpgraphql-schema.gql"
 documents: "composables/**/*.graphql"
 generates:
   composables/generated/index.ts:
@@ -7,5 +7,7 @@ generates:
       - typescript
       - typescript-operations
       - typescript-graphql-request
+    config:
+      rawRequest: true
     
 

@@ -1,0 +1,31 @@
+query Products($first: Int, after: String, where: RootQueryToProductConnectionWhereArgs) {
+  products(
+    first: $first
+    after: $after
+    where: $where
+  ) {
+    nodes {
+      sku
+      slug
+      ... on SimpleProduct {
+        price
+        salePrice
+        regularPrice
+      }
+      databaseId
+      name
+      id
+      image {
+        id
+        altText
+        mediaItemUrl
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+      hasPreviousPage
+      startCursor
+    }
+  }
+}

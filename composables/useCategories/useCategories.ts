@@ -1,16 +1,24 @@
 import { useQuery } from 'react-query';
-import axios from 'axios';
-import { CategoryModel } from '@/composables/types/category.type';
+import GraphqlSDK from '@/libs/graphql-sdk';
+import { ProductCategoriesQuery } from '../generated';
+import { CategoryModel } from '../types/category.type';
 
-async function fetchCategories(): Promise<CategoryModel[]> {
-  const { data } = await axios.get(`/api/categories`);
-  return data;
+export function formatCategories(categories: ProductCategoriesQuery): CategoryModel[] {
+  const categoriesNodes = categories?.productCategories?.nodes;
+  const categorieFormated = categoriesNodes?.map((category) => ({
+    id: category.databaseId,
+    name: category.name,
+    slug: category.slug,
+    parent: category.parentId,
+  }));
+
+  return categorieFormated;
 }
 
 export function useCategories() {
-  const categories = useQuery<CategoryModel[], Error>('categories', fetchCategories, {
-    retry: false,
-  });
+  const categories = useQuery<CategoryModel[], Error>('categories', () =>
+    GraphqlSDK.productCategories().then(({ data }) => formatCategories(data)),
+  );
 
   return {
     categories,

@@ -1,7 +1,6 @@
+import { LOCALE_COOKIE } from '@/configs/cookie.config';
 import { NextRouter, useRouter } from 'next/router';
 import { useCookies } from 'react-cookie';
-
-const COOKIE_NAME = 'NEXT_LOCALE';
 
 interface UseLocalReturnType {
   switchLanguage: (string) => void;
@@ -9,15 +8,15 @@ interface UseLocalReturnType {
 }
 
 function useLocale(): UseLocalReturnType {
-  const [cookie, setCookie] = useCookies([COOKIE_NAME]);
+  const [cookie, setCookie] = useCookies([LOCALE_COOKIE]);
   const router: NextRouter = useRouter();
   const { locale, asPath } = router;
 
   const switchLanguage = (selectedLocale: string): void => {
     router.push(asPath, asPath, { locale: selectedLocale });
 
-    if (cookie.NEXT_LOCALE !== selectedLocale) {
-      setCookie(COOKIE_NAME, selectedLocale, { path: '/' });
+    if (cookie[LOCALE_COOKIE] !== selectedLocale) {
+      setCookie(LOCALE_COOKIE, selectedLocale, { path: '/' });
     }
   };
 
