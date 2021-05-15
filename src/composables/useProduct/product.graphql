@@ -1,0 +1,51 @@
+query Product($productId: ID!) {
+  product(id: $productId, idType: DATABASE_ID) {
+    __typename
+    description(format: RAW)
+    id
+    name
+    productCategories {
+      nodes {
+        name
+        slug
+        uri
+        id
+        databaseId
+        parent {
+          node {
+            name
+            uri
+            slug
+            id
+            databaseId
+          }
+        }
+      }
+    }
+    sku
+    slug
+    image {
+      sizes
+      mediaItemUrl
+      altText
+    }
+    shortDescription(format: RAW)
+    type
+    ... on SimpleProduct {
+      id
+      name
+      galleryImages {
+        nodes {
+          id
+          altText
+          mediaItemUrl
+        }
+      }
+      price(format: RAW)
+      salePrice(format: RAW)
+      regularPrice(format: RAW)
+      status
+      stockStatus
+    }
+  }
+}

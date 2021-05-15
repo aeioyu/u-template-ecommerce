@@ -17,7 +17,7 @@ module.exports = (plop) => {
       },
     ],
     actions: () => {
-      const path = `components/common/`;
+      const path = `src/components/common/`;
       return [
         {
           type: 'add',
@@ -31,6 +31,9 @@ module.exports = (plop) => {
         },
         {
           type: 'add',
+          data: {
+            componentType: 'common',
+          },
           path: `${path}{{pascalCase name}}/{{pascalCase name}}.stories.tsx`,
           templateFile: 'plop-templates/Component/stories.tsx.hbs',
         },
@@ -50,7 +53,7 @@ module.exports = (plop) => {
         type: 'list',
         name: 'componentType',
         message: 'Choose component type',
-        choices: getDirectories('components/features'),
+        choices: getDirectories('src/components/features'),
       },
       {
         type: 'input',
@@ -59,7 +62,7 @@ module.exports = (plop) => {
       },
     ],
     actions: (data) => {
-      const path = `components/features/${data.componentType}/`;
+      const path = `src/components/features/${data.componentType}/`;
       return [
         {
           type: 'add',
@@ -89,19 +92,13 @@ module.exports = (plop) => {
     description: 'Create a composable',
     prompts: [
       {
-        type: 'list',
-        name: 'componentType',
-        message: 'Choose component type',
-        choices: getDirectories('components'),
-      },
-      {
         type: 'input',
         name: 'name',
         message: 'Enter composable name',
       },
     ],
     actions: (data) => {
-      const path = `components/${data.componentType}/`;
+      const path = `src/composable/${data.componentType}/`;
       return [
         {
           type: 'add',
