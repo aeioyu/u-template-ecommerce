@@ -19,7 +19,6 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({ gallery }) => {
     <>
       <div className="mb-2">
         <Swiper
-          style={{ '--swiper-navigation-color': '#fff', '--swiper-pagination-color': '#fff' }}
           spaceBetween={10}
           navigation={true}
           thumbs={{ swiper: thumbsSwiper, autoScrollOffset: 1 }}
