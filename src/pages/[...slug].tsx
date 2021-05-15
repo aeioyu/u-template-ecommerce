@@ -5,13 +5,17 @@ import Seo from '@/components/common/Seo';
 import useProductSearch from '@/composables/useProductSearch';
 import ProductItem from '@/components/features/product/ProductItem';
 import { selectSlugIdFromUrl } from '@/utils/slug.util';
+import { useRouter } from 'next/router';
 
 export interface CategoryPageProps {
   pageId: string;
   pageType: string;
 }
 
-const CategoryPage: NextPage<CategoryPageProps> = ({ pageType, pageId }) => {
+const CategoryPage: NextPage<CategoryPageProps> = () => {
+  const { query } = useRouter();
+  const slug = query?.slug;
+  const { pageType, pageId } = selectSlugIdFromUrl(slug);
   const { products } = useProductSearch(
     {
       page: 1,
@@ -50,14 +54,14 @@ const CategoryPage: NextPage<CategoryPageProps> = ({ pageType, pageId }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const slug = query?.slug;
-  const { pageType, pageId } = selectSlugIdFromUrl(slug);
+// export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+//   const slug = query?.slug;
+//   const { pageType, pageId } = selectSlugIdFromUrl(slug);
 
-  return {
-    props: { pageType, pageId },
-  };
-};
+//   return {
+//     props: { pageType, pageId },
+//   };
+// };
 
 (CategoryPage as any).Layout = Layout;
 

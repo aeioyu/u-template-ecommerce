@@ -1,9 +1,5 @@
-query Products($first: Int, after: String, where: RootQueryToProductConnectionWhereArgs) {
-  products(
-    first: $first
-    after: $after
-    where: $where
-  ) {
+query Products($first: Int, $after: String, $where: RootQueryToProductConnectionWhereArgs) {
+  products(first: $first, after: $after, where: $where) {
     nodes {
       sku
       slug

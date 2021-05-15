@@ -1,16 +1,22 @@
-function useProduct() {
-  const getProduct = (sku: string): any => {
-    console.log(sku);
+import { UseQueryResult, useQuery, UseQueryOptions } from 'react-query';
+import graphqlSDK from '@/libs/graphql-sdk';
+import { ProductQuery } from '../generated';
 
-    return {
-      sku: 'name',
-      name: 'string',
-      price: 100.5,
-    };
-  };
+async function fetchProduct(productId: string): Promise<ProductQuery> {
+  const { data } = await graphqlSDK.Product({ productId: productId });
+  return data;
+}
+
+export function useProduct(productId: string, options?: UseQueryOptions<any>) {
+  const productQuery: UseQueryResult<ProductQuery> = useQuery(['products', productId], () => fetchProduct(productId), {
+    enabled: Boolean(productId),
+    ...options,
+  });
 
   return {
-    getProduct: getProduct,
+    product: productQuery?.data?.product,
+    isFetching: productQuery?.isFetching,
+    error: productQuery?.error,
   };
 }
 

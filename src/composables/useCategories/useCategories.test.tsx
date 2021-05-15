@@ -1,8 +1,8 @@
 import useCategories from './useCategories';
 import nock from 'nock';
 import { renderHook } from '@testing-library/react-hooks';
-import { MockProviders } from '@/.test/utils/test-utils';
-import { categoriesMock } from '@/.test/mocks/category.mock';
+import { MockProviders } from '../../../.test/utils/test-utils';
+import { categoriesMock } from '../../../.test/mocks/category.mock';
 
 beforeAll(() => {
   nock('http://localhost:80').get('/api/categories').reply(200, categoriesMock);

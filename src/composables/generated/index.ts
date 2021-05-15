@@ -18754,17 +18754,114 @@ export type ProductCategoriesQuery = (
   )> }
 );
 
-export type ProductsQueryVariables = Exact<{ [key: string]: never; }>;
+export type ProductQueryVariables = Exact<{
+  productId: Scalars['ID'];
+}>;
+
+
+export type ProductQuery = (
+  { __typename?: 'RootQuery' }
+  & { product?: Maybe<(
+    { __typename: 'ExternalProduct' }
+    & Pick<ExternalProduct, 'description' | 'id' | 'name' | 'sku' | 'slug' | 'shortDescription' | 'type'>
+    & { productCategories?: Maybe<(
+      { __typename?: 'ProductToProductCategoryConnection' }
+      & { nodes?: Maybe<Array<Maybe<(
+        { __typename?: 'ProductCategory' }
+        & Pick<ProductCategory, 'name' | 'slug' | 'uri' | 'id' | 'databaseId'>
+        & { parent?: Maybe<(
+          { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge' }
+          & { node?: Maybe<(
+            { __typename?: 'ProductCategory' }
+            & Pick<ProductCategory, 'name' | 'uri' | 'slug' | 'id' | 'databaseId'>
+          )> }
+        )> }
+      )>>> }
+    )>, image?: Maybe<(
+      { __typename?: 'MediaItem' }
+      & Pick<MediaItem, 'sizes' | 'mediaItemUrl' | 'altText'>
+    )> }
+  ) | (
+    { __typename: 'GroupProduct' }
+    & Pick<GroupProduct, 'description' | 'id' | 'name' | 'sku' | 'slug' | 'shortDescription' | 'type'>
+    & { productCategories?: Maybe<(
+      { __typename?: 'ProductToProductCategoryConnection' }
+      & { nodes?: Maybe<Array<Maybe<(
+        { __typename?: 'ProductCategory' }
+        & Pick<ProductCategory, 'name' | 'slug' | 'uri' | 'id' | 'databaseId'>
+        & { parent?: Maybe<(
+          { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge' }
+          & { node?: Maybe<(
+            { __typename?: 'ProductCategory' }
+            & Pick<ProductCategory, 'name' | 'uri' | 'slug' | 'id' | 'databaseId'>
+          )> }
+        )> }
+      )>>> }
+    )>, image?: Maybe<(
+      { __typename?: 'MediaItem' }
+      & Pick<MediaItem, 'sizes' | 'mediaItemUrl' | 'altText'>
+    )> }
+  ) | (
+    { __typename: 'SimpleProduct' }
+    & Pick<SimpleProduct, 'id' | 'name' | 'price' | 'salePrice' | 'regularPrice' | 'status' | 'stockStatus' | 'description' | 'sku' | 'slug' | 'shortDescription' | 'type'>
+    & { galleryImages?: Maybe<(
+      { __typename?: 'ProductToMediaItemConnection' }
+      & { nodes?: Maybe<Array<Maybe<(
+        { __typename?: 'MediaItem' }
+        & Pick<MediaItem, 'id' | 'altText' | 'mediaItemUrl'>
+      )>>> }
+    )>, productCategories?: Maybe<(
+      { __typename?: 'ProductToProductCategoryConnection' }
+      & { nodes?: Maybe<Array<Maybe<(
+        { __typename?: 'ProductCategory' }
+        & Pick<ProductCategory, 'name' | 'slug' | 'uri' | 'id' | 'databaseId'>
+        & { parent?: Maybe<(
+          { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge' }
+          & { node?: Maybe<(
+            { __typename?: 'ProductCategory' }
+            & Pick<ProductCategory, 'name' | 'uri' | 'slug' | 'id' | 'databaseId'>
+          )> }
+        )> }
+      )>>> }
+    )>, image?: Maybe<(
+      { __typename?: 'MediaItem' }
+      & Pick<MediaItem, 'sizes' | 'mediaItemUrl' | 'altText'>
+    )> }
+  ) | (
+    { __typename: 'VariableProduct' }
+    & Pick<VariableProduct, 'description' | 'id' | 'name' | 'sku' | 'slug' | 'shortDescription' | 'type'>
+    & { productCategories?: Maybe<(
+      { __typename?: 'ProductToProductCategoryConnection' }
+      & { nodes?: Maybe<Array<Maybe<(
+        { __typename?: 'ProductCategory' }
+        & Pick<ProductCategory, 'name' | 'slug' | 'uri' | 'id' | 'databaseId'>
+        & { parent?: Maybe<(
+          { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge' }
+          & { node?: Maybe<(
+            { __typename?: 'ProductCategory' }
+            & Pick<ProductCategory, 'name' | 'uri' | 'slug' | 'id' | 'databaseId'>
+          )> }
+        )> }
+      )>>> }
+    )>, image?: Maybe<(
+      { __typename?: 'MediaItem' }
+      & Pick<MediaItem, 'sizes' | 'mediaItemUrl' | 'altText'>
+    )> }
+  )> }
+);
+
+export type ProductsQueryVariables = Exact<{
+  first?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  where?: Maybe<RootQueryToProductConnectionWhereArgs>;
+}>;
 
 
 export type ProductsQuery = (
   { __typename?: 'RootQuery' }
   & { products?: Maybe<(
     { __typename?: 'RootQueryToProductConnection' }
-    & { edges?: Maybe<Array<Maybe<(
-      { __typename?: 'RootQueryToProductConnectionEdge' }
-      & Pick<RootQueryToProductConnectionEdge, 'cursor'>
-    )>>>, nodes?: Maybe<Array<Maybe<(
+    & { nodes?: Maybe<Array<Maybe<(
       { __typename?: 'ExternalProduct' }
       & Pick<ExternalProduct, 'sku' | 'slug' | 'databaseId' | 'name' | 'id'>
       & { image?: Maybe<(
@@ -18792,7 +18889,10 @@ export type ProductsQuery = (
         { __typename?: 'MediaItem' }
         & Pick<MediaItem, 'id' | 'altText' | 'mediaItemUrl'>
       )> }
-    )>>> }
+    )>>>, pageInfo?: Maybe<(
+      { __typename?: 'WPPageInfo' }
+      & Pick<WpPageInfo, 'endCursor' | 'hasNextPage' | 'hasPreviousPage' | 'startCursor'>
+    )> }
   )> }
 );
 
@@ -18825,15 +18925,62 @@ export const ProductCategoriesDocument = gql`
   }
 }
     `;
-export const ProductsDocument = gql`
-    query Products {
-  products(
-    first: 5
-    where: {categoryId: 19, stockStatus: IN_STOCK, visibility: VISIBLE, search: "", type: SIMPLE}
-  ) {
-    edges {
-      cursor
+export const ProductDocument = gql`
+    query Product($productId: ID!) {
+  product(id: $productId, idType: DATABASE_ID) {
+    __typename
+    description(format: RAW)
+    id
+    name
+    productCategories {
+      nodes {
+        name
+        slug
+        uri
+        id
+        databaseId
+        parent {
+          node {
+            name
+            uri
+            slug
+            id
+            databaseId
+          }
+        }
+      }
     }
+    sku
+    slug
+    image {
+      sizes
+      mediaItemUrl
+      altText
+    }
+    shortDescription(format: RAW)
+    type
+    ... on SimpleProduct {
+      id
+      name
+      galleryImages {
+        nodes {
+          id
+          altText
+          mediaItemUrl
+        }
+      }
+      price(format: RAW)
+      salePrice(format: RAW)
+      regularPrice(format: RAW)
+      status
+      stockStatus
+    }
+  }
+}
+    `;
+export const ProductsDocument = gql`
+    query Products($first: Int, $after: String, $where: RootQueryToProductConnectionWhereArgs) {
+  products(first: $first, after: $after, where: $where) {
     nodes {
       sku
       slug
@@ -18851,6 +18998,12 @@ export const ProductsDocument = gql`
         mediaItemUrl
       }
     }
+    pageInfo {
+      endCursor
+      hasNextPage
+      hasPreviousPage
+      startCursor
+    }
   }
 }
     `;
@@ -18860,11 +19013,15 @@ export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, str
 
 const defaultWrapper: SdkFunctionWrapper = (action, _operationName) => action();
 const ProductCategoriesDocumentString = print(ProductCategoriesDocument);
+const ProductDocumentString = print(ProductDocument);
 const ProductsDocumentString = print(ProductsDocument);
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
     productCategories(variables?: ProductCategoriesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<{ data?: ProductCategoriesQuery | undefined; extensions?: any; headers: Dom.Headers; status: number; errors?: GraphQLError[] | undefined; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<ProductCategoriesQuery>(ProductCategoriesDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'productCategories');
+    },
+    Product(variables: ProductQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<{ data?: ProductQuery | undefined; extensions?: any; headers: Dom.Headers; status: number; errors?: GraphQLError[] | undefined; }> {
+        return withWrapper((wrappedRequestHeaders) => client.rawRequest<ProductQuery>(ProductDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Product');
     },
     Products(variables?: ProductsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<{ data?: ProductsQuery | undefined; extensions?: any; headers: Dom.Headers; status: number; errors?: GraphQLError[] | undefined; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<ProductsQuery>(ProductsDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Products');

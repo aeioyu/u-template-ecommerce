@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { UIStateProvider } from '../../components/UIStateProvider';
-import { ThemeProvider } from '../../components/ThemeProvider';
+import { UIStateProvider } from '@/components/UIStateProvider';
+import { ThemeProvider } from '@/components/ThemeProvider';
 import { IntlProvider } from 'react-intl';
-import theme from '../../configs/theme.config';
+import theme from '@/configs/theme.config';
 
 const queryClient = new QueryClient({
   defaultOptions: {
