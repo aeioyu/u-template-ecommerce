@@ -1,26 +1,34 @@
-import { NextPage } from 'next';
-import { useRouter } from 'next/router';
 import Container from '@/components/common/Container';
-import Layout from '@/components/layouts/AppLayout';
 import Seo from '@/components/common/Seo';
-import { selectSlugIdFromUrl } from '@/utils/slug.util';
 import ProductGallery from '@/components/features/product/ProductGallery';
-import useProduct from '@/composables/useProduct';
-import { SimpleProduct } from '@/composables/generated';
 import Text from '@/components/common/Text';
+import React from 'react';
+import { NextPage } from 'next';
+import AppLayout from '@/components/layouts/AppLayout';
+import Button from '@/components/common/Button';
+import { selectMediaGallery } from '@/selectors/productSelector';
+import useProduct from '@/composables/useProduct';
+import { selectPageInfoFromSlug } from '@/utils/slug.util';
+import { useRouter } from 'next/router';
 
-export interface ProductPageProps {}
-interface PageWithLayout {
+type PageWithLayout = {
   Layout?: React.FC;
-}
+};
 
-const ProductPage: NextPage<ProductPageProps> & PageWithLayout = () => {
+const ProductPage: NextPage & PageWithLayout = () => {
   const { query } = useRouter();
-  const slug = query?.slug;
-  const { pageType, pageId } = selectSlugIdFromUrl(slug);
+  const { slug } = query;
+  const { pageType, pageId } = selectPageInfoFromSlug(slug);
   const { product, isFetching } = useProduct(pageId);
 
-  if (!pageType || !pageId) {
+  const productGallery = selectMediaGallery(product);
+  const productAvailable = !isFetching && (!pageType || !pageId || !product);
+
+  const handleAddToCart = () => {
+    alert(`add product ${product.databaseId} to cart`);
+  };
+
+  if (productAvailable) {
     return <div>404</div>;
   }
 
@@ -28,58 +36,57 @@ const ProductPage: NextPage<ProductPageProps> & PageWithLayout = () => {
     return <div className="text-center">loading...</div>;
   }
 
-  const isSimpleProduct = product?.__typename === 'SimpleProduct';
-  const isMediaGalleryAvailable = isSimpleProduct && (product as SimpleProduct)?.galleryImages?.nodes?.length > 0;
-  const productGallery = isMediaGalleryAvailable
-    ? (product as SimpleProduct).galleryImages?.nodes.map((image) => ({
-        id: image.id,
-        url: image.mediaItemUrl,
-        alt: image.altText,
-      }))
-    : [{ id: '0', url: product?.image.mediaItemUrl, alt: product?.image.altText }];
-
   return (
     <div>
-      <Seo title={`${query.slug} | Product page`} description="description" />
+      <Seo title={product.name} description={product.shortDescription} />
       <Container>
         <div className="grid grid-cols-1 md:gap-2 md:grid-cols-4">
-          <div className="md:col-span-2 md:pr-14 ">
-            <ProductGallery gallery={productGallery} />
+          <div className="md:col-span-2 md:pr-14">
+            <ProductGallery gallery={productGallery} data-testid="product-gallery" />
           </div>
           <div className="pt-8 md:col-span-2">
             <div className="name">
-              <Text variant="heading1">{product?.name}</Text>
+              <Text variant="heading1" data-testid="product-name">
+                {product?.name}
+              </Text>
             </div>
             <div className="mb-8">Brand</div>
             <div className="flex mb-8">
-              <div className="price">
-                <Text variant="heading2">{product?.__typename === 'SimpleProduct' && product?.regularPrice}</Text>
+              <div className="regularPrice">
+                <Text variant="heading2" data-testid="product-regular-price">
+                  {product?.__typename === 'SimpleProduct' && product?.regularPrice}
+                </Text>
               </div>
-              <div className="price">
-                <Text variant="heading2">{product?.__typename === 'SimpleProduct' && product?.salePrice}</Text>
+              <div className="salePrice">
+                <Text variant="heading2" data-testid="product-sale-price">
+                  {product?.__typename === 'SimpleProduct' && product?.salePrice}
+                </Text>
               </div>
             </div>
 
             <div className="divide-x-8"></div>
 
-            <div className="name">{product?.shortDescription}</div>
+            <div className="mb-8 name" data-testid="product-short-description">
+              {product?.shortDescription}
+            </div>
+
+            <div className="addToCart">
+              <div style={{ maxWidth: 400 }}>
+                <Button variant="success" size="lg" block onClick={handleAddToCart} data-testid="product-add-cart-btn">
+                  Add To Cart
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="my-16">{product?.description}</div>
+        <div className="my-16" data-testid="product-description">
+          {product?.description}
+        </div>
       </Container>
     </div>
   );
 };
 
-// export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-//   const slug = query?.slug;
-//   const { pageType, pageId } = selectSlugIdFromUrl(slug);
-
-//   return {
-//     props: { pageType, pageId },
-//   };
-// };
-
-ProductPage.Layout = Layout;
+ProductPage.Layout = AppLayout;
 
 export default ProductPage;

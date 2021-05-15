@@ -1,4 +1,4 @@
-import { getSdk } from '@/composables/generated';
+import { getSdk } from '@/graphql/generated';
 import { GraphQLClient } from 'graphql-request';
 
 const endpoint = process.env.NEXT_PUBLIC_GRAPHQL_URL;

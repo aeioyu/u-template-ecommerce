@@ -12,11 +12,11 @@ export interface ProductGalleryProps {
   }[];
 }
 
-const ProductGallery: React.FC<ProductGalleryProps> = ({ gallery }) => {
+const ProductGallery: React.FC<ProductGalleryProps> = ({ gallery, ...rest }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
-    <>
+    <div {...rest}>
       <div className="mb-2">
         <Swiper
           spaceBetween={10}
@@ -48,7 +48,7 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({ gallery }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </div>
   );
 };
 

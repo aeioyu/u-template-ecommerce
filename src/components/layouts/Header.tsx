@@ -85,7 +85,7 @@ const Header: React.FC = () => {
       <nav>
         <Container>
           <MegaMenu
-            categories={categories?.map((category) => ({
+            categories={categories?.data?.nodes.map((category) => ({
               id: category.databaseId,
               slug: category.slug,
               name: category.name,

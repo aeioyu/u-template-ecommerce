@@ -1,12 +1,12 @@
-import { GetServerSideProps, NextPage } from 'next';
+import { NextPage } from 'next';
 import Container from '@/components/common/Container';
 import Layout from '@/components/layouts/AppLayout';
 import Seo from '@/components/common/Seo';
 import useProductSearch from '@/composables/useProductSearch';
 import ProductItem from '@/components/features/product/ProductItem';
-import { selectSlugIdFromUrl } from '@/utils/slug.util';
+import { selectPageInfoFromSlug } from '@/utils/slug.util';
 import { useRouter } from 'next/router';
-
+import { SimpleProduct } from '@/graphql/generated';
 export interface CategoryPageProps {
   pageId: string;
   pageType: string;
@@ -14,18 +14,18 @@ export interface CategoryPageProps {
 
 const CategoryPage: NextPage<CategoryPageProps> = () => {
   const { query } = useRouter();
-  const slug = query?.slug;
-  const { pageType, pageId } = selectSlugIdFromUrl(slug);
-  const { products } = useProductSearch(
-    {
-      page: 1,
-      per_page: 10,
-      category: pageId,
+  const { slug } = query;
+  const { pageType, pageId } = selectPageInfoFromSlug(slug);
+  const productSearchParams = {
+    first: 15,
+    after: '',
+    where: {
+      categoryId: Number(pageId),
     },
-    {
-      enabled: !!pageId && pageType === 'cat',
-    },
-  );
+  };
+  const { products } = useProductSearch(productSearchParams, {
+    enabled: !!pageId && pageType === 'cat',
+  });
 
   if (!pageId || !pageType) {
     return <div>404</div>;
@@ -37,15 +37,18 @@ const CategoryPage: NextPage<CategoryPageProps> = () => {
       <Container>
         <div>Url {pageId}</div>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-          {products?.data?.map((product) => (
+          {products?.nodes?.map((product) => (
             <ProductItem
               key={`catPage-${product.id}`}
-              productId={product.id}
+              productId={product.databaseId}
               sku={product.sku}
               slug={product.slug}
               name={product.name}
-              price={product.price}
-              images={product.images}
+              price={(product as SimpleProduct).price}
+              image={{
+                src: product.image.mediaItemUrl,
+                alt: product.image.altText,
+              }}
             />
           ))}
         </div>

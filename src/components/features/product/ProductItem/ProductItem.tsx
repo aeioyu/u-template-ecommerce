@@ -8,12 +8,10 @@ export interface ProductItemProps {
   name: string;
   sku: string;
   slug: string;
-  images: {
+  image: {
     alt?: string;
-    id?: number;
-    name?: string;
     src?: string;
-  }[];
+  };
   categories?: {
     id?: number;
     name?: string;
@@ -24,15 +22,15 @@ export interface ProductItemProps {
   sale_price?: string;
 }
 
-const ProductItem: React.FC<ProductItemProps> = ({ productId, slug, images, name, price }) => {
+const ProductItem: React.FC<ProductItemProps> = ({ productId, slug, image, name, price }) => {
   return (
     <div>
       <Link href={`/products/${slug}-i.${productId}`}>
         <a>
           <img
             className="w-full"
-            src={images[0]?.src}
-            alt={name}
+            src={image.src}
+            alt={image.alt}
             loading="lazy"
             width="300"
             height="300"

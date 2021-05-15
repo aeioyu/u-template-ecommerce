@@ -1,7 +1,5 @@
 import { GraphQLClient } from 'graphql-request';
 import * as Dom from 'graphql-request/dist/types.dom';
-import { GraphQLError } from 'graphql-request/dist/types';
-import { print } from 'graphql'
 import gql from 'graphql-tag';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -18739,19 +18737,24 @@ export type ProductCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 export type ProductCategoriesQuery = (
   { __typename?: 'RootQuery' }
   & { productCategories?: Maybe<(
-    { __typename: 'RootQueryToProductCategoryConnection' }
-    & { nodes?: Maybe<Array<Maybe<(
-      { __typename: 'ProductCategory' }
-      & Pick<ProductCategory, 'databaseId' | 'name' | 'id' | 'slug' | 'uri' | 'parentId' | 'productCategoryId'>
-      & { children?: Maybe<(
-        { __typename: 'ProductCategoryToProductCategoryConnection' }
-        & { nodes?: Maybe<Array<Maybe<(
-          { __typename: 'ProductCategory' }
-          & Pick<ProductCategory, 'name' | 'id' | 'productCategoryId' | 'uri' | 'slug'>
-        )>>> }
-      )> }
-    )>>> }
+    { __typename?: 'RootQueryToProductCategoryConnection' }
+    & CategoriesFieldFragment
   )> }
+);
+
+export type CategoriesFieldFragment = (
+  { __typename: 'RootQueryToProductCategoryConnection' }
+  & { nodes?: Maybe<Array<Maybe<(
+    { __typename: 'ProductCategory' }
+    & Pick<ProductCategory, 'databaseId' | 'name' | 'id' | 'slug' | 'uri' | 'parentId' | 'productCategoryId'>
+    & { children?: Maybe<(
+      { __typename: 'ProductCategoryToProductCategoryConnection' }
+      & { nodes?: Maybe<Array<Maybe<(
+        { __typename: 'ProductCategory' }
+        & Pick<ProductCategory, 'name' | 'id' | 'productCategoryId' | 'uri' | 'slug'>
+      )>>> }
+    )> }
+  )>>> }
 );
 
 export type ProductQueryVariables = Exact<{
@@ -18762,93 +18765,115 @@ export type ProductQueryVariables = Exact<{
 export type ProductQuery = (
   { __typename?: 'RootQuery' }
   & { product?: Maybe<(
-    { __typename: 'ExternalProduct' }
-    & Pick<ExternalProduct, 'description' | 'id' | 'name' | 'sku' | 'slug' | 'shortDescription' | 'type'>
-    & { productCategories?: Maybe<(
-      { __typename?: 'ProductToProductCategoryConnection' }
-      & { nodes?: Maybe<Array<Maybe<(
-        { __typename?: 'ProductCategory' }
-        & Pick<ProductCategory, 'name' | 'slug' | 'uri' | 'id' | 'databaseId'>
-        & { parent?: Maybe<(
-          { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge' }
-          & { node?: Maybe<(
-            { __typename?: 'ProductCategory' }
-            & Pick<ProductCategory, 'name' | 'uri' | 'slug' | 'id' | 'databaseId'>
-          )> }
-        )> }
-      )>>> }
-    )>, image?: Maybe<(
-      { __typename?: 'MediaItem' }
-      & Pick<MediaItem, 'sizes' | 'mediaItemUrl' | 'altText'>
-    )> }
+    { __typename?: 'ExternalProduct' }
+    & ProductField_ExternalProduct_Fragment
   ) | (
-    { __typename: 'GroupProduct' }
-    & Pick<GroupProduct, 'description' | 'id' | 'name' | 'sku' | 'slug' | 'shortDescription' | 'type'>
-    & { productCategories?: Maybe<(
-      { __typename?: 'ProductToProductCategoryConnection' }
-      & { nodes?: Maybe<Array<Maybe<(
-        { __typename?: 'ProductCategory' }
-        & Pick<ProductCategory, 'name' | 'slug' | 'uri' | 'id' | 'databaseId'>
-        & { parent?: Maybe<(
-          { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge' }
-          & { node?: Maybe<(
-            { __typename?: 'ProductCategory' }
-            & Pick<ProductCategory, 'name' | 'uri' | 'slug' | 'id' | 'databaseId'>
-          )> }
-        )> }
-      )>>> }
-    )>, image?: Maybe<(
-      { __typename?: 'MediaItem' }
-      & Pick<MediaItem, 'sizes' | 'mediaItemUrl' | 'altText'>
-    )> }
+    { __typename?: 'GroupProduct' }
+    & ProductField_GroupProduct_Fragment
   ) | (
-    { __typename: 'SimpleProduct' }
-    & Pick<SimpleProduct, 'id' | 'name' | 'price' | 'salePrice' | 'regularPrice' | 'status' | 'stockStatus' | 'description' | 'sku' | 'slug' | 'shortDescription' | 'type'>
-    & { galleryImages?: Maybe<(
-      { __typename?: 'ProductToMediaItemConnection' }
-      & { nodes?: Maybe<Array<Maybe<(
-        { __typename?: 'MediaItem' }
-        & Pick<MediaItem, 'id' | 'altText' | 'mediaItemUrl'>
-      )>>> }
-    )>, productCategories?: Maybe<(
-      { __typename?: 'ProductToProductCategoryConnection' }
-      & { nodes?: Maybe<Array<Maybe<(
-        { __typename?: 'ProductCategory' }
-        & Pick<ProductCategory, 'name' | 'slug' | 'uri' | 'id' | 'databaseId'>
-        & { parent?: Maybe<(
-          { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge' }
-          & { node?: Maybe<(
-            { __typename?: 'ProductCategory' }
-            & Pick<ProductCategory, 'name' | 'uri' | 'slug' | 'id' | 'databaseId'>
-          )> }
-        )> }
-      )>>> }
-    )>, image?: Maybe<(
-      { __typename?: 'MediaItem' }
-      & Pick<MediaItem, 'sizes' | 'mediaItemUrl' | 'altText'>
-    )> }
+    { __typename?: 'SimpleProduct' }
+    & ProductField_SimpleProduct_Fragment
   ) | (
-    { __typename: 'VariableProduct' }
-    & Pick<VariableProduct, 'description' | 'id' | 'name' | 'sku' | 'slug' | 'shortDescription' | 'type'>
-    & { productCategories?: Maybe<(
-      { __typename?: 'ProductToProductCategoryConnection' }
-      & { nodes?: Maybe<Array<Maybe<(
-        { __typename?: 'ProductCategory' }
-        & Pick<ProductCategory, 'name' | 'slug' | 'uri' | 'id' | 'databaseId'>
-        & { parent?: Maybe<(
-          { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge' }
-          & { node?: Maybe<(
-            { __typename?: 'ProductCategory' }
-            & Pick<ProductCategory, 'name' | 'uri' | 'slug' | 'id' | 'databaseId'>
-          )> }
-        )> }
-      )>>> }
-    )>, image?: Maybe<(
-      { __typename?: 'MediaItem' }
-      & Pick<MediaItem, 'sizes' | 'mediaItemUrl' | 'altText'>
-    )> }
+    { __typename?: 'VariableProduct' }
+    & ProductField_VariableProduct_Fragment
   )> }
 );
+
+type ProductField_ExternalProduct_Fragment = (
+  { __typename: 'ExternalProduct' }
+  & Pick<ExternalProduct, 'description' | 'id' | 'name' | 'databaseId' | 'sku' | 'slug' | 'shortDescription' | 'type'>
+  & { productCategories?: Maybe<(
+    { __typename?: 'ProductToProductCategoryConnection' }
+    & { nodes?: Maybe<Array<Maybe<(
+      { __typename?: 'ProductCategory' }
+      & Pick<ProductCategory, 'name' | 'slug' | 'uri' | 'id' | 'databaseId'>
+      & { parent?: Maybe<(
+        { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge' }
+        & { node?: Maybe<(
+          { __typename?: 'ProductCategory' }
+          & Pick<ProductCategory, 'name' | 'uri' | 'slug' | 'id' | 'databaseId'>
+        )> }
+      )> }
+    )>>> }
+  )>, image?: Maybe<(
+    { __typename?: 'MediaItem' }
+    & Pick<MediaItem, 'sizes' | 'mediaItemUrl' | 'altText'>
+  )> }
+);
+
+type ProductField_GroupProduct_Fragment = (
+  { __typename: 'GroupProduct' }
+  & Pick<GroupProduct, 'description' | 'id' | 'name' | 'databaseId' | 'sku' | 'slug' | 'shortDescription' | 'type'>
+  & { productCategories?: Maybe<(
+    { __typename?: 'ProductToProductCategoryConnection' }
+    & { nodes?: Maybe<Array<Maybe<(
+      { __typename?: 'ProductCategory' }
+      & Pick<ProductCategory, 'name' | 'slug' | 'uri' | 'id' | 'databaseId'>
+      & { parent?: Maybe<(
+        { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge' }
+        & { node?: Maybe<(
+          { __typename?: 'ProductCategory' }
+          & Pick<ProductCategory, 'name' | 'uri' | 'slug' | 'id' | 'databaseId'>
+        )> }
+      )> }
+    )>>> }
+  )>, image?: Maybe<(
+    { __typename?: 'MediaItem' }
+    & Pick<MediaItem, 'sizes' | 'mediaItemUrl' | 'altText'>
+  )> }
+);
+
+type ProductField_SimpleProduct_Fragment = (
+  { __typename: 'SimpleProduct' }
+  & Pick<SimpleProduct, 'id' | 'name' | 'price' | 'salePrice' | 'regularPrice' | 'status' | 'stockStatus' | 'description' | 'databaseId' | 'sku' | 'slug' | 'shortDescription' | 'type'>
+  & { galleryImages?: Maybe<(
+    { __typename?: 'ProductToMediaItemConnection' }
+    & { nodes?: Maybe<Array<Maybe<(
+      { __typename?: 'MediaItem' }
+      & Pick<MediaItem, 'id' | 'altText' | 'mediaItemUrl'>
+    )>>> }
+  )>, productCategories?: Maybe<(
+    { __typename?: 'ProductToProductCategoryConnection' }
+    & { nodes?: Maybe<Array<Maybe<(
+      { __typename?: 'ProductCategory' }
+      & Pick<ProductCategory, 'name' | 'slug' | 'uri' | 'id' | 'databaseId'>
+      & { parent?: Maybe<(
+        { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge' }
+        & { node?: Maybe<(
+          { __typename?: 'ProductCategory' }
+          & Pick<ProductCategory, 'name' | 'uri' | 'slug' | 'id' | 'databaseId'>
+        )> }
+      )> }
+    )>>> }
+  )>, image?: Maybe<(
+    { __typename?: 'MediaItem' }
+    & Pick<MediaItem, 'sizes' | 'mediaItemUrl' | 'altText'>
+  )> }
+);
+
+type ProductField_VariableProduct_Fragment = (
+  { __typename: 'VariableProduct' }
+  & Pick<VariableProduct, 'description' | 'id' | 'name' | 'databaseId' | 'sku' | 'slug' | 'shortDescription' | 'type'>
+  & { productCategories?: Maybe<(
+    { __typename?: 'ProductToProductCategoryConnection' }
+    & { nodes?: Maybe<Array<Maybe<(
+      { __typename?: 'ProductCategory' }
+      & Pick<ProductCategory, 'name' | 'slug' | 'uri' | 'id' | 'databaseId'>
+      & { parent?: Maybe<(
+        { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge' }
+        & { node?: Maybe<(
+          { __typename?: 'ProductCategory' }
+          & Pick<ProductCategory, 'name' | 'uri' | 'slug' | 'id' | 'databaseId'>
+        )> }
+      )> }
+    )>>> }
+  )>, image?: Maybe<(
+    { __typename?: 'MediaItem' }
+    & Pick<MediaItem, 'sizes' | 'mediaItemUrl' | 'altText'>
+  )> }
+);
+
+export type ProductFieldFragment = ProductField_ExternalProduct_Fragment | ProductField_GroupProduct_Fragment | ProductField_SimpleProduct_Fragment | ProductField_VariableProduct_Fragment;
 
 export type ProductsQueryVariables = Exact<{
   first?: Maybe<Scalars['Int']>;
@@ -18861,170 +18886,188 @@ export type ProductsQuery = (
   { __typename?: 'RootQuery' }
   & { products?: Maybe<(
     { __typename?: 'RootQueryToProductConnection' }
-    & { nodes?: Maybe<Array<Maybe<(
-      { __typename?: 'ExternalProduct' }
-      & Pick<ExternalProduct, 'sku' | 'slug' | 'databaseId' | 'name' | 'id'>
-      & { image?: Maybe<(
-        { __typename?: 'MediaItem' }
-        & Pick<MediaItem, 'id' | 'altText' | 'mediaItemUrl'>
-      )> }
-    ) | (
-      { __typename?: 'GroupProduct' }
-      & Pick<GroupProduct, 'sku' | 'slug' | 'databaseId' | 'name' | 'id'>
-      & { image?: Maybe<(
-        { __typename?: 'MediaItem' }
-        & Pick<MediaItem, 'id' | 'altText' | 'mediaItemUrl'>
-      )> }
-    ) | (
-      { __typename?: 'SimpleProduct' }
-      & Pick<SimpleProduct, 'price' | 'salePrice' | 'regularPrice' | 'sku' | 'slug' | 'databaseId' | 'name' | 'id'>
-      & { image?: Maybe<(
-        { __typename?: 'MediaItem' }
-        & Pick<MediaItem, 'id' | 'altText' | 'mediaItemUrl'>
-      )> }
-    ) | (
-      { __typename?: 'VariableProduct' }
-      & Pick<VariableProduct, 'sku' | 'slug' | 'databaseId' | 'name' | 'id'>
-      & { image?: Maybe<(
-        { __typename?: 'MediaItem' }
-        & Pick<MediaItem, 'id' | 'altText' | 'mediaItemUrl'>
-      )> }
-    )>>>, pageInfo?: Maybe<(
-      { __typename?: 'WPPageInfo' }
-      & Pick<WpPageInfo, 'endCursor' | 'hasNextPage' | 'hasPreviousPage' | 'startCursor'>
-    )> }
+    & ProductListFieldFragment
   )> }
 );
 
+export type ProductListFieldFragment = (
+  { __typename?: 'RootQueryToProductConnection' }
+  & { nodes?: Maybe<Array<Maybe<(
+    { __typename?: 'ExternalProduct' }
+    & Pick<ExternalProduct, 'sku' | 'slug' | 'databaseId' | 'name' | 'id'>
+    & { image?: Maybe<(
+      { __typename?: 'MediaItem' }
+      & Pick<MediaItem, 'id' | 'altText' | 'mediaItemUrl'>
+    )> }
+  ) | (
+    { __typename?: 'GroupProduct' }
+    & Pick<GroupProduct, 'sku' | 'slug' | 'databaseId' | 'name' | 'id'>
+    & { image?: Maybe<(
+      { __typename?: 'MediaItem' }
+      & Pick<MediaItem, 'id' | 'altText' | 'mediaItemUrl'>
+    )> }
+  ) | (
+    { __typename?: 'SimpleProduct' }
+    & Pick<SimpleProduct, 'price' | 'salePrice' | 'regularPrice' | 'sku' | 'slug' | 'databaseId' | 'name' | 'id'>
+    & { image?: Maybe<(
+      { __typename?: 'MediaItem' }
+      & Pick<MediaItem, 'id' | 'altText' | 'mediaItemUrl'>
+    )> }
+  ) | (
+    { __typename?: 'VariableProduct' }
+    & Pick<VariableProduct, 'sku' | 'slug' | 'databaseId' | 'name' | 'id'>
+    & { image?: Maybe<(
+      { __typename?: 'MediaItem' }
+      & Pick<MediaItem, 'id' | 'altText' | 'mediaItemUrl'>
+    )> }
+  )>>>, pageInfo?: Maybe<(
+    { __typename?: 'WPPageInfo' }
+    & Pick<WpPageInfo, 'endCursor' | 'hasNextPage' | 'hasPreviousPage' | 'startCursor'>
+  )> }
+);
 
-export const ProductCategoriesDocument = gql`
-    query productCategories {
-  productCategories(where: {parent: 0}) {
+export const CategoriesFieldFragmentDoc = gql`
+    fragment CategoriesField on RootQueryToProductCategoryConnection {
+  __typename
+  nodes {
     __typename
-    nodes {
+    databaseId
+    name
+    id
+    slug
+    uri
+    parentId
+    productCategoryId
+    children {
       __typename
-      databaseId
+      nodes {
+        __typename
+        name
+        id
+        productCategoryId
+        uri
+        slug
+      }
+    }
+  }
+}
+    `;
+export const ProductFieldFragmentDoc = gql`
+    fragment ProductField on Product {
+  __typename
+  description(format: RAW)
+  id
+  name
+  databaseId
+  productCategories {
+    nodes {
       name
-      id
       slug
       uri
-      parentId
-      productCategoryId
-      children {
-        __typename
-        nodes {
-          __typename
+      id
+      databaseId
+      parent {
+        node {
           name
-          id
-          productCategoryId
           uri
           slug
+          id
+          databaseId
         }
       }
     }
   }
-}
-    `;
-export const ProductDocument = gql`
-    query Product($productId: ID!) {
-  product(id: $productId, idType: DATABASE_ID) {
-    __typename
-    description(format: RAW)
+  sku
+  slug
+  image {
+    sizes
+    mediaItemUrl
+    altText
+  }
+  shortDescription(format: RAW)
+  type
+  ... on SimpleProduct {
     id
     name
-    productCategories {
+    galleryImages {
       nodes {
-        name
-        slug
-        uri
-        id
-        databaseId
-        parent {
-          node {
-            name
-            uri
-            slug
-            id
-            databaseId
-          }
-        }
-      }
-    }
-    sku
-    slug
-    image {
-      sizes
-      mediaItemUrl
-      altText
-    }
-    shortDescription(format: RAW)
-    type
-    ... on SimpleProduct {
-      id
-      name
-      galleryImages {
-        nodes {
-          id
-          altText
-          mediaItemUrl
-        }
-      }
-      price(format: RAW)
-      salePrice(format: RAW)
-      regularPrice(format: RAW)
-      status
-      stockStatus
-    }
-  }
-}
-    `;
-export const ProductsDocument = gql`
-    query Products($first: Int, $after: String, $where: RootQueryToProductConnectionWhereArgs) {
-  products(first: $first, after: $after, where: $where) {
-    nodes {
-      sku
-      slug
-      ... on SimpleProduct {
-        price
-        salePrice
-        regularPrice
-      }
-      databaseId
-      name
-      id
-      image {
         id
         altText
         mediaItemUrl
       }
     }
-    pageInfo {
-      endCursor
-      hasNextPage
-      hasPreviousPage
-      startCursor
-    }
+    price(format: RAW)
+    salePrice(format: RAW)
+    regularPrice(format: RAW)
+    status
+    stockStatus
   }
 }
     `;
+export const ProductListFieldFragmentDoc = gql`
+    fragment ProductListField on RootQueryToProductConnection {
+  nodes {
+    sku
+    slug
+    ... on SimpleProduct {
+      price
+      salePrice
+      regularPrice
+    }
+    databaseId
+    name
+    id
+    image {
+      id
+      altText
+      mediaItemUrl
+    }
+  }
+  pageInfo {
+    endCursor
+    hasNextPage
+    hasPreviousPage
+    startCursor
+  }
+}
+    `;
+export const ProductCategoriesDocument = gql`
+    query productCategories {
+  productCategories(where: {parent: 0}) {
+    ...CategoriesField
+  }
+}
+    ${CategoriesFieldFragmentDoc}`;
+export const ProductDocument = gql`
+    query Product($productId: ID!) {
+  product(id: $productId, idType: DATABASE_ID) {
+    ...ProductField
+  }
+}
+    ${ProductFieldFragmentDoc}`;
+export const ProductsDocument = gql`
+    query Products($first: Int, $after: String, $where: RootQueryToProductConnectionWhereArgs) {
+  products(first: $first, after: $after, where: $where) {
+    ...ProductListField
+  }
+}
+    ${ProductListFieldFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string) => Promise<T>;
 
 
 const defaultWrapper: SdkFunctionWrapper = (action, _operationName) => action();
-const ProductCategoriesDocumentString = print(ProductCategoriesDocument);
-const ProductDocumentString = print(ProductDocument);
-const ProductsDocumentString = print(ProductsDocument);
+
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    productCategories(variables?: ProductCategoriesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<{ data?: ProductCategoriesQuery | undefined; extensions?: any; headers: Dom.Headers; status: number; errors?: GraphQLError[] | undefined; }> {
-        return withWrapper((wrappedRequestHeaders) => client.rawRequest<ProductCategoriesQuery>(ProductCategoriesDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'productCategories');
+    productCategories(variables?: ProductCategoriesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ProductCategoriesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ProductCategoriesQuery>(ProductCategoriesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'productCategories');
     },
-    Product(variables: ProductQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<{ data?: ProductQuery | undefined; extensions?: any; headers: Dom.Headers; status: number; errors?: GraphQLError[] | undefined; }> {
-        return withWrapper((wrappedRequestHeaders) => client.rawRequest<ProductQuery>(ProductDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Product');
+    Product(variables: ProductQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ProductQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ProductQuery>(ProductDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Product');
     },
-    Products(variables?: ProductsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<{ data?: ProductsQuery | undefined; extensions?: any; headers: Dom.Headers; status: number; errors?: GraphQLError[] | undefined; }> {
-        return withWrapper((wrappedRequestHeaders) => client.rawRequest<ProductsQuery>(ProductsDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Products');
+    Products(variables?: ProductsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ProductsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ProductsQuery>(ProductsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Products');
     }
   };
 }

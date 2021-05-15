@@ -2,21 +2,20 @@ import React, { ReactElement } from 'react';
 import Seo from '@/components/common/Seo';
 import useTranslate from '@/composables/useTranslate';
 import Layout from '@/components/layouts/AppLayout';
-import { GetServerSideProps, GetStaticProps, NextPage } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import HeroBanner from '@/components/common/HeroBanner';
 import Container from '@/components/common/Container';
 import Text from '@/components/common/Text';
 import GridCarousel from '@/components/common/GridCarousel';
-import useProductSearch from '@/composables/useProductSearch';
+import useProductSearch, { fetchProductSearch } from '@/composables/useProductSearch';
 import ProductItem from '@/components/features/product/ProductItem';
-// import Image from 'next/image';
 import Head from 'next/head';
 import LazyLoad from 'react-lazyload';
 import Image from 'next/image';
 
 import { dehydrate } from 'react-query/hydration';
 import { QueryClient } from 'react-query';
-import { getProductSearch } from '@/composables/useProductSearch/useProductSearch';
+import { ProductTypesEnum, SimpleProduct } from '@/graphql/generated';
 
 const banners = [
   {
@@ -48,11 +47,20 @@ interface PageWithLayout {
   Layout?: React.FC;
 }
 
-const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
+const Home: NextPage<Props> & PageWithLayout = () => {
   const { t } = useTranslate();
-  const { products: accessoriesProducts } = useProductSearch({ page: 1, per_page: 10, category: '23' });
-  const { products: clothingProducts } = useProductSearch({ page: 1, per_page: 10, category: '19' });
-  const { products: hoodiesProducts } = useProductSearch({ page: 1, per_page: 10, category: '20' });
+  const { products: accessoriesProducts } = useProductSearch(
+    { first: 15, where: { categoryId: 23, type: ProductTypesEnum.Simple } },
+    { enabled: false },
+  );
+  const { products: clothingProducts } = useProductSearch(
+    { first: 15, where: { categoryId: 19, type: ProductTypesEnum.Simple } },
+    { enabled: false },
+  );
+  const { products: hoodiesProducts, isFetching: hoodiesFetching } = useProductSearch({
+    first: 15,
+    where: { categoryId: 20, type: ProductTypesEnum.Simple },
+  });
 
   const slidePlaceholder = (
     <div className="flex justify-between">
@@ -99,15 +107,18 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
           </Text>
 
           <GridCarousel>
-            {accessoriesProducts?.data?.map((product) => (
+            {accessoriesProducts?.nodes?.map((product) => (
               <GridCarousel.Item key={product.id} className="home-slider-wrapper">
                 <ProductItem
                   slug={product.slug}
                   name={product.name}
-                  images={product.images}
-                  price={product.price}
+                  image={{
+                    src: product.image.mediaItemUrl,
+                    alt: product.image.altText,
+                  }}
+                  price={(product as SimpleProduct).price}
                   sku={product.sku}
-                  productId={product.id}
+                  productId={product.databaseId}
                 />
               </GridCarousel.Item>
             ))}
@@ -120,15 +131,18 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
           </Text>
 
           <GridCarousel>
-            {clothingProducts?.data?.map((product) => (
+            {clothingProducts?.nodes?.map((product) => (
               <GridCarousel.Item key={product.id} className="home-slider-wrapper">
                 <ProductItem
                   slug={product.slug}
                   name={product.name}
-                  images={product.images}
-                  price={product.price}
+                  image={{
+                    src: product.image.mediaItemUrl,
+                    alt: product.image.altText,
+                  }}
+                  price={(product as SimpleProduct).price}
                   sku={product.sku}
-                  productId={product.id}
+                  productId={product.databaseId}
                 />
               </GridCarousel.Item>
             ))}
@@ -141,19 +155,22 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
           </Text>
 
           <LazyLoad once={true} placeholder={slidePlaceholder}>
-            {hoodiesProducts.isLoading ? (
+            {hoodiesFetching ? (
               slidePlaceholder
             ) : (
               <GridCarousel>
-                {hoodiesProducts?.data?.map((product) => (
+                {hoodiesProducts?.nodes?.map((product) => (
                   <GridCarousel.Item key={product.id}>
                     <ProductItem
                       slug={product.slug}
                       name={product.name}
-                      images={product.images}
-                      price={product.price}
+                      image={{
+                        src: product.image.mediaItemUrl,
+                        alt: product.image.altText,
+                      }}
+                      price={(product as SimpleProduct).price}
                       sku={product.sku}
-                      productId={product.id}
+                      productId={product.databaseId}
                     />
                   </GridCarousel.Item>
                 ))}
@@ -166,24 +183,23 @@ const Home: NextPage<Props> & PageWithLayout = ({ config }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient();
-  const searchProducts = { page: 1, per_page: 10, category: '23' };
-  const searchProducts2 = { page: 1, per_page: 10, category: '19' };
-  await queryClient.prefetchQuery(['products', searchProducts], () =>
-    getProductSearch(searchProducts, { hostname: `https://u-commerce.vercel.app` }),
+  const accessoriesProductsSearchParams = { first: 15, where: { categoryId: 23, type: ProductTypesEnum.Simple } };
+  const clothingProductsProductSearchParams = { first: 15, where: { categoryId: 19, type: ProductTypesEnum.Simple } };
+  const fetchAccessories = queryClient.prefetchQuery(['products', accessoriesProductsSearchParams], () =>
+    fetchProductSearch(accessoriesProductsSearchParams),
   );
-  await queryClient.prefetchQuery(['products', searchProducts2], () =>
-    getProductSearch(searchProducts2, { hostname: `https://u-commerce.vercel.app` }),
+  const fetchClothing = queryClient.prefetchQuery(['products', clothingProductsProductSearchParams], () =>
+    fetchProductSearch(clothingProductsProductSearchParams),
   );
+  await Promise.all([fetchAccessories, fetchClothing]);
+
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
     },
   };
-  // return {
-  //   props: {},
-  // };
 };
 
 Home.Layout = Layout;

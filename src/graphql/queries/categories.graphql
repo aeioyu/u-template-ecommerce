@@ -1,0 +1,30 @@
+query productCategories {
+  productCategories(where: { parent: 0 }) {
+    ...CategoriesField
+  }
+}
+
+fragment CategoriesField on RootQueryToProductCategoryConnection {
+  __typename
+  nodes {
+    __typename
+    databaseId
+    name
+    id
+    slug
+    uri
+    parentId
+    productCategoryId
+    children {
+      __typename
+      nodes {
+        __typename
+        name
+        id
+        productCategoryId
+        uri
+        slug
+      }
+    }
+  }
+}
