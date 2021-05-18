@@ -1,9 +1,9 @@
-interface selectSlugIdFromUrlResponse {
+interface SelectPageInfoFromSlug {
   pageType: string;
   pageId: string;
 }
 
-export const selectSlugIdFromUrl = (slug: string | string[]): selectSlugIdFromUrlResponse => {
+export const selectPageInfoFromSlug = (slug: string | string[]): SelectPageInfoFromSlug => {
   const castedString = Array.isArray(slug) ? slug : [slug];
   const slugArray = castedString?.join('/')?.split('-') || [];
   const slugFormated = slugArray[slugArray.length - 1]?.split('.');

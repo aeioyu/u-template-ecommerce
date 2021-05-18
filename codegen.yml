@@ -1,13 +1,12 @@
 overwrite: true
 schema: "./wpgraphql-schema.gql"
-documents: "./src/composables/**/*.graphql"
+documents: "./src/graphql/**/*.graphql"
 generates:
-  src/composables/generated/index.ts:
+  src/graphql/generated/index.ts:
     plugins:
       - typescript
       - typescript-operations
       - typescript-graphql-request
-    config:
-      rawRequest: true
+          
     
 

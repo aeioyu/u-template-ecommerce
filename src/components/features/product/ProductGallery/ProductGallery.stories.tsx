@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react';
 import ProductGallery, { ProductGalleryProps } from './ProductGallery';
 
 export default {
-  title: 'Commons/ProductGallery',
+  title: 'Features/Product/ProductGallery',
   component: ProductGallery,
   argTypes: {},
 } as Meta;
@@ -11,4 +11,12 @@ export default {
 const Template: React.VFC<ProductGalleryProps> = (args) => <ProductGallery {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  gallery: [
+    {
+      id: 1,
+      src: '',
+      alt: '',
+    },
+  ],
+};
