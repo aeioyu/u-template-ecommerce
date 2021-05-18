@@ -3,9 +3,15 @@
 This is a boilerplate of NextJS with Typescript, Storybook, TaiwindCSS, Components, Custom Hook and integrated with Wordpress Graphql.
 with example of Jest that automatic generate snapshort test integrated with Storybook call Story Short.
 
-![Application Screen][screen-example]
-![PageSpeed Desktop][speed-desktop]
-![PageSpeed Mobile][speed-mobile]
+## Live Example
+
+https://u-commerce.vercel.app
+
+## Performance
+
+|              Mobile               |               Desktop               |
+| :-------------------------------: | :---------------------------------: |
+| ![PageSpeed Mobile][speed-mobile] | ![PageSpeed Desktop][speed-desktop] |
 
 ## Project Features
 
