@@ -1,5 +1,12 @@
 # NextJS E-Commerce Template
 
+This is a boilerplate of NextJS with Typescript, Storybook, TaiwindCSS, Components, Custom Hook and integrated with Wordpress Graphql.
+with example of Jest that automatic generate snapshort test integrated with Storybook call Story Short.
+
+![Application Screen][screen-example]
+![PageSpeed Desktop][speed-desktop]
+![PageSpeed Mobile][speed-mobile]
+
 ## Project Features
 
 - [x] Internationalization
@@ -41,3 +48,7 @@
 - [reach-ui](https://github.com/reach/reach-ui)
 - [headlessui](https://headlessui.dev/)
 - [validate_sitemap](https://www.xml-sitemaps.com/validate-xml-sitemap.html)
+
+[speed-desktop]: docs/pagespeed-desktop.png
+[speed-mobile]: docs/pagespeed-mobile.png
+[screen-example]: docs/screen-example.png

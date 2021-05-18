@@ -1,12 +1,12 @@
 import { ProductFieldFragment, SimpleProduct } from '@/graphql/generated';
 
-interface ProductGallery {
+export interface ProductMediaGallery {
   id: string;
   url: string;
   alt: string;
 }
 
-export function selectMediaGallery(product: ProductFieldFragment): ProductGallery[] {
+export function selectMediaGallery(product: ProductFieldFragment): ProductMediaGallery[] {
   const isSimpleProduct = product?.__typename === 'SimpleProduct';
   const isMediaGalleryAvailable = isSimpleProduct && (product as SimpleProduct)?.galleryImages?.nodes?.length > 0;
   const productGallery = isMediaGalleryAvailable

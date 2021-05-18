@@ -1,15 +1,16 @@
+import React from 'react';
+import { NextPage } from 'next';
+import { useRouter } from 'next/router';
 import Container from '@/components/common/Container';
 import Seo from '@/components/common/Seo';
 import ProductGallery from '@/components/features/product/ProductGallery';
 import Text from '@/components/common/Text';
-import React from 'react';
-import { NextPage } from 'next';
 import AppLayout from '@/components/layouts/AppLayout';
 import Button from '@/components/common/Button';
-import { selectMediaGallery } from '@/selectors/productSelector';
 import useProduct from '@/composables/useProduct';
 import { selectPageInfoFromSlug } from '@/utils/slug.util';
-import { useRouter } from 'next/router';
+import { selectMediaGallery } from '@/selectors/productSelector';
+import clsx from 'clsx';
 
 type PageWithLayout = {
   Layout?: React.FC;
@@ -23,6 +24,8 @@ const ProductPage: NextPage & PageWithLayout = () => {
 
   const productGallery = selectMediaGallery(product);
   const productAvailable = !isFetching && (!pageType || !pageId || !product);
+  const regularPrice = product?.__typename === 'SimpleProduct' && product?.regularPrice;
+  const salePrice = product?.__typename === 'SimpleProduct' && product?.salePrice;
 
   const handleAddToCart = () => {
     alert(`add product ${product.databaseId} to cart`);
@@ -53,13 +56,17 @@ const ProductPage: NextPage & PageWithLayout = () => {
             <div className="mb-8">Brand</div>
             <div className="flex mb-8">
               <div className="regularPrice">
-                <Text variant="heading2" data-testid="product-regular-price">
-                  {product?.__typename === 'SimpleProduct' && product?.regularPrice}
+                <Text
+                  variant={salePrice ? 'heading4' : 'heading2'}
+                  data-testid="product-regular-price"
+                  className={clsx('mr-2', { ['line-through text-gray']: salePrice })}
+                >
+                  {regularPrice}
                 </Text>
               </div>
               <div className="salePrice">
                 <Text variant="heading2" data-testid="product-sale-price">
-                  {product?.__typename === 'SimpleProduct' && product?.salePrice}
+                  {salePrice}
                 </Text>
               </div>
             </div>
