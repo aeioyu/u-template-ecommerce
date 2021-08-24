@@ -24,7 +24,6 @@ module.exports = {
         'plugin:react/recommended', // React rules
         'plugin:react-hooks/recommended', // React hooks rules
         'plugin:jsx-a11y/recommended', // Accessibility rules
-        'plugin:prettier/recommended',
       ],
       rules: {
         // We will use TypeScript's types for component props instead
@@ -46,7 +45,6 @@ module.exports = {
             allowConciseArrowFunctionExpressionsStartingWithVoid: true,
           },
         ],
-        'prettier/prettier': ['error', {}, { usePrettierrc: true }],
       },
     },
   ],
