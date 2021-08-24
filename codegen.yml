@@ -1,0 +1,12 @@
+overwrite: true
+schema: "./wpgraphql-schema.gql"
+documents: "./src/graphql/**/*.graphql"
+generates:
+  src/graphql/generated/index.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-graphql-request
+          
+    
+

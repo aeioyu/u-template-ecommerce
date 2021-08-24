@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Commons/ProductGallery Default 1`] = `null`;
+
+exports[`Storyshots Features/Product/ProductGallery Default 1`] = `
+<div>
+  <div
+    className="mb-2"
+  >
+    <div
+      className="swiper-container mySwiper2"
+    >
+      <div
+        className="swiper-button-prev"
+      />
+      <div
+        className="swiper-button-next"
+      />
+      <div
+        className="swiper-wrapper"
+      >
+        <div
+          className="swiper-slide"
+        >
+          <img
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="swiper-container mySwiper"
+  >
+    <div
+      className="swiper-button-prev"
+    />
+    <div
+      className="swiper-button-next"
+    />
+    <div
+      className="swiper-wrapper"
+    >
+      <div
+        className="swiper-slide"
+      >
+        <img
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

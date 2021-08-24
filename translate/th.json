@@ -1,0 +1,12 @@
+{
+  "h1": "ตัวอย่าง",
+  "change-locale": "เปลี่ยนภาษา",
+  "to-second-page": "เปลี่ยนหน้า",
+  "error-with-status": "ตัวอย่าง {{statusCode}} error",
+  "error-without-status": "ตัวอย่าง error status",
+  "title": "หน้าแรก | next-i18next",
+  "seo.title": "หน้าแรก | u-nextjs-template",
+  "seo.description": "description",
+  "search": "ค้นหา",
+  "home.recommended": "สินค้ามาแรง"
+}

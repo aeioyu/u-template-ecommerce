@@ -2,121 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'Anuphan';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: local('Anuphan-Light'), url(./fonts/anuphan/Anuphan-Light.woff) format('woff');
+#homepage .home-slider-wrapper {
+  width: calc(50% - 7px);
+  margin-right: 14px;
 }
 
-@font-face {
-  font-family: 'Anuphan';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: local('Anuphan-Light'), url(./fonts/anuphan/Anuphan-Light.woff2) format('woff2');
-}
-
-@font-face {
-  font-family: 'Anuphan';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: local('Anuphan-Regular'), url(./fonts/anuphan/Anuphan-Regular.woff) format('woff');
-}
-
-@font-face {
-  font-family: 'Anuphan';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: local('Anuphan-Regular'),
-    url(./fonts/anuphan/Anuphan-Regular.woff2) format('woff2');
-}
-
-@font-face {
-  font-family: 'Anuphan';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: local('Anuphan-Medium'), url(./fonts/anuphan/Anuphan-Medium.woff) format('woff2');
-}
-
-@font-face {
-  font-family: 'Anuphan';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: local('Anuphan-Medium'), url(./fonts/anuphan/Anuphan-Medium.woff2) format('woff2');
-}
-
-@font-face {
-  font-family: 'Anuphan';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Anuphan-Bold'), url(./fonts/anuphan/Anuphan-Bold.woff) format('woff');
-}
-
-@font-face {
-  font-family: 'Anuphan';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Anuphan-Bold'), url(./fonts/anuphan/Anuphan-Bold.woff2) format('woff2');
-}
-
-@layer utilities {
-  .glassmorphism {
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    background-color: rgba(255, 255, 255, 0.6);
+@media (min-width: 768px) {
+  #homepage .home-slider-wrapper {
+    width: calc(25% - 7px);
   }
-}
-
-:root {
-  --color-background-theme: #f5f9fd;
-  --color-typo-theme: #1a3253;
-
-  --color-primary: #1a3253;
-}
-
-.dark-theme {
-  --color-background-theme: #010e22;
-  --color-typo-theme: #f2f3f5;
-}
-
-.bg-theme {
-  background-color: #fafafb;
-  /* background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
-  background-blend-mode: screen; */
-  /* background-image: radial-gradient(73% 147%, #eadfdf 59%, #ece2df 100%),
-    radial-gradient(91% 146%, rgba(255, 255, 255, 0.5) 47%, rgba(0, 0, 0, 0.5) 100%);
-  background-blend-mode: screen; */
-
-  /* background-image: linear-gradient(60deg, #29323c 0%, #485563 100%); */
-  /* background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%); */
-}
-
-body {
-  color: var(--color-typo-theme);
-}
-
-.logo {
-  font-weight: bold;
-  display: flex;
-}
-
-.logo .iris {
-  height: 38px;
-  width: 38px;
-  font-size: 14px;
-  border-radius: 40%;
-  text-align: center;
-  line-height: 34px;
-  border: 2px solid #613bfe;
-  color: #613bfe;
-  font-weight: bold;
-  margin-right: 8px;
 }

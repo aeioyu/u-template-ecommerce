@@ -1,0 +1,264 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Features/Product/ProductItem Default 1`] = `
+<div
+  style={
+    Object {
+      "maxWidth": 500,
+    }
+  }
+>
+  <div>
+    <a
+      href="/products/slug-i.undefined"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      <img
+        alt="Example Product"
+        className="w-full"
+        height="300"
+        loading="lazy"
+        src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZHVjdHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
+        style={
+          Object {
+            "aspectRatio": "1 / 1",
+          }
+        }
+        width="300"
+      />
+      <div>
+        <span
+          className="leading-5 text-body"
+        >
+          Example Product
+        </span>
+      </div>
+      <div>
+        <span
+          className="leading-5 text-body"
+        >
+          100
+        </span>
+      </div>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Features/Product/ProductItem With Grid Column 1`] = `
+<div
+  className="grid grid-cols-3 gap-4"
+>
+  <div>
+    <a
+      href="/products/slug-i.undefined"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      <img
+        alt="string"
+        className="w-full"
+        height="300"
+        loading="lazy"
+        src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZHVjdHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
+        style={
+          Object {
+            "aspectRatio": "1 / 1",
+          }
+        }
+        width="300"
+      />
+      <div>
+        <span
+          className="leading-5 text-body"
+        >
+          Example Product
+        </span>
+      </div>
+      <div>
+        <span
+          className="leading-5 text-body"
+        >
+          100
+        </span>
+      </div>
+    </a>
+  </div>
+  <div>
+    <a
+      href="/products/slug-i.undefined"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      <img
+        alt="string"
+        className="w-full"
+        height="300"
+        loading="lazy"
+        src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZHVjdHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
+        style={
+          Object {
+            "aspectRatio": "1 / 1",
+          }
+        }
+        width="300"
+      />
+      <div>
+        <span
+          className="leading-5 text-body"
+        >
+          Example Product
+        </span>
+      </div>
+      <div>
+        <span
+          className="leading-5 text-body"
+        >
+          100
+        </span>
+      </div>
+    </a>
+  </div>
+  <div>
+    <a
+      href="/products/slug-i.undefined"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      <img
+        alt="string"
+        className="w-full"
+        height="300"
+        loading="lazy"
+        src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZHVjdHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
+        style={
+          Object {
+            "aspectRatio": "1 / 1",
+          }
+        }
+        width="300"
+      />
+      <div>
+        <span
+          className="leading-5 text-body"
+        >
+          Example Product
+        </span>
+      </div>
+      <div>
+        <span
+          className="leading-5 text-body"
+        >
+          100
+        </span>
+      </div>
+    </a>
+  </div>
+  <div>
+    <a
+      href="/products/slug-i.undefined"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      <img
+        alt="string"
+        className="w-full"
+        height="300"
+        loading="lazy"
+        src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZHVjdHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
+        style={
+          Object {
+            "aspectRatio": "1 / 1",
+          }
+        }
+        width="300"
+      />
+      <div>
+        <span
+          className="leading-5 text-body"
+        >
+          Example Product
+        </span>
+      </div>
+      <div>
+        <span
+          className="leading-5 text-body"
+        >
+          100
+        </span>
+      </div>
+    </a>
+  </div>
+  <div>
+    <a
+      href="/products/slug-i.undefined"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      <img
+        alt="string"
+        className="w-full"
+        height="300"
+        loading="lazy"
+        src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZHVjdHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
+        style={
+          Object {
+            "aspectRatio": "1 / 1",
+          }
+        }
+        width="300"
+      />
+      <div>
+        <span
+          className="leading-5 text-body"
+        >
+          Example Product
+        </span>
+      </div>
+      <div>
+        <span
+          className="leading-5 text-body"
+        >
+          100
+        </span>
+      </div>
+    </a>
+  </div>
+  <div>
+    <a
+      href="/products/slug-i.undefined"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      <img
+        alt="string"
+        className="w-full"
+        height="300"
+        loading="lazy"
+        src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZHVjdHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
+        style={
+          Object {
+            "aspectRatio": "1 / 1",
+          }
+        }
+        width="300"
+      />
+      <div>
+        <span
+          className="leading-5 text-body"
+        >
+          Example Product
+        </span>
+      </div>
+      <div>
+        <span
+          className="leading-5 text-body"
+        >
+          100
+        </span>
+      </div>
+    </a>
+  </div>
+</div>
+`;
